@@ -1,0 +1,30 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+.h-font {
+    font-family: 'Merienda', cursive;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+/* Hide number input arrows in webkit browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0; /* Removes the default margin */
+}
+
+input[type-number] {
+    -moz-appearance: textfield;
+}
+
+.custom-bg{
+  background-color: #2ec1ac;
+  border: 1px solid #2ec1ac;
+}
+.custom-bg:hover{
+  background-color: #279e8c;
+  border-color: #279e8c;
+}
