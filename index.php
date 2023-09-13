@@ -457,11 +457,13 @@
       <br>
       <h5 class="mt3">Wifi</h5>
     </div>
-    <div class="col-lg-12 text-center mt-5">
-      <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-fold shadow-none">More Facilities >>></a>
+        <div class="col-lg-12 text-center mt-5">
+          <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-fold shadow-none">More Facilities >>></a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 <!-- Testimonials -->
 <h2 class="mt 5 pt-4 mb-5 text-center fm-bold f-font">TESTIMONIALS</h2>
 
@@ -516,6 +518,7 @@
       <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-fold shadow-none">Find out more >>></a>
   </div>
 </div>
+      </div>
 
 <!-- Reach Us -->
 <h2 class="mt 5 pt-4 mb-5 text-center fm-bold f-font">REACH US</h2>
@@ -549,44 +552,42 @@
             <i class="fa fa-twitter me-1"></i> Twitter
           </span>
         </a>
-  </div>
- </div>
-
- <div class="container-fluid bg-white mt-5">
-  <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-12 p-4">
-      <h3 class="h-font fw-bold fs-3 mb-2">HOTEL</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum posuere iaculis. Aliquam non erat nibh. Nulla auctor dolor in est suscipit, et elementum quam lacinia. Donec vitae nisi eleifend, dapibus turpis et, cursus orci.</p>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-12 p-4">
-      <h5 class="mb-3">Links</h5>
-      <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Home</a> <br>
-      <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Rooms</a> <br>
-      <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Facilities</a> <br>
-      <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Contact us</a> <br>
-      <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">About</a> <br>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-12 p-4">
-      <h5 class="mb-3">Follow us</h5>
-      <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-        <i class="fa fa-facebook me-1"></i> Facebook
-      </a>
-      <br>
-      <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-        <i class="fa fa-instagram me-1"></i> Instagram
-      </a>
-      <br>
-      <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-        <i class="fa fa-twitter me-1"></i> Twitter
-      </a>
-      <br>
+      </div>
     </div>
   </div>
 </div>
+ <div class="container-fluid bg-white mt-5">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12 p-4">
+        <h3 class="h-font fw-bold fs-3 mb-2">HOTEL</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum posuere iaculis. Aliquam non erat nibh. Nulla auctor dolor in est suscipit, et elementum quam lacinia. Donec vitae nisi eleifend, dapibus turpis et, cursus orci.
+        </p>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 p-4">
+        <h5 class="mb-3">Links</h5>
+        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Home</a><br>
+        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Rooms</a><br>
+        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Facilities</a><br>
+        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Contact us</a><br>
+        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">About</a><br>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 p-4">
+        <h5 class="mb-3">Follow us</h5>
+        <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
+          <i class="fa fa-facebook me-1"></i> Facebook
+        </a><br>
+        <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
+          <i class="fa fa-instagram me-1"></i> Instagram
+        </a><br>
+        <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
+          <i class="fa fa-twitter me-1"></i> Twitter
+        </a><br>
+      </div>
+    </div>
+  </div>
 
-<h6 class="text-center bg-dark text-white p-3 mb-3">Designed and Developed by HOTEL</h6>
-
-
+  <h6 class="text-center bg-dark text-white p-3 mb-3">Designed and Developed by HOTEL</h6>
 <!-- JavaScript libraries for Bootstrap and Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
