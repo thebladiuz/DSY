@@ -4,24 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.4.2-web/fontawesome-free-6.4.2-web/css/all.css">
-    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.4.2-web/fontawesome-free-6.4.2-web/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Hotel - Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <?php require('inc/link.php') ?>
     <style>
-
-      .custom-bg{
-        background-color: #2ec1ac;
-        border: 1px solid #2ec1ac;
-      }
-      .custom-bg:hover{
-        background-color: #279e8c;
-        border-color: #279e8c;
-      }
 
         .availability-form {
             margin-top: -50px; /* Adjust this value as needed */
@@ -42,149 +28,7 @@
     </style>
 </head>
 <body class="bg-light">
-<nav class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 py-lg-2 shadow-sm stick-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">HOTEL</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active me-2" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link me-2" href="#">Rooms</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link me-2" href="#">Facilities</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link me-2" href="#">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link me-2" href="#">About</a>
-                </li>
-            </ul>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
-                Login
-            </button>
-            <div style="margin: 10px;"></div>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
-                Register
-            </button>
-        </div>
-    </div>
-</nav>
-
-<!-- Login Modal -->
-<div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form>
-                <div class="modal-header">
-                    <h5 class="modal-title d-flex align-items-center">
-                        <i class="fa fa-user"></i>&nbsp User Login
-                    </h5>
-                    <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="login-email">Email address</label>
-                        <input type="email" class="form-control shadow-none" id="login-email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="login-password">Password</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control shadow-none" id="login-password">
-                            <button type="button" class="btn btn-outline-secondary" id="toggle-login-password">&#128065;</button>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <a href="javascript: void(0)" class="text-secondary text-decoration-none">Forgot Password?</a>
-                        </div>
-                        <br>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" style="flex: 1;">Create Account</a>
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Registration Modal -->
-<div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form>
-                <div class="modal-header">
-                    <h5 class="modal-title d-flex align-items-center">
-                        <i class="fa fa-user"></i>&nbsp User Registration
-                    </h5>
-                    <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                <span class="badge rounded-pill text-bg-light mb-3 text-wrap lh-base">
-                  Note: Your details must match with your ID (ID card, passport, driving license, etc.) that will be required during check-in.
-              </span>
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label for="register-name">Name</label>
-                        <input type="text" class="form-control shadow-none" id="register-name">
-                  </div>
-                    <div class="col-md-6 ps-0 mb-3">
-                      <label for="register-email">Email address</label>
-                        <input type="email" class="form-control shadow-none" id="register-email">
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label for="register-phone">Phone Number</label>
-                    <input type="number" class="form-control shadow-none" id="register-phone">
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label for="register-picture">Picture</label>
-                    <input type="file" class="form-control shadow-none" id="register-picture">
-                  </div>
-                  <div class="col-md-12 ps-0 mb-3">
-                    <label for="register-address">Address</label>
-                    <textarea class="form-control shadow-none" rows="1" id="register-address"></textarea>
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label for="register-postal-code">Postal Code</label>
-                    <input type="number" class="form-control shadow-none" id="register-postal-code">
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label for="register-date-of-birth">Date of Birth</label>
-                    <input type="date" class="form-control shadow-none" id="register-date-of-birth">
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                  <label for="register-password">Password</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control shadow-none" id="register-password">
-                            <button type="button" class="btn btn-outline-secondary" id="toggle-register-password">&#128065;</button>
-                        </div>
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                  <label for="register-confirm-password">Confirm Password</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control shadow-none" id="register-confirm-password">
-                            <button type="button" class="btn btn-outline-secondary" id="toggle-register-confirm-password">&#128065;</button>
-                        </div>
-                  </div>
-                </div>
-              </div>
-                    <br>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" style="flex: 1;">Already have an account? Login</a>
-                      <button type="submit" class="btn btn-primary">Register</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+  <?php require('inc/header.php');?>
 
 <!-- Carousel -->
   <div class="swiper-container full-screen">
@@ -556,93 +400,12 @@
     </div>
   </div>
 </div>
- <div class="container-fluid bg-white mt-5">
-    <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-12 p-4">
-        <h3 class="h-font fw-bold fs-3 mb-2">HOTEL</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum posuere iaculis. Aliquam non erat nibh. Nulla auctor dolor in est suscipit, et elementum quam lacinia. Donec vitae nisi eleifend, dapibus turpis et, cursus orci.
-        </p>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-12 p-4">
-        <h5 class="mb-3">Links</h5>
-        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Home</a><br>
-        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Rooms</a><br>
-        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Facilities</a><br>
-        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Contact us</a><br>
-        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">About</a><br>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-12 p-4">
-        <h5 class="mb-3">Follow us</h5>
-        <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-          <i class="fa fa-facebook me-1"></i> Facebook
-        </a><br>
-        <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-          <i class="fa fa-instagram me-1"></i> Instagram
-        </a><br>
-        <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-          <i class="fa fa-twitter me-1"></i> Twitter
-        </a><br>
-      </div>
-    </div>
-  </div>
 
-  <h6 class="text-center bg-dark text-white p-3 mb-3">Designed and Developed by HOTEL</h6>
+<?php require('inc/footer.php')?>
+
 <!-- JavaScript libraries for Bootstrap and Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-
-<!-- JavaScript code for the password toggle in the Login Modal -->
-<script>
-    const loginPasswordInput = document.getElementById('login-password');
-    const toggleLoginPassword = document.getElementById('toggle-login-password');
-
-    let isLoginPasswordVisible = false;
-
-    toggleLoginPassword.addEventListener('click', function () {
-        if (isLoginPasswordVisible) {
-            loginPasswordInput.type = 'password';
-            isLoginPasswordVisible = false;
-        } else {
-            loginPasswordInput.type = 'text';
-            isLoginPasswordVisible = true;
-        }
-    });
-</script>
-
-<!-- JavaScript code for the password toggle in the Registration Modal -->
-<script>
-    const registerPasswordInput = document.getElementById('register-password');
-    const toggleRegisterPassword = document.getElementById('toggle-register-password');
-    const registerConfirmPasswordInput = document.getElementById('register-confirm-password');
-    const toggleRegisterConfirmPassword = document.getElementById('toggle-register-confirm-password');
-
-    let isRegisterPasswordVisible = false;
-    let isRegisterConfirmPasswordVisible = false;
-
-    toggleRegisterPassword.addEventListener('click', function () {
-        if (isRegisterPasswordVisible) {
-            registerPasswordInput.type = 'password';
-            isRegisterPasswordVisible = false;
-        } else {
-            registerPasswordInput.type = 'text';
-            isRegisterPasswordVisible = true;
-        }
-    });
-
-    toggleRegisterConfirmPassword.addEventListener('click', function () {
-        if (isRegisterConfirmPasswordVisible) {
-            registerConfirmPasswordInput.type = 'password';
-            isRegisterConfirmPasswordVisible = false;
-        } else {
-            registerConfirmPasswordInput.type = 'text';
-            isRegisterConfirmPasswordVisible = true;
-        }
-    });
-</script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-
 <!-- JavaScript code for the Swiper Slider -->
 <script>
   var swiper = new Swiper(".swiper-container", {
@@ -658,7 +421,6 @@
     },
   });
 </script>
-
 <script>
     var swiper = new Swiper(".swiper-testimonials", {
       effect: "coverflow",
