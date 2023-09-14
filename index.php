@@ -99,7 +99,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-4 co-md-6">
+    <div class="col-lg-4 co-md-6 my-3">
     <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
   <img class="card-img-top" src="assets/images/rooms/1.jpg">
   <div class="card-body">
@@ -134,6 +134,15 @@
       <span class="badge rounded-pill text-bg-light text-dark text-wrap">
        Room Heater
       </span>   
+    </div>
+    <div class="guests mb-4">
+  <h6 class="mb-1">Guests</h6>
+      <span class="badge rounded-pill text-bg-light text-dark text-wrap">
+       5 Adults
+      </span>
+      <span class="badge rounded-pill text-bg-light text-dark text-wrap">
+       4 Children
+      </span>
     </div>
     <div class="rating">
       <h6 class="mb-1">Rating</h6>
@@ -153,7 +162,7 @@
     </div>
     </div>
   </div>
-  <div class="col-lg-4 co-md-6">
+  <div class="col-lg-4 co-md-6 my-3">
     <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
   <img class="card-img-top" src="assets/images/rooms/1.jpg">
   <div class="card-body">
@@ -188,6 +197,15 @@
       <span class="badge rounded-pill text-bg-light text-dark text-wrap">
        Room Heater
       </span>   
+    </div>
+    <div class="guests mb-4">
+  <h6 class="mb-1">Guests</h6>
+      <span class="badge rounded-pill text-bg-light text-dark text-wrap">
+       5 Adults
+      </span>
+      <span class="badge rounded-pill text-bg-light text-dark text-wrap">
+       4 Children
+      </span>
     </div>
     <div class="rating">
       <h6 class="mb-1">Rating</h6>
@@ -207,7 +225,7 @@
     </div>
     </div>
   </div>
-  <div class="col-lg-4 co-md-6">
+  <div class="col-lg-4 co-md-6 my-3">
     <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
   <img class="card-img-top" src="assets/images/rooms/1.jpg">
   <div class="card-body">
@@ -242,6 +260,15 @@
       <span class="badge rounded-pill text-bg-light text-dark text-wrap">
        Room Heater
       </span>   
+    </div>
+    <div class="guests mb-4">
+  <h6 class="mb-1">Guests</h6>
+      <span class="badge rounded-pill text-bg-light text-dark text-wrap">
+       5 Adults
+      </span>
+      <span class="badge rounded-pill text-bg-light text-dark text-wrap">
+       4 Children
+      </span>
     </div>
     <div class="rating">
       <h6 class="mb-1">Rating</h6>
@@ -370,7 +397,7 @@
  <div class="container">
   <div class="row">
     <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white-rounded">
-    <iframe class="w-100 rounded" height="320" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.0911610888375!2d105.79210327247685!3d20.988982589148986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135adb29ed54487%3A0xbe22035eae87b5d7!2sHanoi%20University!5e0!3m2!1sen!2s!4v1694604515842!5m2!1sen!2s" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="w-100 rounded" height="320" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.0911610888375!2d105.79210327247685!3d20.988982589148986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135adb29ed54487%3A0xbe22035eae87b5d7!2sHanoi%20University!5e0!3m2!1sen!2s!4v1694604515842!5m2!1sen!2s" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <div class="col-lg-4 col-md-4">
       <div class="bg-white p-4 rounded mb-4">
