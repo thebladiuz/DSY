@@ -34,13 +34,13 @@
               <a href="mailto: ask.hotel@gmail.com" class="d-inline-block text-decoration-none text-dark"><i class="fa fa-envelope"></i> ask.hotel@gmail.com</a>
               <h5 class="mt-4">Follow us</h5>
               <a href="#"class="d-inline-block text-dark fs-5 me-2">
-                <i class="fa fa-facebook me-1"></i>
+                <i class="fa-brands fa-facebook me-1"></i>
               </a>
               <a href="#"class="d-inline-block text-dark fs-5 me-2">
-                <i class="fa fa-instagram me-1"></i>
+                <i class="fa-brands fa-instagram me-1"></i>
               </a>
               <a href="#"class="d-inline-block text-dark fs-5 me-2">
-                <i class="fa fa-twitter me-1"></i>
+                <i class="fa-brands fa-twitter me-1"></i>              
               </a>
           </div>
         </div>
