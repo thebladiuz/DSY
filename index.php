@@ -392,6 +392,13 @@
       </div>
 
 <!-- Reach Us -->
+
+<?php
+//$contact_q ="SELECT = FROM 'contact_details' WHERE 'sr_no'=?";
+//$values = [1];
+//$contact_r = mysqli_fetch_assoc(select($contact_q,$values,'i'));
+//print_r($contact_r);
+//?>
 <h2 class="mt 5 pt-4 mb-5 text-center fm-bold f-font">REACH US</h2>
 
  <div class="container">
