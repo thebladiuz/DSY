@@ -17,13 +17,13 @@
       <div class="col-lg-4 col-md-4 col-sm-12 p-4">
         <h5 class="mb-3">Follow us</h5>
         <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-          <i class="fa fa-facebook me-1"></i> Facebook
+          <i class="fa-brands fa-facebook me-1"></i> Facebook
         </a><br>
         <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-          <i class="fa fa-instagram me-1"></i> Instagram
+          <i class="fa-brands fa-instagram me-1"></i> Instagram
         </a><br>
         <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-          <i class="fa fa-twitter me-1"></i> Twitter
+          <i class="fa-brands fa-twitter me-1"></i> Twitter
         </a><br>
       </div>
     </div>

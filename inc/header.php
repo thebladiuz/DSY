@@ -27,11 +27,11 @@
                     <a class="nav-link me-2" href="about-us.php">About Us</a>
                 </li>
             </ul>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+            <button type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#loginModal">
                 Login
             </button>
             <div style="margin: 10px;"></div>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+            <button type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#registerModal">
                 Register
             </button>
         </div>
@@ -66,7 +66,7 @@
                         <br>
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" style="flex: 1;">Create Account</a>
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-dark shadow-none">Login</button>
                         </div>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                     <br>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                       <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" style="flex: 1;">Already have an account? Login</a>
-                      <button type="submit" class="btn btn-primary">Register</button>
+                      <button type="submit" class="btn btn-dark shadow-none">Register</button>
                     </div>
                 </div>
             </form>

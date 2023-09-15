@@ -415,19 +415,19 @@
         <h5>Follow us</h5>
         <a href="#"class="d-inline-block mb-3">
           <span class="badge bg-light text-dark fs-6 ps-2">
-            <i class="fa fa-facebook me-1"></i> Facebook
+           <i class="fa-brands fa-facebook me-1"></i></i> Facebook
           </span>
         </a>
         <br>
         <a href="#"class="d-inline-block mb-3">
           <span class="badge bg-light text-dark fs-6 ps-2">
-            <i class="fa fa-instagram me-1"></i> Instagram
+            <i class="fa-brands fa-instagram me-1"></i></i> Instagram
           </span>
         </a>
         <br>
         <a href="#"class="d-inline-block mb-3">
           <span class="badge bg-light text-dark fs-6 ps-2">
-            <i class="fa fa-twitter me-1"></i> Twitter
+            <i class="fa-brands fa-twitter me-1"></i> Twitter
           </span>
         </a>
       </div>
@@ -460,8 +460,7 @@
       effect: "coverflow",
       grabCursor: true,
       centeredSlides: true,
-      slidesPerView: "auto",
-      slidesPerView: "3",
+      slidesPerView: 3,
       loop: true,
       coverflowEffect: {
         rotate: 50,
