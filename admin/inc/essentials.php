@@ -1,4 +1,4 @@
-<?php require('inc/link.php');?>
+<?php require('../inc/links.php');?>
 <?php
 
     function adminLogin(){
@@ -19,9 +19,10 @@
 function alert($type,$msg){
     $bs_class = ($type == "success") ? "alert-success" : "alert-danger";
     echo <<<alert
-          <div class="alert $bs_class alert-dismissible fade show custom-alert " role="alert">
-          <strong class="me-3">$msg</strong> 
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="alert $bs_class alert-dismissible fade show custom-alert " role="alert">
+            <strong class="me-3">$msg</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     alert;
 }
 

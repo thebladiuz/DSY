@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel - Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
-    <?php require('inc/link.php') ?>
+    <?php require('inc/links.php') ?>
     <style>
 
         .availability-form {
