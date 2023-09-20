@@ -116,22 +116,25 @@
                                 </div>
                                 <div class="mb-4">
                                     <h6 class="card-subtitle mb-1 fw-bold">E-mail</h6>
-                                    <p class="card-text" id="email"></p>
+                                    <p class="card-text">
+                                        <i class="fa fa-envelope"></i>
+                                        <span id="email"></span>
+                                    </p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-4">
                                     <h6 class="card-subtitle mb-1 fw-bold">Social Links</h6>
                                     <p class="card-text mb-1">
-                                        <i class="bi bi-facebook me-1"></i>
+                                        <i class="fa-brands fa-facebook"></i>
                                         <span id="fb"></span>
                                     </p>
                                     <p class="card-text mb-1">
-                                        <i class="bi bi-instagram me-1"></i>
+                                        <i class="fa-brands fa-instagram"></i>
                                         <span id="insta"></span>
                                     </p>
                                     <p class="card-text">
-                                        <i class="bi bi-twitter me-1"></i>
+                                        <i class="fa-brands fa-twitter"></i>
                                         <span id="tw"></span>
                                     </p>
                                 </div>
@@ -353,7 +356,7 @@ function get_contacts() {
                 console.error("Error fetching contacts data. Status code:", xhr.status);
             }
         };
-        
+
         iframeInput.addEventListener('change', function() {
         // Get the value from the input field
         let iframeSrc = iframeInput.value;
