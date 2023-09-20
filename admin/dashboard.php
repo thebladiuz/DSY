@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="../admin/css/style.css">
     <?php require('../admin/inc/links.php'); ?>
 </head>
 <body class="bg-light">
