@@ -1,5 +1,5 @@
 <?php
-    require('inc/essentials.php');
+    require('../admin/inc/essentials.php');
     adminLogin();
 ?>
 
@@ -9,11 +9,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Settings</title>
-    <?php require('inc/links.php'); ?>
+    <?php require('../admin/inc/links.php'); ?>
+    <link rel="stylesheet" type="text/css" href="../admin/css/style.css">
 </head>
 <body class="bg-light">
 
-    <?php require('inc/header.php') ?>
+    <?php require('../admin/inc/header.php') ?>
 
     <div class="container-fluid" id="main-content">
         <div class="row">
@@ -86,7 +87,7 @@
         </div>
     </div>
 
-    <?php require('inc/scripts.php'); ?>
+    <?php require('../admin/inc/scripts.php'); ?>
     <script>
         let general_data = {}; // Initialize an empty object to hold general data
 
@@ -104,29 +105,31 @@
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function() {
-            if (xhr.status === 200) {
+             if (xhr.status === 200) {
                 try {
                     general_data = JSON.parse(xhr.responseText);
 
-                    site_title.innerText = general_data.site_title;
-                    site_about.innerText = general_data.site_about;
-
-                    site_title_inp.value = general_data.site_title;
-                    site_about_inp.value = general_data.site_about;
-
-                    shutdownToggle.checked = general_data.shutdown == 1 ? true : false;
+                    // Check if general_data is a valid JSON object
+                    if (typeof general_data === 'object' && general_data !== null) {
+                        // Update your page elements with the data
+                        site_title.innerText = general_data.site_title;
+                        site_about.innerText = general_data.site_about;
+                        site_title_inp.value = general_data.site_title;
+                        site_about_inp.value = general_data.site_about;
+                        shutdownToggle.checked = general_data.shutdown == 1 ? true : false;
+                    } else {
+                        console.error("Invalid JSON data received:", xhr.responseText);
+                    }
                 } catch (error) {
                     console.error("Error parsing JSON response:", error);
-                    // Handle the error, e.g., display an error message to the user
                 }
             } else {
                 console.error("Error fetching general data");
-                // Handle the error, e.g., display an error message to the user
             }
         }
 
         xhr.send('get_general');
-    }
+        }
 
     // Call get_general on page load
     window.onload = function() {
@@ -174,19 +177,12 @@ function upd_shutdown(val) {
 
     xhr.onload = function() {
         if (xhr.status === 200) {
-            if (xhr.responseText == 1 && general_data.shutdown == 0) {
-                alert('Site has been shutdown!', 'success');
-            } else if (xhr.responseText == 1) {
-                alert('Shutdown mode off!', 'success');
-            } else {
-                alert('Failed to update shutdown mode.', 'error');
-            }
-
-            get_general();
+        if (xhr.responseText == 1 && general_data.shutdown == 0) {
+            alert('success','Site has been shutdown!');
         } else {
-            console.error("Error updating shutdown mode");
+            alert('success', 'Shutdown mode off!')
         }
-    }
+        general_data();
 
     xhr.send('upd_shutdown=' + val);
 }

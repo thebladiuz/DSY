@@ -11,8 +11,6 @@ if(isset($_POST['get_general']))
     $res = select($q, $values, "i");
     $data = mysqli_fetch_assoc($res);
     $json_data = json_encode($data);
-
-    header('Content-Type: application/json');
     echo $json_data;
     exit;
 }
@@ -36,8 +34,7 @@ if(isset($_POST['upd_general']))
 }
 
 if (isset($_POST['upd_shutdown'])) {
-    // Convert the value to an integer (0 or 1) to update the 'shutdown' column accordingly.
-    $frm_data = (int)$_POST['upd_shutdown'];
+    $frm_data = ($_POST['upd_shutdown']==0) ? 1 : 0;
 
     $q = "UPDATE `settings` SET `shutdown`=? WHERE `sr_no`=?"; 
     $values = [$frm_data, 1];

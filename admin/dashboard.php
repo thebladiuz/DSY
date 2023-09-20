@@ -1,5 +1,5 @@
 <?php
-    require('inc/essentials.php');
+    require('../admin/inc/essentials.php');
     adminLogin();
 ?>
 
@@ -9,11 +9,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Dashboard</title>
-    <?php require('inc/links.php'); ?>
+    <?php require('../admin/inc/links.php'); ?>
 </head>
 <body class="bg-light">
 
-    <?php require('inc/header.php') ?>
+    <?php require('../admin/inc/header.php') ?>
 
     <div class="container-fluid" id="main-content">
         <div class="row">
@@ -24,6 +24,6 @@
     </div>
 
 
-    <?php require('inc/scripts.php'); ?>
+    <?php require('../admin/inc/scripts.php'); ?>
 </body>
 </html>
