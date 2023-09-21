@@ -217,6 +217,58 @@
                         </form>
                     </div>
                 </div>
+                <!-- Management Team section -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="card-title m-0">Management Team</h5>
+                        <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal"  data-bs-target="#team-s">
+                            <i class="fa fa-plus-square"></i> Add
+                        </button>
+                    </div>
+
+                    <div class="row" id="team-data">
+                        <div class="col-md-2 mb-3">
+                        <div class=" card bg-dark text-white">
+                        <img src="../assets/images/about/IMG_17352.jpg" class="card-img">
+                        <div class="card-img-overlay text-end">
+                            <button type="button" class="btn btn-danger btn-sm shadow-none">
+                                <i class="fa fa-trash"></i> Delete
+                            </button>
+                        </div>
+                        <p class="card-text text-center px-3 py-2">Random name</p>
+                        </div>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+
+
+                <!-- Management Team modal -->
+                <div class="modal fade" id="team-s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBack">
+                    <div class="modal-dialog">
+                        <form id="team_s_form">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="model-title">Add Team Member</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="member_name_imp"class="form-label fw-bold">Name</label>
+                                <input type="text" name="member_name" id="member_name_inp" class="form-control shadow-none" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="member_picture_inp" class="form-label fw-bold">Picture</label>
+                                <input type="file" name="member_picture" id="member_picture_inp" accept=".jpg, .png, .webp, .jpeg" class="form-control shadow-none" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" onclick="" class="btn text-secondary shadow-none" data-bs-toggle="modal"  data-bs-target="#team-s">
+                        <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
+
+                    </form>
+                </div> 
             </div>
         </div>
     </div>
@@ -231,6 +283,9 @@ let site_about_inp = document.getElementById('site_about_inp');
 
 let contacts_s_form = document.getElementById('contacts_s_form');
 
+let team_s_form = document.getElementById('team_s_form');
+let member_name_inp = document.getElementById('member_name_inp');
+let member_pictureinp = document.getElementById('member_picture_inp');
 
     // Function to get general data
     function get_general() {
@@ -376,7 +431,7 @@ function get_contacts() {
 
         function contacts_inp(data)
         {
-            let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp', 'pn2_inp', 'email_inp', 'fb_inp', 'insta_inp', 'tw_inp']
+            let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp', 'pn2_inp', 'email_inp', 'fb_inp', 'insta_inp', 'tw_inp', 'iframe_inp']
 
             for(i=0; i<contacts_inp_id.length; i++){
                 document.getElementById(contacts_inp_id[i]).value = data[i+1];
@@ -388,40 +443,135 @@ function get_contacts() {
             upd_contacts();
         });
 
-        function upd_contacts()
-        {
-            let index = ['address', 'gmap', 'pn1', 'pn2', 'email', 'fb', 'insta', 'tw', 'iframe'];
-            let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp', 'pn2_inp', 'email_inp', 'fb_inp', 'insta_inp', 'tw_inp', 'iframe_inp']
+        function upd_contacts() {
+    const index = ['address', 'gmap', 'pn1', 'pn2', 'email', 'fb', 'insta', 'tw', 'iframe'];
+    const contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp', 'pn2_inp', 'email_inp', 'fb_inp', 'insta_inp', 'tw_inp', 'iframe_inp'];
 
-            let data_str="";
+    let data_str = "";
 
-            for(i=0; i<index.length; i++){
-                data_str +=index[i] + "=" + document.getElementById(contacts_inp_id[i]).value + '&';
+    for (let i = 0; i < index.length; i++) {
+        const key = index[i];
+        const value = document.getElementById(contacts_inp_id[i]).value;
+        data_str += `${key}=${encodeURIComponent(value)}&`;
+    }
+
+    data_str += "upd_contacts";
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/settings_crud.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onload = function () {
+        const myModal = document.getElementById('contacts-s');
+        const modal = bootstrap.Modal.getInstance(myModal);
+
+        if (xhr.status === 200) {
+            if (this.responseText === '1') {
+                // Success: Provide user feedback
+                alert('success', 'Changes saved');
+                get_contacts(); // You might want to refresh the data on success.
+            } else {
+                // Server returned an error
+                alert('error', 'Failed to save changes');
             }
-            data_str += "upd_contacts";
-
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", "ajax/settings_crud.php", true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-            xhr.onload = function(){
-                var myModal = document.getElementById('contacts-s');
-                var modal = bootstrap.Modal.getInstance(myModal);
-                modal.hide();
-                if(this.responseText == 1)
-                {
-                    alert('success','Changes saved');
-                    get_contacts();
-                }
-                else
-                {
-                    alert('error','No change made!');
-                }
-            }
-
-            xhr.send(data_str);
+        } else {
+            // Handle non-200 status codes (e.g., server errors)
+            alert('error', 'An error occurred while saving changes');
         }
 
+        modal.hide();
+    };
+
+    xhr.onerror = function () {
+        // Handle network errors
+        alert('error', 'Network error occurred');
+    };
+
+    xhr.send(data_str);
+}
+
+        team_s_form.addEventListener('submit' ,function(e){
+            e. preventDefault();
+            add_member();
+        });
+
+        function add_member ()
+        {
+            let data = new FormData();
+            data.append ('name' , member_name_inp.value) ;
+            data.append ('picture' ,member_picture_inp.files[0]);
+            data.append ('add_member','');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST" , "ajax/settings_crud.php",true);
+
+            xhr. onload = function(){
+                // console.log(this.responseText)
+                var myModal = document.getElementById('team-s');
+                var modal = bootstrap.Modal.getInstance(myModal) ;
+                modal.hide();
+                if(this.responseText == 'inv_img'){
+                alert('error', 'Only JPG and PNG images are allowed!');
+                }else if(this.responseText == 'inv_size') {
+                alert('error', 'Image should be less than 2MB!');   
+                }else if(this.responseText == 'upd_failed'){
+                alert('error', 'Image upload failed. Server Down!');
+                }
+                else{
+                alert('success', 'New member added!');
+                member_name_inp.value='';
+                member_picture_inp.value='';
+                get_member();
+                }
+            }
+            xhr.send(data);
+        }
+
+        function get_member() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/settings_crud.php", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Check if the element with the ID "team_data" exists
+                let teamDataElement = document.getElementById('team_data');
+                if (teamDataElement) {
+                    // Update the HTML content of the "team_data" element
+                    teamDataElement.innerHTML = xhr.responseText;
+                }
+            } else {
+                console.error("Error fetching member data. Status code:", xhr.status);
+            }
+        };
+
+        xhr.onerror = function () {
+            console.error("An error occurred while fetching member data.");
+        };
+
+        xhr.send('get_member');
+    }
+
+    function rem_member(val){
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/settings_crud.php",true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form--urlencoded');
+        xhr.onload = function (){
+            if(this.responseText==1){
+                alert('success', 'Member removed!');
+                get_member();
+            }else{
+            alert('error', 'Server down!');
+            }
+        }
+        xhr. send ('rem_member= ' +val);
+    }
+
+window.onload = function(){
+    get_general();
+    get_contacts();
+    get_member();
+}
 window.onload = function() {
     get_general();
     get_contacts();
