@@ -73,9 +73,8 @@
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <h5 class="card-title m-0">Shutdown Website</h5>
                             <div class="form-check form-switch">
-                                <form>
-                                    <input onchange="upd_shutdown(this.checked ? 1 : 0)" class="form-check-input" type="checkbox" id="shutdown-toggle">
-                                </form>
+                                <!-- Removed the unnecessary form element -->
+                                <input class="form-check-input" type="checkbox" id="shutdown-toggle">
                             </div>
                         </div>
                         <p class="card-text">
@@ -84,8 +83,8 @@
                     </div>
                 </div>
                 
-                                <!-- Contact details section -->
-                                <div class="card border-0 shadow-sm mb-4">
+                <!-- Contact details section -->
+                <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <h5 class="card-title m-0">Contacts Settings</h5>
@@ -147,8 +146,7 @@
                     </div>
                 </div>
 
-
-                <!-- contacts details modal -->
+                <!-- Contacts Details Modal -->
 
                 <div class="modal fade" id="contacts-s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
@@ -217,7 +215,9 @@
                         </form>
                     </div>
                 </div>
+
                 <!-- Management Team section -->
+
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-3">
@@ -244,8 +244,8 @@
                     </div>
                 </div>
 
-
                 <!-- Management Team modal -->
+
                 <div class="modal fade" id="team-s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBack">
                     <div class="modal-dialog">
                         <form id="team_s_form">
@@ -255,11 +255,11 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label class="member_name_imp"class="form-label fw-bold">Name</label>
+                                <label class="member_name_imp form-label fw-bold">Name</label>
                                 <input type="text" name="member_name" id="member_name_inp" class="form-control shadow-none" required>
                             </div>
                             <div class="mb-3">
-                                <label class="member_picture_inp" class="form-label fw-bold">Picture</label>
+                                <label class="member_picture_inp form-label fw-bold">Picture</label>
                                 <input type="file" name="member_picture" id="member_picture_inp" accept=".jpg, .png, .webp, .jpeg" class="form-control shadow-none" required>
                             </div>
                         </div>
@@ -275,17 +275,17 @@
 
     <?php require('../admin/inc/scripts.php'); ?>
     <script>
-                let general_data, contacts_data;
+        let general_data, contacts_data;
 
-let general_s_form = document.getElementById('general_s_form');
-let site_title_inp = document.getElementById('site_title_inp');
-let site_about_inp = document.getElementById('site_about_inp');
+                let general_s_form = document.getElementById('general_s_form');
+                let site_title_inp = document.getElementById('site_title_inp');
+                let site_about_inp = document.getElementById('site_about_inp');
 
-let contacts_s_form = document.getElementById('contacts_s_form');
+                let contacts_s_form = document.getElementById('contacts_s_form');
 
-let team_s_form = document.getElementById('team_s_form');
-let member_name_inp = document.getElementById('member_name_inp');
-let member_pictureinp = document.getElementById('member_picture_inp');
+                let team_s_form = document.getElementById('team_s_form');
+                let member_name_inp = document.getElementById('member_name_inp');
+                let member_pictureinp = document.getElementById('member_picture_inp');
 
     // Function to get general data
     function get_general() {
@@ -294,7 +294,7 @@ let member_pictureinp = document.getElementById('member_picture_inp');
         let shutdownToggle = document.getElementById('shutdown-toggle');
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/settings_crud.php", true);
+        xhr.open("POST", "../admin/ajax/settings_crud.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function() {
@@ -304,7 +304,7 @@ let member_pictureinp = document.getElementById('member_picture_inp');
 
                     // Check if general_data is a valid JSON object
                     if (typeof general_data === 'object' && general_data !== null) {
-                        // Update your page elements with the data
+                        // Update page elements with the data
                         site_title.innerText = general_data.site_title;
                         site_about.innerText = general_data.site_about;
                         site_title_inp.value = general_data.site_title;
@@ -329,88 +329,113 @@ let member_pictureinp = document.getElementById('member_picture_inp');
             upd_general(site_title_inp.value,site_about_inp.value);
         });
 
-    function upd_general(site_title_val, site_about_val) {
+        function upd_general(site_title_val, site_about_val) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "ajax/settings_crud.php", true);
+    xhr.open("POST", "../admin/ajax/settings_crud.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            try {
+                const response = JSON.parse(xhr.responseText);
+
+                if (response.success === 1) {                
+                    alert('success', 'Changes saved!');
+                    get_general();
+
+                    var myModal = document.getElementById('general-s');
+                    var modal = new bootstrap.Modal(myModal);
+                    modal.hide();
+
+                } else {
+                    alert('error', 'No changes made!');
+                }
+            } catch (error) {
+                console.error("Error parsing JSON response:", error);
+            }
+        } else {
+            console.error("Error updating general data");
+        }
+    }
+
+    xhr.send('site_title=' + encodeURIComponent(site_title_val) + '&site_about=' + encodeURIComponent(site_about_val) + '&upd_general=1');
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const shutdownToggle = document.getElementById('shutdown-toggle');
+
+    shutdownToggle.addEventListener('change', function () {
+        const newValue = this.checked ? 1 : 0;
+        upd_shutdown(newValue);
+    });
+});
+
+function upd_shutdown(val) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "../admin/ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function() {
         if (xhr.status === 200) {
             try {
-                var myModal = document.getElementById('general-s');
-                var modal = new bootstrap.Modal(myModal);
-                modal.hide();
-
                 const response = JSON.parse(xhr.responseText);
 
-                if (response.success === 1) {
-                    alert('Changes saved!', 'success');
-                    get_general();
+                if (val === 0) {
+                    alert('success', 'Site has been reactivated!');
                 } else {
-                    alert('No changes made!', 'error');
+                    alert('error', 'Site has been shutdown!');
                 }
+                // Optionally update the checkbox state here
+                get_general();
             } catch (error) {
                 console.error("Error parsing JSON response:", error);
                 // Handle the error, e.g., display an error message to the user
             }
         } else {
-            console.error("Error updating general data");
+            console.error("Error updating shutdown status");
             // Handle the error, e.g., display an error message to the user
         }
     }
 
-    xhr.send('site_title=' + site_title_val + '&site_about=' + site_about_val + '&upd_general');
+    // Invert the value here before sending it to the server
+    const invertedValue = val === 0 ? 1 : 0;
+    xhr.send('upd_shutdown=' + invertedValue);
 }
 
 
-function upd_shutdown(val) {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "ajax/settings_crud.php", true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        function get_contacts() {
+                let contacts_p_id = ['address', 'gmap', 'pn1', 'pn2', 'email', 'fb', 'insta', 'tw'];
+                let iframe = document.getElementById('iFrame');
+                let iframeInput = document.getElementById('iframe_inp');
 
-    xhr.onload = function() {
-        if (xhr.responseText == 1 && general_data.shutdown == 0) {
-            alert('success', 'Site has been shutdown!');
-        } else {
-            alert('success', 'Site has been shutdown!')
-        }
-        get_general();
-    }
-    xhr.send('upd_shutdown=' + val);
-}
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "../admin/ajax/settings_crud.php", true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-function get_contacts() {
-        let contacts_p_id = ['address', 'gmap', 'pn1', 'pn2', 'email', 'fb', 'insta', 'tw'];
-        let iframe = document.getElementById('iFrame');
-        let iframeInput = document.getElementById('iframe_inp');
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        try {
+                            contacts_data = JSON.parse(xhr.responseText);
 
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/settings_crud.php", true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                            if (typeof contacts_data === 'object' && contacts_data !== null) {
+                                contacts_data = Object.values(contacts_data);
 
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                try {
-                    contacts_data = JSON.parse(xhr.responseText);
-
-                    if (typeof contacts_data === 'object' && contacts_data !== null) {
-                        contacts_data = Object.values(contacts_data);
-
-                        for (let i = 0; i < contacts_p_id.length; i++) {
-                            document.getElementById(contacts_p_id[i]).innerText = contacts_data[i + 1];
+                                for (let i = 0; i < contacts_p_id.length; i++) {
+                                    document.getElementById(contacts_p_id[i]).innerText = contacts_data[i + 1];
+                                }
+                                iframe.src = contacts_data[9];
+                                contacts_inp(contacts_data);
+                            } else {
+                                console.error("Invalid JSON data received:", xhr.responseText);
+                            }
+                        } catch (error) {
+                            console.error("Error parsing JSON response:", error);
                         }
-                        iframe.src = contacts_data[9];
-                        contacts_inp(contacts_data);
                     } else {
-                        console.error("Invalid JSON data received:", xhr.responseText);
+                        console.error("Error fetching contacts data. Status code:", xhr.status);
                     }
-                } catch (error) {
-                    console.error("Error parsing JSON response:", error);
-                }
-            } else {
-                console.error("Error fetching contacts data. Status code:", xhr.status);
-            }
-        };
+                };
 
         iframeInput.addEventListener('change', function() {
         // Get the value from the input field
@@ -420,12 +445,9 @@ function get_contacts() {
         iframe.src = iframeSrc;
     });
 
-
         xhr.onerror = function () {
             console.error("An error occurred while fetching contacts data.");
         };
-
-
             xhr.send('get_contacts');
         }
 
@@ -458,7 +480,7 @@ function get_contacts() {
     data_str += "upd_contacts";
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "ajax/settings_crud.php", true);
+    xhr.open("POST", "../admin/ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -503,7 +525,7 @@ function get_contacts() {
             data.append ('add_member','');
 
             let xhr = new XMLHttpRequest();
-            xhr.open("POST" , "ajax/settings_crud.php",true);
+            xhr.open("POST" , "../admin/ajax/settings_crud.php",true);
 
             xhr. onload = function(){
                 // console.log(this.responseText)

@@ -15,28 +15,32 @@ if(isset($_POST['get_general']))
     exit;
 }
 
-if(isset($_POST['upd_general']))
-{
+if (isset($_POST['upd_general']) && $_POST['upd_general'] === '1') {
     $frm_data = filteration($_POST);
 
     // Check if the 'site_title' and 'site_about' keys exist in $_POST
-    if(isset($frm_data['site_title']) && isset($frm_data['site_about']))
-    {
+    if (isset($frm_data['site_title']) && isset($frm_data['site_about'])) {
         $q = "UPDATE `settings` SET `site_title`=?, `site_about`=? WHERE `sr_no`=?"; 
         $values = [$frm_data['site_title'], $frm_data['site_about'], 1];
         $res = update($q, $values, 'ssi');
-        echo $res;
-    }
-    else
-    {
-        echo "Missing 'site_title' or 'site_about' in the POST data.";
+
+        if ($res) {
+            // Return a JSON response indicating success
+            echo json_encode(array('success' => 1));
+        } else {
+            // Return a JSON response indicating failure
+            echo json_encode(array('success' => 0));
+        }
+    } else {
+        // Return a JSON response for missing data
+        echo json_encode(array('success' => 0, 'message' => "Missing 'site_title' or 'site_about' in the POST data."));
     }
 }
 
 if (isset($_POST['upd_shutdown'])) {
     $frm_data = ($_POST['upd_shutdown']==0) ? 1 : 0;
 
-    $q = "UPDATE `settings` SET `shutdown`=? WHERE `sr_no`=?"; 
+    $q = "UPDATE `settings` SET `shutdown`=? WHERE `sr_no`=?";
     $values = [$frm_data, 1];
     $res = update($q, $values, "ii");
     echo $res;
@@ -62,29 +66,33 @@ if(isset($_POST['upd_contacts']))
     echo $res;
 }
 
-if(isset($_POST['add_member'])){
-    $frm_data = filteration($_POST);
+if (isset($_POST['add_member']) && $_POST['add_member'] === '1') {
+    // Perform any necessary input validation and filtering here
 
     $img_r = uploadImage($_FILES['picture'], ABOUT_FOLDER);
-    if($img_r == 'inv_img'){
-        echo $img_r;
-    }else if($img_r == 'inv_size'){
-        echo $img_r;
-    }else if($img_r == 'upd_failed'){
-        echo $img_r;
-    }else{
-        $q = "INSERT INTO 'team_details'('name', 'picture') VALUES (?,?)";
+    if ($img_r == 'inv_img') {
+        echo 'inv_img';
+    } else if ($img_r == 'inv_size') {
+        echo 'inv_size';
+    } else if ($img_r == 'upd_failed') {
+        echo 'upd_failed';
+    } else {
+        // Insert the new member into the database
+        $q = "INSERT INTO `team_details` (`name`, `picture`) VALUES (?, ?)";
         $values = [$frm_data['name'], $img_r];
         $res = insert($q, $values, 'ss');
-        echo $res;
+        if ($res) {
+            echo 'success';
+        } else {
+            echo 'db_error';
+        }
     }
 }
 
-if(isset($_POST['get_member']))
-{
+
+if (isset($_POST['get_member'])) {
     $res = selectAll('team_details');
-    while($row = mysqli_fetch_assoc($res))
-    {
+    while ($row = mysqli_fetch_assoc($res)) {
         $path = ABOUT_IMG_PATH;
         echo <<<data
         <div class="col-md-2 mb-3">
@@ -102,22 +110,21 @@ if(isset($_POST['get_member']))
     }
 }
 
-if(isset($_POST['rem_member']))
-{
+if (isset($_POST['rem_member'])) {
     $frm_data = filteration($_POST);
     $values = [$frm_data['rem_member']];
 
-    $pre_q = "SELECT * FROM 'team_details' WHERE 'sr_no'=?";
+    $pre_q = "SELECT * FROM `team_details` WHERE `sr_no`=?";
     $res = select($pre_q, $values, 'i');
     $img = mysqli_fetch_assoc($res);
 
-    if(deleteImage($img['pictures'],ABOUT_FOLDER)){
-        $q = "DELETE FROM 'team_details' WHERE 'sr_no'=?";
+    if (deleteImage($img['picture'], ABOUT_FOLDER)) {
+        $q = "DELETE FROM `team_details` WHERE `sr_no`=?";
         $res = delete($q, $values, 'i');
         echo $res;
-    }else{
+    } else {
         echo 0;
     }
-
 }
+
 ?>

@@ -11,5 +11,10 @@
             </div>
         `;
         document.body.append(element);
+
+        // Automatically close the alert after 3 seconds (3000 milliseconds)
+        setTimeout(function() {
+            element.remove();
+        }, 3000);
     }
 </script>
