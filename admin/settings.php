@@ -262,9 +262,11 @@
                                 <label class="member_picture_inp form-label fw-bold">Picture</label>
                                 <input type="file" name="member_picture" id="member_picture_inp" accept=".jpg, .png, .webp, .jpeg" class="form-control shadow-none" required>
                             </div>
+
+                            <input type="hidden" name="add_member" value="1">
                         </div>
                         <div class="modal-footer">
-                        <button type="button" onclick="" class="btn text-secondary shadow-none" data-bs-toggle="modal"  data-bs-target="#team-s">
+                        <button type="button" onclick="" class="btn text-secondary shadow-none" data-bs-toggle="modal" data-bs-target="#team-s">Cancel</button>
                         <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
 
                     </form>
@@ -285,7 +287,7 @@
 
                 let team_s_form = document.getElementById('team_s_form');
                 let member_name_inp = document.getElementById('member_name_inp');
-                let member_pictureinp = document.getElementById('member_picture_inp');
+                let member_picture_inp = document.getElementById('member_picture_inp');
 
     // Function to get general data
     function get_general() {
@@ -403,7 +405,6 @@ function upd_shutdown(val) {
     xhr.send('upd_shutdown=' + invertedValue);
 }
 
-
         function get_contacts() {
                 let contacts_p_id = ['address', 'gmap', 'pn1', 'pn2', 'email', 'fb', 'insta', 'tw'];
                 let iframe = document.getElementById('iFrame');
@@ -512,46 +513,56 @@ function upd_shutdown(val) {
     xhr.send(data_str);
 }
 
-        team_s_form.addEventListener('submit' ,function(e){
-            e. preventDefault();
-            add_member();
-        });
+    team_s_form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        add_member();
+    });
 
-        function add_member ()
-        {
-            let data = new FormData();
-            data.append ('name' , member_name_inp.value) ;
-            data.append ('picture' ,member_picture_inp.files[0]);
-            data.append ('add_member','');
+    function add_member() {
+        let data = new FormData();
+        data.append('name', member_name_inp.value);
+        data.append('picture', member_picture_inp.files[0]);
+        data.append('add_member', '1'); // Changed to '1' instead of an empty string
 
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST" , "../admin/ajax/settings_crud.php",true);
+            console.log("Form Data:", data);
 
-            xhr. onload = function(){
-                // console.log(this.responseText)
-                var myModal = document.getElementById('team-s');
-                var modal = bootstrap.Modal.getInstance(myModal) ;
-                modal.hide();
-                if(this.responseText == 'inv_img'){
-                alert('error', 'Only JPG and PNG images are allowed!');
-                }else if(this.responseText == 'inv_size') {
-                alert('error', 'Image should be less than 2MB!');   
-                }else if(this.responseText == 'upd_failed'){
-                alert('error', 'Image upload failed. Server Down!');
-                }
-                else{
-                alert('success', 'New member added!');
-                member_name_inp.value='';
-                member_picture_inp.value='';
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "../admin/ajax/settings_crud.php", true);
+
+                xhr.onload = function () {
+            console.log('Response Text:', this.responseText); // Log the response text
+
+            var myModal = document.getElementById('team-s');
+            var modal = new bootstrap.Modal(myModal);
+            modal.hide();
+
+            var trimmedResponse = this.responseText.trim(); // Trim any leading/trailing whitespace
+
+            if (trimmedResponse === 'success') {
+                console.log('Success condition entered.'); // Log that the success condition is entered
+                alert('New member added!');
+                member_name_inp.value = '';
+                member_picture_inp.value = '';
                 get_member();
-                }
+            } else if (trimmedResponse === 'inv_img') {
+                console.log('Invalid image condition entered.');
+                alert('Only JPG and PNG images are allowed!');
+            } else if (trimmedResponse === 'inv_size') {
+                console.log('Invalid size condition entered.');
+                alert('Image should be less than 2MB!');
+            } else if (trimmedResponse === 'upd_failed') {
+                console.log('Image upload failed condition entered.');
+                alert('Image upload failed. Server Down!');
+            } else {
+                console.log('Unhandled response:', trimmedResponse); // Log unhandled responses
             }
-            xhr.send(data);
-        }
+        };
+        xhr.send(data);
+    }
 
         function get_member() {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/settings_crud.php", true);
+        xhr.open("POST", "../admin/ajax/settings_crud.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function () {
@@ -576,7 +587,7 @@ function upd_shutdown(val) {
 
     function rem_member(val){
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/settings_crud.php",true);
+        xhr.open("POST", "../admin/ajax/settings_crud.php",true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form--urlencoded');
         xhr.onload = function (){
             if(this.responseText==1){
@@ -594,11 +605,6 @@ window.onload = function(){
     get_contacts();
     get_member();
 }
-window.onload = function() {
-    get_general();
-    get_contacts();
-}
     </script>
-        <?php require('../admin/inc/scripts.php'); ?>
 </body>
 </html>

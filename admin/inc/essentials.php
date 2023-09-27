@@ -36,7 +36,7 @@ define('ABOUT_FOLDER', 'about/');
     }
 
     function uploadImage($image, $folder){
-        $valid_mime = ['image/jpeg', 'image/png', 'image/webp'];
+        $valid_mime = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
         $img_mime = $image['type'];
         if(in_array($img_mime, $valid_mime)){
             return 'inv_img'; //invalid imafe mime or format
