@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2023 at 04:54 AM
+-- Generation Time: Sep 28, 2023 at 05:56 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -64,7 +64,7 @@ CREATE TABLE `contact_details` (
 --
 
 INSERT INTO `contact_details` (`sr_no`, `address`, `gmap`, `pn1`, `pn2`, `email`, `fb`, `insta`, `tw`, `iframe`) VALUES
-(1, 'Km 9 Đ. Nguyễn Trãi, P, Nam Từ Liêm, Hà Nội', 'https://maps.app.goo.gl/zPG8pCvi8u1m9cd89', ' 917778889991', ' 917778889991', 'ask.hotel@gmail.com', 'facebook.com', 'instagram.com', 'twitter.com', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7450.186318798353!2d105.79123422618102!3d20.98890247269994!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135adb29ed54487:0xbe22035eae87b5d7!2sHanoi University!5e0!3m2!1sen!2s!4v1695222440690!5m2!1sen!2s');
+(1, 'Km 9 Đ. Nguyễn Trãi, P, Nam Từ Liêm, Hà Nội', 'https://maps.app.goo.gl/zPG8pCvi8u1m9cd89', '+8404681103', '+917778889991', 'ask.hotel@gmail.com', 'facebook.com', 'instagram.com', 'twitter.com', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7450.186318798353!2d105.79123422618102!3d20.98890247269994!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135adb29ed54487:0xbe22035eae87b5d7!2sHanoi University!5e0!3m2!1sen!2s!4v1695222440690!5m2!1sen!2s');
 
 -- --------------------------------------------------------
 
@@ -84,7 +84,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`sr_no`, `site_title`, `site_about`, `shutdown`) VALUES
-(1, 'Hotel', 'This is the Hotel Booking System', 0);
+(1, 'TJ Hotel', 'This is the Hotel Booking System!!!!', 0);
 
 -- --------------------------------------------------------
 
@@ -152,7 +152,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `team_details`
 --
 ALTER TABLE `team_details`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
