@@ -1,4 +1,4 @@
-<?php require('../inc/links.php');?>
+<?php require('inc/links.php');?>
 <?php
 //frontend purpose data
 define('SITE_URL', 'http://127.0.0.1/Hotel_Booking_Management/');
