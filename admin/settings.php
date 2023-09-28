@@ -218,27 +218,15 @@
 
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h5 class="card-title m-0">Management Team</h5>
-                        <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal"  data-bs-target="#team-s">
-                            <i class="fa fa-plus-square"></i> Add
-                        </button>
-                    </div>
-
-                    <div class="row" id="team-data">
-                        <div class="col-md-2 mb-3">
-                        <div class=" card bg-dark text-white">
-                        <img src="../assets/images/about/IMG_17352.jpg" class="card-img">
-                        <div class="card-img-overlay text-end">
-                            <button type="button" class="btn btn-danger btn-sm shadow-none">
-                                <i class="fa fa-trash"></i> Delete
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h5 class="card-title m-0">Management Team</h5>
+                            <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal"  data-bs-target="#team-s">
+                                <i class="fa fa-plus-square"></i> Add
                             </button>
                         </div>
-                        <p class="card-text text-center px-3 py-2">Random name</p>
-                        </div>
-                        </div>
-                    </div>
 
+                        <div class="row" id="team-data">
+                        </div>
                     </div>
                 </div>
 
@@ -501,64 +489,75 @@ function upd_shutdown(val) {
     xhr.send(data_str);
 }
 
-    team_s_form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        add_member();
-    });
+team_s_form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    add_member();
+});
 
-    function add_member() {
-        let data = new FormData();
-        data.append('name', member_name_inp.value);
-        data.append('picture', member_picture_inp.files[0]);
-        data.append('add_member', '1'); // Changed to '1' instead of an empty string
+function add_member() {
+    let data = new FormData();
+    data.append('name', member_name_inp.value);
+    data.append('picture', member_picture_inp.files[0]);
+    data.append('add_member', '1');
 
-            console.log("Form Data:", data);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "../admin/ajax/settings_crud.php", true);
 
-                let xhr = new XMLHttpRequest();
-                xhr.open("POST", "../admin/ajax/settings_crud.php", true);
+    xhr.onload = function () {
+        console.log('Response Text:', this.responseText);
 
-                xhr.onload = function () {
-            console.log('Response Text:', this.responseText); // Log the response text
+        var myModal = document.getElementById('team-s');
+        var modal = new bootstrap.Modal(myModal);
+        modal.hide();
 
-            var myModal = document.getElementById('team-s');
-            var modal = new bootstrap.Modal(myModal);
-            modal.hide();
-
-            var trimmedResponse = this.responseText.trim(); // Trim any leading/trailing whitespace
-
-            if (trimmedResponse === 'success') {
-                console.log('Success condition entered.'); // Log that the success condition is entered
+        switch (this.responseText.trim()) {
+            case 'success':
+                console.log('Success condition entered.');
                 alert('New member added!');
                 member_name_inp.value = '';
                 member_picture_inp.value = '';
                 get_member();
-            } else if (trimmedResponse === 'inv_img') {
+                break;
+            case 'inv_img':
                 console.log('Invalid image condition entered.');
                 alert('Only JPG and PNG images are allowed!');
-            } else if (trimmedResponse === 'inv_size') {
+                break;
+            case 'inv_size':
                 console.log('Invalid size condition entered.');
                 alert('Image should be less than 2MB!');
-            } else if (trimmedResponse === 'upd_failed') {
+                break;
+            case 'upd_failed':
                 console.log('Image upload failed condition entered.');
                 alert('Image upload failed. Server Down!');
-            } else {
-                console.log('Unhandled response:', trimmedResponse); // Log unhandled responses
-            }
-        };
-        xhr.send(data);
-    }
+                break;
+            default:
+                console.log('Unhandled response:', this.responseText.trim());
+                break;
+        }
+    };
 
-        function get_member() {
+    xhr.onerror = function () {
+        console.error('An error occurred during the request.');
+    };
+
+    xhr.send(data);
+}
+
+    document.addEventListener("DOMContentLoaded", function () {
+        get_member();
+    });
+
+    function get_member() {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "../admin/ajax/settings_crud.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function () {
             if (xhr.status === 200) {
-                // Check if the element with the ID "team_data" exists
-                let teamDataElement = document.getElementById('team_data');
+                // Check if the element with the ID "team-data" exists
+                let teamDataElement = document.getElementById('team-data');
                 if (teamDataElement) {
-                    // Update the HTML content of the "team_data" element
+                    // Update the HTML content of the "team-data" element
                     teamDataElement.innerHTML = xhr.responseText;
                 }
             } else {
@@ -573,20 +572,20 @@ function upd_shutdown(val) {
         xhr.send('get_member');
     }
 
-    function rem_member(val){
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "../admin/ajax/settings_crud.php",true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form--urlencoded');
-        xhr.onload = function (){
-            if(this.responseText==1){
-                alert('success', 'Member removed!');
-                get_member();
-            }else{
-            alert('error', 'Server down!');
-            }
+    function rem_member(val) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "../admin/ajax/settings_crud.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        if (this.responseText == 1) {
+            alert('Member removed!', 'success'); // Updated alert arguments
+            get_member();
+        } else {
+            alert('Server down!', 'error'); // Updated alert arguments
         }
-        xhr. send ('rem_member= ' +val);
     }
+    xhr.send('rem_member=' + val); // Removed extra space after '='
+}
 
 window.onload = function(){
     get_general();
