@@ -37,13 +37,13 @@
               <i class="fa fa-location-dot">&nbsp</i><?php echo $contact_r['address'] ?></a>                
               <h5 class="mt-4">Call us</h5>
               <a href="tel: +<?php echo $contact_r['pn1'] ?>"class="d-inline-block mb-2 text-decoration-none text-dark">
-              <i class="fa fa-phone"></i> +<?php echo $contact_r['pn1'] ?></a>
+              <i class="fa fa-phone"></i> <?php echo $contact_r['pn1'] ?></a>
               <br>
               <?php
               if($contact_r['pn2']!=''){
                 echo<<<data
-                <a href="tel: +$contact_r[pn2]" class="d-inline-block text-decoration-none text-dark">
-                  <i class="fa fa-phone"></i> +$contact_r[pn2]
+                <a href="tel: $contact_r[pn2]" class="d-inline-block text-decoration-none text-dark">
+                  <i class="fa fa-phone"></i> $contact_r[pn2]
                   </a>
                 data;
               }

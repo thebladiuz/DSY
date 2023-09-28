@@ -171,12 +171,10 @@
                                                 <p class="form-label fw-bold">Phone Numbers (with country code)</p>
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                                        <input type="text" name="pn1" id="pn1_inp" class="form-control shadow-none" required>
-                                                    </div>
+                                                        <input type="number" name="pn1" id="pn1_inp" class="form-control shadow-none" required>                                                    </div>
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                                        <input type="text" name="pn2" id="pn2_inp" class="form-control shadow-none">
-                                                    </div>
+                                                        <input type="number" name="pn2" id="pn2_inp" class="form-control shadow-none">                                                    </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="email_inp" class="form-label fw-bold">Email</label>
