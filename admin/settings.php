@@ -483,31 +483,20 @@ function upd_shutdown(val) {
     xhr.open("POST", "../admin/ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-    xhr.onload = function () {
-        const myModal = document.getElementById('contacts-s');
-        const modal = bootstrap.Modal.getInstance(myModal);
-
-        if (xhr.status === 200) {
-            if (this.responseText === '1') {
-                // Success: Provide user feedback
-                alert('success', 'Changes saved');
-                get_contacts(); // You might want to refresh the data on success.
-            } else {
-                // Server returned an error
-                alert('error', 'Failed to save changes');
+    xhr.onload = function(){
+                var myModal = document.getElementById('contacts-s');
+                var modal = bootstrap.Modal.getInstance(myModal);
+                modal.hide();
+                if(this.responseText == 1)
+                {
+                    alert('success','Changes saved');
+                    get_contacts();
+                }
+                else
+                {
+                    alert('error','No change made!');
+                }
             }
-        } else {
-            // Handle non-200 status codes (e.g., server errors)
-            alert('error', 'An error occurred while saving changes');
-        }
-
-        modal.hide();
-    };
-
-    xhr.onerror = function () {
-        // Handle network errors
-        alert('error', 'Network error occurred');
-    };
 
     xhr.send(data_str);
 }
