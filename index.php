@@ -32,6 +32,18 @@
 
 <!-- Carousel -->
   <div class="swiper-container full-screen">
+    <?php
+      $res = selectAll('carousel');
+      while ($row = mysqli_fetch_assoc($res)) 
+      {
+          $path = CAROUSEL_IMG_PATH;
+          echo <<<data
+            <div class="swiper-slide">
+              <img src="$path$row[image]" class="w-100 d-block">
+            </div>
+          data;
+      }
+    ?>
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <img src="assets/images/carousel/IMG_1.png" class="w-100 d-block"></div>
