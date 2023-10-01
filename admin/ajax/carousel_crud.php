@@ -20,7 +20,7 @@ if (isset($_POST['add_image'])) {
     } 
     else {
         // Insert the new image into the database
-        $q = "INSERT INTO 'carousel'('image') VALUES (?)";
+        $q = "INSERT INTO `carousel` (`image`) VALUES (?)";
         $values = [$img_r];
         $res = insert($q, $values, 's');
         echo $res;

@@ -39,10 +39,10 @@ define('CAROUSEL_FOLDER','carousel/');
     function uploadImage($image, $folder){
         $valid_mime = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
         $img_mime = $image['type'];
-        if(in_array($img_mime, $valid_mime)){
-            return 'inv_img'; //invalid imafe mime or format
-        }else if(($image['size']/(1024*1024)) > 2){
-            return 'inv_size'; //invalid size greater than  2
+        if (!in_array($img_mime, $valid_mime)) {
+            return 'inv_img'; // Invalid image mime or format
+        } else if (($image['size'] / (1024 * 1024)) > 2) {
+            return 'inv_size'; // Invalid size greater than 2
         }else{
             $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
             $rname = 'IMG_'.random_int(11111, 99999).".$ext";
@@ -54,12 +54,13 @@ define('CAROUSEL_FOLDER','carousel/');
             }
         }
     }
-    function deleteImage($image, $folder){
-        if(unlink(UPLOAD_IMAGE_PATH.$folder.$image)){
-            return true;
-        }else{
-            return false;
+    function deleteImage($image, $folder) {
+        $imagePath = UPLOAD_IMAGE_PATH . $folder . $image;
+        if (file_exists($imagePath) && unlink($imagePath)) {
+            return true; // Successfully deleted
+        } else {
+            return false; // Failed to delete
         }
-    }
+    }    
 ?>
 
