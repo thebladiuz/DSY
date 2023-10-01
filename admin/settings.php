@@ -252,13 +252,13 @@ adminLogin();
                                         <label class="member_picture_inp form-label fw-bold">Picture</label>
                                         <input type="file" name="member_picture" id="member_picture_inp" accept=".jpg, .png, .webp, .jpeg" class="form-control shadow-none" required>
                                     </div>
-
                                     <input type="hidden" name="add_member" value="1">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" onclick="" class="btn text-secondary shadow-none" data-bs-toggle="modal" data-bs-target="#team-s">Cancel</button>
                                     <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
-
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

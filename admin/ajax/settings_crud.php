@@ -80,7 +80,7 @@ if (isset($_POST['add_member']) && $_POST['add_member'] === '1') {
     } else {
         // Insert the new member into the database
         $q = "INSERT INTO `team_details` (`name`, `picture`) VALUES (?, ?)";
-        $values = [$frm_data['name'], $img_r];
+        $values = [$_POST['name'], $img_r];
         $res = insert($q, $values, 'ss');
 
         if ($res) {
