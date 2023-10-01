@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2023 at 07:50 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 7.4.30
+-- Generation Time: Oct 01, 2023 at 10:05 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `admin_cred` (
   `sr_no` int(11) NOT NULL,
   `admin_name` varchar(150) NOT NULL,
   `admin_pass` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin_cred`
@@ -49,7 +49,19 @@ INSERT INTO `admin_cred` (`sr_no`, `admin_name`, `admin_pass`) VALUES
 CREATE TABLE `carousel` (
   `sr_no` int(11) NOT NULL,
   `image` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `carousel`
+--
+
+INSERT INTO `carousel` (`sr_no`, `image`) VALUES
+(1, 'IMG_1.png'),
+(2, 'IMG_2.png'),
+(3, 'IMG_3.png'),
+(4, 'IMG_4.png'),
+(5, 'IMG_5.png'),
+(6, 'IMG_6.png');
 
 -- --------------------------------------------------------
 
@@ -68,14 +80,14 @@ CREATE TABLE `contact_details` (
   `insta` varchar(100) NOT NULL,
   `tw` varchar(100) NOT NULL,
   `iframe` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `contact_details`
 --
 
 INSERT INTO `contact_details` (`sr_no`, `address`, `gmap`, `pn1`, `pn2`, `email`, `fb`, `insta`, `tw`, `iframe`) VALUES
-(1, 'Hanu, Km 9 Đ. Nguyễn Trãi, P, Nam Từ Liêm, Hà Nội', 'https://maps.app.goo.gl/zPG8pCvi8u1m9cd89', '+8404681103', '+917778889991', 'ask.hotel@gmail.com', 'facebook.com', 'instagram.com', 'twitter.com', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7450.186318798353!2d105.79123422618102!3d20.98890247269994!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135adb29ed54487:0xbe22035eae87b5d7!2sHanoi University!5e0!3m2!1sen!2s!4v1695222440690!5m2!1sen!2s');
+(1, 'Km 9 Đ. Nguyễn Trãi, P, Nam Từ Liêm, Hà Nội', 'https://maps.app.goo.gl/zPG8pCvi8u1m9cd89', '+8404681103', '+917778889', 'ask.hotel@gmail.com', 'facebook.com', 'instagram.com', 'twitter.com', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7450.186318798353!2d105.79123422618102!3d20.98890247269994!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135adb29ed54487:0xbe22035eae87b5d7!2sHanoi University!5e0!3m2!1sen!2s!4v1695222440690!5m2!1sen!2s');
 
 -- --------------------------------------------------------
 
@@ -88,14 +100,14 @@ CREATE TABLE `settings` (
   `site_title` varchar(50) NOT NULL,
   `site_about` varchar(250) NOT NULL,
   `shutdown` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `settings`
 --
 
 INSERT INTO `settings` (`sr_no`, `site_title`, `site_about`, `shutdown`) VALUES
-(1, 'TJ Hotel', 'This is the Hotel Booking System!!!', 1);
+(1, 'TJ Hotel', 'This is the Hotel Booking System!!!!', 0);
 
 -- --------------------------------------------------------
 
@@ -107,7 +119,14 @@ CREATE TABLE `team_details` (
   `sr_no` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `picture` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `team_details`
+--
+
+INSERT INTO `team_details` (`sr_no`, `name`, `picture`) VALUES
+(1, 'James', 'IMG_17352.jpg');
 
 --
 -- Indexes for dumped tables
@@ -157,7 +176,7 @@ ALTER TABLE `admin_cred`
 -- AUTO_INCREMENT for table `carousel`
 --
 ALTER TABLE `carousel`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `contact_details`
@@ -175,7 +194,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `team_details`
 --
 ALTER TABLE `team_details`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
