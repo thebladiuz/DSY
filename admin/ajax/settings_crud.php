@@ -88,7 +88,7 @@ if (isset($_POST['add_member'])) {
         }
     }
 
-if (isset($_POST['get_member'])) {
+if (isset($_POST['get_members'])) {
     $res = selectAll('team_details');
 
     while ($row = mysqli_fetch_assoc($res)) {
