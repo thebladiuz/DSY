@@ -228,90 +228,59 @@ function add_member() {
     let data = new FormData();
     data.append('name', member_name_inp.value);
     data.append('picture', member_picture_inp.files[0]);
-    data.append('add_member', '1');
+    data.append('add_member', '');
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "../admin/ajax/settings_crud.php", true);
 
     xhr.onload = function () {
-        console.log('Response Text:', this.responseText);
-
         var myModal = document.getElementById('team-s');
-        var modal = new bootstrap.Modal(myModal);
+        var modal = bootstrap.Modal.getInstance(myModal);
         modal.hide();
 
-        switch (this.responseText.trim()) {
-            case 'success':
-                console.log('Success condition entered.');
-                alert('New member added!');
-                member_name_inp.value = '';
-                member_picture_inp.value = '';
-                get_member();
-                break;
-            case 'inv_img':
-                console.log('Invalid image condition entered.');
-                alert('Only JPG and PNG images are allowed!');
-                break;
-            case 'inv_size':
-                console.log('Invalid size condition entered.');
-                alert('Image should be less than 2MB!');
-                break;
-            case 'upd_failed':
-                console.log('Image upload failed condition entered.');
-                alert('Image upload failed. Server Down!');
-                break;
-            default:
-                console.log('Unhandled response:', this.responseText.trim());
-                break;
+        if (this.responseText == 'inv_img') {
+            alert('error', 'Only JPG and PNG images are allowed!');
         }
-    };
-
-    xhr.onerror = function () {
-        console.error('An error occurred during the request.');
-    };
+        else if (this.responseText == 'inv_size') {
+            alert('error', 'Image should be less then 2MB!');
+        }
+        else if (this.responseText == 'upd_failed') {
+            alert('error', 'Image upload failed. Server Down!');
+        }
+        else {
+            alert('success', 'New member added!');
+            member_name_inp.value ='';
+            member_picture_inp.value ='';
+            get_members();
+        }
+    }
 
     xhr.send(data);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    get_member();
-});
-
-function get_member() {
+function get_members() {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "../admin/ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
-        if (xhr.status === 200) {
-            // Check if the element with the ID "team-data" exists
-            let teamDataElement = document.getElementById('team-data');
-            if (teamDataElement) {
-                // Update the HTML content of the "team-data" element
-                teamDataElement.innerHTML = xhr.responseText;
-            }
-        } else {
-            console.error("Error fetching member data. Status code:", xhr.status);
-        }
-    };
+        document.getElementById('team-data').innerHTML = this.responseText;
+    }
 
-    xhr.onerror = function () {
-        console.error("An error occurred while fetching member data.");
-    };
-
-    xhr.send('get_member');
+    xhr.send('get_members');
 }
 
 function rem_member(val) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "../admin/ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
     xhr.onload = function () {
         if (this.responseText == 1) {
-            alert('Member removed!', 'success'); // Updated alert arguments
-            get_member();
+            alert('success', 'Image removed!'); // Updated alert arguments
+            get_members();
         } else {
-            alert('Server down!', 'error'); // Updated alert arguments
+            alert('error', 'Server down!'); // Updated alert arguments
         }
     }
     xhr.send('rem_member=' + val); // Removed extra space after '='
@@ -320,5 +289,5 @@ function rem_member(val) {
 window.onload = function () {
     get_general();
     get_contacts();
-    get_member();
+    get_members();
 }

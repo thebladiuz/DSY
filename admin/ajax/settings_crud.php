@@ -66,38 +66,34 @@ if(isset($_POST['upd_contacts']))
     echo $res;
 }
 
-if (isset($_POST['add_member']) && $_POST['add_member'] === '1') {
+if (isset($_POST['add_member'])) {
     // Perform any necessary input validation and filtering here
 
     $img_r = uploadImage($_FILES['picture'], ABOUT_FOLDER);
 
     if ($img_r === 'inv_img') {
-        echo 'inv_img';
-    } else if ($img_r === 'inv_size') {
-        echo 'inv_size';
-    } else if ($img_r === 'upd_failed') {
-        echo 'upd_failed';
+        echo $img_r;
+    } 
+    else if ($img_r === 'inv_size') {
+        echo $img_r;
+    } 
+    else if ($img_r === 'upd_failed') {
+        echo $img_r;
     } else {
         // Insert the new member into the database
-        $q = "INSERT INTO `team_details` (`name`, `picture`) VALUES (?, ?)";
+        $q = "INSERT INTO `team_details` (`name`, `picture`) VALUES (?,?)";
         $values = [$_POST['name'], $img_r];
         $res = insert($q, $values, 'ss');
-
-        if ($res) {
-            echo 'success';
-        } else {
-            echo 'db_error';
+        echo $res;
         }
     }
-}
 
 if (isset($_POST['get_member'])) {
     $res = selectAll('team_details');
-    $html = '';
 
     while ($row = mysqli_fetch_assoc($res)) {
         $path = ABOUT_IMG_PATH;
-        $html .= <<<data
+        echo <<<data
         <div class="col-md-2 mb-3">
             <div class="card bg-dark text-white">
                 <img src="$path$row[picture]" class="card-img">
@@ -111,9 +107,6 @@ if (isset($_POST['get_member'])) {
         </div>
     data;
     }
-
-    // Return the HTML content
-    echo $html;
 }
 
 if (isset($_POST['rem_member'])) {

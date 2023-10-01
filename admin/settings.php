@@ -241,7 +241,7 @@ adminLogin();
                         <form id="team_s_form">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="model-title">Add Team Member</h5>
+                                    <h5 class="modal-title">Add Team Member</h5>
                                 </div>
                                 <div class="modal-body">
                                     <div class="mb-3">
@@ -255,7 +255,7 @@ adminLogin();
                                     <input type="hidden" name="add_member" value="1">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" onclick="" class="btn text-secondary shadow-none" data-bs-toggle="modal" data-bs-target="#team-s">Cancel</button>
+                                    <button type="button" onclick="member_picture.value=''" class="btn text-secondary shadow-none" data-bs-toggle="modal" data-bs-target="#team-s">Cancel</button>
                                     <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
                                 </div>
                             </div>
