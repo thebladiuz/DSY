@@ -31,38 +31,26 @@
   <?php require('inc/header.php');?>
 
 <!-- Carousel -->
-  <div class="swiper-container full-screen">
-    <?php
-      $res = selectAll('carousel');
-      while ($row = mysqli_fetch_assoc($res)) 
-      {
-          $path = CAROUSEL_IMG_PATH;
-          echo <<<data
-            <div class="swiper-slide">
-              <img src="$path$row[image]" class="w-100 d-block">
-            </div>
-          data;
-      }
-    ?>
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="assets/images/carousel/IMG_1.png" class="w-100 d-block"></div>
-      <div class="swiper-slide"> 
-        <img src="assets/images/carousel/IMG_2.png" class="w-100 d-block"></div>
-      <div class="swiper-slide"> 
-        <img src="assets/images/carousel/IMG_3.png" class="w-100 d-block"></div>
-      <div class="swiper-slide"> 
-        <img src="assets/images/carousel/IMG_4.png" class="w-100 d-block"></div>
-      <div class="swiper-slide"> 
-        <img src="assets/images/carousel/IMG_5.png" class="w-100 d-block"></div>
-      <div class="swiper-slide">
-        <img src="assets/images/carousel/IMG_6.png" class="w-100 d-block"></div> 
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
+    <div class="swiper swiper-container full-screen">
+        <div class="swiper-wrapper">
+            <?php
+            $res = selectAll('carousel');
+            while ($row = mysqli_fetch_assoc($res)) {
+                $path = CAROUSEL_IMG_PATH;
+                echo <<<data
+                <div class="swiper-slide">
+                    <img src="$path$row[image]" class="w-100 d-block">
+                </div>
+                data;
+            }
+            ?>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
     </div>
-  </div>
 </div>
+
 
 <!--  Availaility Form -->
 <div class="container availability-form">
