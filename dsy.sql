@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2023 at 10:05 AM
+-- Generation Time: Oct 02, 2023 at 12:37 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -107,7 +107,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`sr_no`, `site_title`, `site_about`, `shutdown`) VALUES
-(1, 'TJ Hotel', 'This is the Hotel Booking System!!!!', 0);
+(1, 'Hotel', 'This is the Hotel Booking System!!!!', 0);
 
 -- --------------------------------------------------------
 
@@ -126,7 +126,23 @@ CREATE TABLE `team_details` (
 --
 
 INSERT INTO `team_details` (`sr_no`, `name`, `picture`) VALUES
-(1, 'James', 'IMG_17352.jpg');
+(18, 'James', 'IMG_17352.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_queries`
+--
+
+CREATE TABLE `user_queries` (
+  `sr_no` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `subject` varchar(200) NOT NULL,
+  `message` varchar(500) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `seen` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -163,6 +179,12 @@ ALTER TABLE `team_details`
   ADD PRIMARY KEY (`sr_no`);
 
 --
+-- Indexes for table `user_queries`
+--
+ALTER TABLE `user_queries`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -194,7 +216,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `team_details`
 --
 ALTER TABLE `team_details`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `user_queries`
+--
+ALTER TABLE `user_queries`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
