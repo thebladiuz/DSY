@@ -32,22 +32,22 @@
     <div class="row">
       <!-- WiFi Section (Repeating 6 Times) -->
       <?php
-      for ($i = 1; $i <= 6; $i++) {
-      ?>
-        <div class="col-lg-4 col-md-6 mb-5 px-4">
-          <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
-            <div class="d-flex align-items-center mb-2">
-              <i class="fa fa-wifi custom-size"></i> <h5 class="m-0 ms-3">Wifi</h5>
+        $res = selectAll('facilities');
+        $path = FACILITIES_IMG_PATH;
+        while($row = mysqli_fetch_assoc($res)){
+          echo<<<data
+            <div class="col-lg-4 col-md-6 mb-5 px-4">
+            <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
+              <div class="d-flex align-items-center mb-2">
+              <img src="$path$row[icon]" width="40px">
+              <h5 class="m-0 ms-3">$row[name]</h5>
+              </div>
+              <p>$row[description]</p>
             </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum posuere iaculis. Aliquam non erat nibh. Nulla auctor dolor in est suscipit, et elementum quam lacinia. Donec vitae nisi eleifend, dapibus turpis et, cursus orci.
-            </p>
           </div>
-        </div>
-      <?php
-      }
+          data;
+        }
       ?>
-      <!-- End of WiFi Section -->
     </div>
   </div>
 

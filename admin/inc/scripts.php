@@ -17,6 +17,7 @@
             element.remove();
         }, 3000);
     }
+
     function setActive()
     {
       let navbar =document.getElementById('dashboard-menu');
