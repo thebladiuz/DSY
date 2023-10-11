@@ -4,12 +4,14 @@ define('SITE_URL', 'http://localhost:8080/Hotel_Booking_Management/');
 define('ABOUT_IMG_PATH', SITE_URL.'assets/images/about/');
 define('CAROUSEL_IMG_PATH', SITE_URL.'assets/images/carousel/');
 define('FACILITIES_IMG_PATH', SITE_URL.'assets/images/facilities/');
+define('ROOMS_IMG_PATH', SITE_URL.'assets/images/rooms/');
 
 //backend upload process needs this date_add
 define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT'].'/Hotel_Booking_Management/assets/images/');
 define('ABOUT_FOLDER','about/');
 define('CAROUSEL_FOLDER','carousel/');
 define('FACILITIES_FOLDER','facilities/');
+define('ROOM_FOLDER','rooms/');
 
     function adminLogin(){
         session_start();

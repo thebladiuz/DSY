@@ -68,6 +68,7 @@ if(isset($_POST['upd_contacts']))
 
 if (isset($_POST['add_member'])) {
     // Perform any necessary input validation and filtering here
+    $frm_data = filteration($_POST);
 
     $img_r = uploadImage($_FILES['picture'], ABOUT_FOLDER);
 
@@ -85,8 +86,8 @@ if (isset($_POST['add_member'])) {
         $values = [$_POST['name'], $img_r];
         $res = insert($q, $values, 'ss');
         echo $res;
-        }
     }
+}
 
 if (isset($_POST['get_members'])) {
     $res = selectAll('team_details');
