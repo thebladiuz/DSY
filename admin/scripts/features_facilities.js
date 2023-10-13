@@ -50,18 +50,18 @@
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function () {
-            if (this.responseText == 1) {
-                alert('success', 'Feature removed!'); 
+            console.log('Response:', this.responseText); // Log the response for debugging
+            if (this.responseText.trim() === '1') {
+                alert('success', 'Feature removed!');
                 get_features();
-            } else if(this.responseText == 'room_added'){
-                alert('error', 'Feature is added in room!'); 
-            } 
-            else {
-                alert('error', 'Server down!'); 
+            } else if (this.responseText.trim() === 'room_added') {
+                alert('error', 'Feature is added in a room!');
+            } else {
+                alert('error', 'Server down!');
             }
         }
-        xhr.send('rem_feature='+val); 
-    }
+        xhr.send('rem_feature=' + val); 
+    }  
 
     facility_s_form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -118,20 +118,21 @@
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "../admin/ajax/features_facilities.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
+    
         xhr.onload = function () {
-            if (this.responseText == 1) {
-                alert('success', 'Facility removed!'); 
-                get_facility();
-            } else if(this.responseText == 'room_added'){
-                alert('error', 'Facility is added in room!'); 
-            } 
-            else {
-                alert('error', 'Server down!'); 
+            console.log('Response:', this.responseText); // Log the response for debugging
+            if (this.responseText.trim() === '1') {
+                alert('success', 'Facility removed!');
+                get_facilities();
+            } else if (this.responseText.trim() === 'room_added') {
+                alert('error', 'Facility is added in a room!');
+            } else {
+                alert('error', 'Server down!');
             }
         }
-        xhr.send('rem_facility='+val); 
-    }
+    
+        xhr.send('rem_facility=' + val);
+    }  
 
     window.onload = function () {
     get_features();

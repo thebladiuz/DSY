@@ -81,10 +81,10 @@
 
                     <div class="text-end mb-4">
                         <a href="?seen=all" class="btn btn-dark rounded-pill shadow-none btn-sm">
-                            <i class="bi bi-check-all"></i> Mark all read
+                            <i class="fa fa-check-all"></i> Mark all read
                         </a>
                         <a href="?del=all" class="btn btn-danger rounded-pill shadow-none btn-sm">
-                            <i class="bi bi-trash"></i> Delete all
+                            <i class="fa fa-trash"></i> Delete all
                         </a>
                     </div>
                         

@@ -71,7 +71,7 @@ let edit_room_form = document.getElementById('edit_room_form');
 function edit_details(id) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "../admin/ajax/rooms.php", true);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // Changed content type
 
     xhr.onload = function () {
         console.log(this.responseText);
@@ -79,36 +79,41 @@ function edit_details(id) {
             try {
                 let data = JSON.parse(this.responseText);
 
-                if (data && data.roomdata) {
-                    edit_room_form.elements['name'].value = data.roomdata.name;
-                    edit_room_form.elements['area'].value = data.roomdata.area;
-                    edit_room_form.elements['price'].value = data.roomdata.price;
-                    edit_room_form.elements['quantity'].value = data.roomdata.quantity;
-                    edit_room_form.elements['adult'].value = data.roomdata.adult;
-                    edit_room_form.elements['children'].value = data.roomdata.children;
-                    edit_room_form.elements['desc'].value = data.roomdata.description;
-                    edit_room_form.elements['room_id'].value = data.roomdata.id;
+                edit_room_form.elements['name'].value = data.roomdata.name;
+                edit_room_form.elements['area'].value = data.roomdata.area;
+                edit_room_form.elements['price'].value = data.roomdata.price;
+                edit_room_form.elements['quantity'].value = data.roomdata.quantity;
+                edit_room_form.elements['adult'].value = data.roomdata.adult;
+                edit_room_form.elements['children'].value = data.roomdata.children;
+                edit_room_form.elements['desc'].value = data.roomdata.description;
+                edit_room_form.elements['room_id'].value = data.roomdata.id;
 
-                    edit_room_form.querySelectorAll('[name="features[]"]').forEach(el => {
-                        el.checked = data.features.includes(Number(el.value));
-                    });
+                // Loop through checkboxes with name 'room_features[]'
+                document.querySelectorAll('[name="room_features[]"]').forEach(el => {
+                    if (data.features.includes(Number(el.value))) {
+                        el.checked = true;
+                    } else {
+                        el.checked = false; // Ensure unchecked if not in data.features
+                    }
+                });
 
-                    edit_room_form.querySelectorAll('[name="facilities[]"]').forEach(el => {
-                        el.checked = data.facilities.includes(Number(el.value));
-                    });
-                } else {
-                    console.error("Invalid or empty response data.");
-                }
+                // Loop through checkboxes with name 'room_facilities[]'
+                document.querySelectorAll('[name="room_facilities[]"]').forEach(el => {
+                    if (data.facilities.includes(Number(el.value))) {
+                        el.checked = true;
+                    } else {
+                        el.checked = false; // Ensure unchecked if not in data.facilities
+                    }
+                });
             } catch (error) {
                 console.error("Error parsing JSON data: " + error);
             }
         } else {
             console.error("Request failed with status: " + xhr.status);
         }
-    }
+    };
 
-    const requestData = { get_room: id };
-    xhr.send(JSON.stringify(requestData));
+    xhr.send('get_room=' + id);
 }
 
 edit_room_form.addEventListener('submit',function(e) {
@@ -246,7 +251,7 @@ function rem_image(img_id, room_id){
 
     xhr.onload = function () {
         if(this.responseText == 1) {
-            alert('success', 'New image added!', 'image-alert');
+            alert('success', 'Image Removed!', 'image-alert');
             room_images(room_id, document.querySelector("#room-images .modal-title").innerText);
         }
         else{

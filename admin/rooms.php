@@ -239,7 +239,7 @@
                                         <label class="member_picture_inp form-label fw-bold">Add Image</label>
                                             <input type="file" name="image" accept=".jpg, .png, .webp, .jpeg" class="form-control shadow-none mb-3" required>
                                             <button class="btn custom-bg text-white shadow-none">ADD</button>
-                                            <input type="hidden" name="room-id">
+                                            <input type="hidden" name="room_id">
                                         </form>
                                     </div>
                                     <div class="table-responsive-lg" style="height: 350px; overflow-y: scroll;">

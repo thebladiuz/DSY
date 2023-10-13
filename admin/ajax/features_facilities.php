@@ -97,17 +97,24 @@ if (isset($_POST['rem_facility'])) {
     $frm_data = filteration($_POST);
     $values = [$frm_data['rem_facility']];
 
-    $q = "DELETE FROM `facilities` WHERE `id`=?";
-    $res = select($q,$values,'i');
-    $img = mysqli_fetch_assoc($res);
+    // Check if the facility is associated with any room
+    $q_check_association = "SELECT COUNT(*) FROM `room_facilities` WHERE `facilities_id` = ?";
+    $count_association = select($q_check_association, $values, 'i');
 
-    if(deleteImage($img['icon'], FACILITIES_FOLDER)){
-        $q = "DELETE FROM  `facilities` WHERE `id`=?";
-        $res = delete($q,$values,'i');
-        echo $res;
-    }
-    else {
-        echo 0;
+    if ($count_association === false) {
+        echo '0'; // Facility not found or another error occurred.
+    } elseif (mysqli_fetch_assoc($count_association)['COUNT(*)'] > 0) {
+        echo 'room_added'; // Facility is associated with a room.
+    } else {
+        // No association with rooms, safe to delete.
+        $q = "DELETE FROM `facilities` WHERE `id`=?";
+        $affected_rows = delete($q, $values, 'i');
+
+        if ($affected_rows === 0) {
+            echo '0'; // Facility not found or another error occurred.
+        } else {
+            echo '1'; // Facility was successfully removed.
+        }
     }
 }
 
