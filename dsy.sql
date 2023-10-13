@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2023 at 05:19 AM
+-- Generation Time: Oct 13, 2023 at 02:57 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -134,7 +134,7 @@ INSERT INTO `features` (`id`, `name`) VALUES
 (2, 'Kitchen'),
 (3, 'Bathroom'),
 (4, 'Bedroom'),
-(5, 'Living Room');
+(9, 'Living Room');
 
 -- --------------------------------------------------------
 
@@ -151,15 +151,16 @@ CREATE TABLE `rooms` (
   `adult` int(11) NOT NULL,
   `children` int(11) NOT NULL,
   `description` varchar(350) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `removed` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `rooms`
 --
 
-INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`) VALUES
-(12, 'Sample Room', 1241, 421, 1, 2, 2, 'This is a test room!', 1);
+INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`, `removed`) VALUES
+(20, 'Sample Room 1', 541, 1244, 2, 2, 2, 'Room #124 and Room #5412 available', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -178,10 +179,10 @@ CREATE TABLE `room_facilities` (
 --
 
 INSERT INTO `room_facilities` (`sr_no`, `room_id`, `facilities_id`) VALUES
-(37, 12, 2),
-(38, 12, 3),
-(39, 12, 5),
-(40, 12, 6);
+(93, 20, 1),
+(94, 20, 2),
+(95, 20, 3),
+(96, 20, 6);
 
 -- --------------------------------------------------------
 
@@ -200,10 +201,22 @@ CREATE TABLE `room_features` (
 --
 
 INSERT INTO `room_features` (`sr_no`, `room_id`, `features_id`) VALUES
-(12, 12, 1),
-(13, 12, 3),
-(14, 12, 4),
-(15, 12, 5);
+(58, 20, 1),
+(59, 20, 3),
+(60, 20, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_images`
+--
+
+CREATE TABLE `room_images` (
+  `sr_no` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `image` varchar(150) NOT NULL,
+  `thumb` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -325,6 +338,13 @@ ALTER TABLE `room_features`
   ADD KEY `features` (`features_id`);
 
 --
+-- Indexes for table `room_images`
+--
+ALTER TABLE `room_images`
+  ADD PRIMARY KEY (`sr_no`),
+  ADD KEY `room_images_ibdk_1` (`room_id`);
+
+--
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
@@ -356,7 +376,7 @@ ALTER TABLE `admin_cred`
 -- AUTO_INCREMENT for table `carousel`
 --
 ALTER TABLE `carousel`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `contact_details`
@@ -368,31 +388,37 @@ ALTER TABLE `contact_details`
 -- AUTO_INCREMENT for table `facilities`
 --
 ALTER TABLE `facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `room_facilities`
 --
 ALTER TABLE `room_facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `room_features`
 --
 ALTER TABLE `room_features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
+-- AUTO_INCREMENT for table `room_images`
+--
+ALTER TABLE `room_images`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -404,7 +430,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `team_details`
 --
 ALTER TABLE `team_details`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user_queries`
@@ -429,6 +455,12 @@ ALTER TABLE `room_facilities`
 ALTER TABLE `room_features`
   ADD CONSTRAINT `features` FOREIGN KEY (`features_id`) REFERENCES `features` (`id`) ON UPDATE NO ACTION,
   ADD CONSTRAINT `rm id` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `room_images`
+--
+ALTER TABLE `room_images`
+  ADD CONSTRAINT `room_images_ibdk_1` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
