@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel - Rooms</title>
     <?php require('inc/links.php'); ?>
+    <title><?php echo $settings_r['site_title']?> - Rooms</title>
 </head>
 <body class="bg-light">
   <style>

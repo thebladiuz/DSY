@@ -1,15 +1,8 @@
-<?php
-require('admin/inc/db_config.php');
-require('admin/inc/essentials.php');
 
-$contact_q ="SELECT * FROM contact_details WHERE sr_no=?";
-$values = [1];
-$contact_r = mysqli_fetch_assoc(select($contact_q,$values,'i'));
-?>
 
 <nav id="nav-bar"class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 py-lg-2 shadow-sm stick-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">HOTEL</a>
+        <a class="navbar-brand" href="index.php"><?php echo $settings_r['site_title']?></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -83,7 +76,7 @@ $contact_r = mysqli_fetch_assoc(select($contact_q,$values,'i'));
 <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form>
+            <form id="register-form">
                 <div class="modal-header">
                     <h5 class="modal-title d-flex align-items-center">
                         <i class="fa fa-user"></i>&nbsp User Registration
@@ -98,43 +91,43 @@ $contact_r = mysqli_fetch_assoc(select($contact_q,$values,'i'));
                 <div class="row">
                   <div class="col-md-6 ps-0 mb-3">
                     <label for="register-name">Name</label>
-                        <input type="text" class="form-control shadow-none" id="register-name">
+                        <input name="name" type="text" class="form-control shadow-none" id="register-name" required>
                   </div>
                     <div class="col-md-6 ps-0 mb-3">
                       <label for="register-email">Email address</label>
-                        <input type="email" class="form-control shadow-none" id="register-email">
+                        <input name="email" type="email" class="form-control shadow-none" id="register-email" required>
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
                     <label for="register-phone">Phone Number</label>
-                    <input type="number" class="form-control shadow-none" id="register-phone">
+                    <input name="phonenum" type="number" class="form-control shadow-none" id="register-phone" required>
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
                     <label for="register-picture">Picture</label>
-                    <input type="file" class="form-control shadow-none" id="register-picture">
+                    <input name="profile" type="file" accept=".jpg, .jpeg, png, webp" class="form-control shadow-none" id="register-picture" required>
                   </div>
                   <div class="col-md-12 ps-0 mb-3">
                     <label for="register-address">Address</label>
-                    <textarea class="form-control shadow-none" rows="1" id="register-address"></textarea>
+                    <textarea name="address" class="form-control shadow-none" rows="1" id="register-address" required></textarea>
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
                     <label for="register-postal-code">Postal Code</label>
-                    <input type="number" class="form-control shadow-none" id="register-postal-code">
+                    <input name="pincode" type="number" class="form-control shadow-none" id="register-postal-code" required>
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
                     <label for="register-date-of-birth">Date of Birth</label>
-                    <input type="date" class="form-control shadow-none" id="register-date-of-birth">
+                    <input name="dob" type="date" class="form-control shadow-none" id="register-date-of-birth"  required>
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
                   <label for="register-password">Password</label>
                         <div class="input-group">
-                            <input type="password" class="form-control shadow-none" id="register-password">
+                            <input name="pass" type="password" class="form-control shadow-none" id="register-password" required>
                             <button type="button" class="btn btn-outline-secondary" id="toggle-register-password">&#128065;</button>
                         </div>
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
                   <label for="register-confirm-password">Confirm Password</label>
                         <div class="input-group">
-                            <input type="password" class="form-control shadow-none" id="register-confirm-password">
+                            <input name="cpass" type="password" class="form-control shadow-none" id="register-confirm-password" required>
                             <button type="button" class="btn btn-outline-secondary" id="toggle-register-confirm-password">&#128065;</button>
                         </div>
                   </div>

@@ -5,3 +5,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../Hotel_Booking_Management/assets/css/style.css">
+
+<?php
+require('admin/inc/db_config.php');
+require('admin/inc/essentials.php');
+
+$contact_q ="SELECT * FROM contact_details WHERE sr_no=?";
+$settings_q ="SELECT * FROM settings WHERE sr_no=?";
+$values = [1];
+$contact_r = mysqli_fetch_assoc(select($contact_q,$values,'i'));
+$settings_r = mysqli_fetch_assoc(select($settings_q,$values,'i'));
+?>

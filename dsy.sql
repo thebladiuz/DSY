@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2023 at 02:57 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Oct 16, 2023 at 06:55 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `admin_cred` (
   `sr_no` int(11) NOT NULL,
   `admin_name` varchar(150) NOT NULL,
   `admin_pass` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin_cred`
@@ -49,7 +49,7 @@ INSERT INTO `admin_cred` (`sr_no`, `admin_name`, `admin_pass`) VALUES
 CREATE TABLE `carousel` (
   `sr_no` int(11) NOT NULL,
   `image` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `carousel`
@@ -80,7 +80,7 @@ CREATE TABLE `contact_details` (
   `insta` varchar(100) NOT NULL,
   `tw` varchar(100) NOT NULL,
   `iframe` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `contact_details`
@@ -100,7 +100,7 @@ CREATE TABLE `facilities` (
   `icon` varchar(100) NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `facilities`
@@ -123,7 +123,7 @@ INSERT INTO `facilities` (`id`, `icon`, `name`, `description`) VALUES
 CREATE TABLE `features` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `features`
@@ -153,7 +153,7 @@ CREATE TABLE `rooms` (
   `description` varchar(350) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `removed` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rooms`
@@ -172,7 +172,7 @@ CREATE TABLE `room_facilities` (
   `sr_no` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
   `facilities_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `room_facilities`
@@ -194,7 +194,7 @@ CREATE TABLE `room_features` (
   `sr_no` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
   `features_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `room_features`
@@ -216,7 +216,7 @@ CREATE TABLE `room_images` (
   `room_id` int(11) NOT NULL,
   `image` varchar(150) NOT NULL,
   `thumb` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -229,7 +229,7 @@ CREATE TABLE `settings` (
   `site_title` varchar(50) NOT NULL,
   `site_about` varchar(250) NOT NULL,
   `shutdown` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `settings`
@@ -248,7 +248,7 @@ CREATE TABLE `team_details` (
   `sr_no` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `picture` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `team_details`
@@ -256,6 +256,28 @@ CREATE TABLE `team_details` (
 
 INSERT INTO `team_details` (`sr_no`, `name`, `picture`) VALUES
 (18, 'James', 'IMG_17352.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_cred`
+--
+
+CREATE TABLE `user_cred` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `address` varchar(120) NOT NULL,
+  `phonenum` varchar(100) NOT NULL,
+  `pincode` int(11) NOT NULL,
+  `dob` date NOT NULL,
+  `profile` varchar(100) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `is_verified` int(11) NOT NULL DEFAULT 0,
+  `token` varchar(200) DEFAULT NULL,
+  `t_expire` date DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `datentime` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -271,7 +293,7 @@ CREATE TABLE `user_queries` (
   `message` varchar(500) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   `seen` tinyint(4) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user_queries`
@@ -357,6 +379,12 @@ ALTER TABLE `team_details`
   ADD PRIMARY KEY (`sr_no`);
 
 --
+-- Indexes for table `user_cred`
+--
+ALTER TABLE `user_cred`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_queries`
 --
 ALTER TABLE `user_queries`
@@ -431,6 +459,12 @@ ALTER TABLE `settings`
 --
 ALTER TABLE `team_details`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `user_cred`
+--
+ALTER TABLE `user_cred`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_queries`

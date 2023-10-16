@@ -7,6 +7,7 @@
     <title>Hotel - About Us</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
     <?php require('inc/links.php'); ?>
+    <title><?php echo $settings_r['site_title']?> - About us</title>
     <style>
       .box{
         border-top-color: var(--teal) !important;
