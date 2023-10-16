@@ -139,7 +139,7 @@
           $room_thumb = ROOMS_IMG_PATH . "thumbnail.jpg";
           $thumb_q = mysqli_query($con, "SELECT * FROM `room_images` 
               WHERE 'room_id'='$room_data[id]' 
-              AND 'thumb'='1'");
+              AND `thumb` = 1");
 
           if (mysqli_num_rows($thumb_q) > 0) {
             $thumb_res = mysqli_fetch_assoc($thumb_q);
@@ -154,7 +154,7 @@
                 <img class="card-img-top" src="$room_thumb">
                 <div class="card-body">
                   <h5>$room_data[name]</h5>
-                  <h6 class="mb-4">$$room_data[price] per night</h6>
+                  <h6 class="mb-4">$$room_data[price]/night</h6>
                   <div class="features mb-4">
                     <h6 class="mb-1">Features</h6>
                     $features_data

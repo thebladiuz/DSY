@@ -73,7 +73,7 @@
       <div class="col-lg-9 col-md-12 px-4">
 
         <?php
-        $room_res = select("SELECT * FROM `rooms` WHERE 'status' =? AND 'removed'=?", [1, 0], 'ii');
+        $room_res = select("SELECT * FROM `rooms` WHERE `status` = ? AND `removed` = ?", [1, 0], 'ii');
         while ($room_data = mysqli_fetch_assoc($room_res)) 
         {
           //get features of room
@@ -82,6 +82,7 @@
             INNER JOIN `room_features` rfea ON f.id = rfea.features_id 
             WHERE rfea.room_id = '$room_data[id]'");
 
+          $features_data = "";
           while ($fea_row = mysqli_fetch_assoc($fea_q)) {
             $features_data .= "<span class='badge rounded-pill text-bg-light text-dark text-wrap'>
               $fea_row[name]
@@ -106,7 +107,7 @@
           $room_thumb = ROOMS_IMG_PATH . "thumbnail.jpg";
           $thumb_q = mysqli_query($con, "SELECT * FROM `room_images` 
               WHERE 'room_id'='$room_data[id]' 
-              AND 'thumb'='1'");
+              AND `thumb` = 1");
 
           if (mysqli_num_rows($thumb_q) > 0) {
             $thumb_res = mysqli_fetch_assoc($thumb_q);
@@ -143,10 +144,10 @@
                       </div>
                     </div>
                     <div class="col-md-2 mt-lg-0 mt-md-0 mt-4 text-center">
-                      <h6 class="mb-4">$room_data[price] per night</h6>
+                      <h6 class="mb-4">$$room_data[price]/night</h6>
                       <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                      <a href="room_details.php?id=$room_data[id]" class="btn btn-sm w-100 btn-outline-dark shadow-none">More details</a>
-                    </div>
+                      <a href="room_details.php?id={$room_data['id']}" class="btn btn-sm w-100 btn-outline-dark shadow-none">More details</a>
+                      </div>
                   </div>
                 </div>
 

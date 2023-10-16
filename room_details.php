@@ -19,8 +19,9 @@
 
     $data = filteration($_GET);
 
-    $room_res = select("SELECT * FROM `rooms` WHERE 'id'=? AND 'status' =? AND 'removed'=?", [1,0], 'iIi');
+    $room_id = $_GET['id']; // Retrieve the room ID from the URL parameter
 
+    $room_res = select("SELECT * FROM `rooms` WHERE `id` = ? AND `status` = ? AND `removed` = ?", [$room_id, 1, 0], 'iii');
     if(mysqli_num_rows($room_res) == 0){
       redirect('rooms.php');
     }
@@ -48,11 +49,11 @@
 
               $room_img = ROOMS_IMG_PATH."thumbnail.jpg";
               $img_q = mysqli_query($con, "SELECT * FROM `room_images` 
-                WHERE 'room_id'='$room_data[id]'");
+                WHERE `room_id`=$room_data[id]");
 
               if(mysqli_num_rows($img_q)>0)
               {
-                $active_class = 'active';
+                $active_class = 'active'; // Set 'active' class for the first image
 
                 while($img_res = mysqli_fetch_assoc($img_q))
                 {
@@ -90,7 +91,7 @@
           <?php
 
             echo<<<price
-            <h4>$room_data[price] per night</h4>
+            <h4>$$room_data[price]/night</h4>
             price;
             
             echo<<<rating
@@ -107,6 +108,7 @@
               INNER JOIN `room_features` rfea ON f.id = rfea.features_id 
               WHERE rfea.room_id = '$room_data[id]'");
 
+              $features_data = "";
             while($fea_row = mysqli_fetch_assoc($fea_q)){
               $features_data .= "<span class='badge rounded-pill text-bg-light text-dark text-wrap me-1 mb-1'>
                 $fea_row[name]
@@ -154,7 +156,7 @@
               <div class="mb-3">
                 <h6 class="mb-1">Area</h6>
                 <span class='badge rounded-pill text-bg-light text-dark text-wrap me-1 mb-1'>
-                  $room_data[area] sq. ft.  
+                  $room_data[area] m<sup>2
                 </span>
               </div>
             area;
@@ -177,7 +179,7 @@
       </div>
 
       <div>
-        <h5 class="mb-3">Reviews & Ratinga</h5>
+      <h5 class="mb-3">Reviews & Ratings</h5>
         <div>
           <div class="d-flex align-items-center mb-2">
             <img src="assets/images/about/staff.svg" width="30px">
