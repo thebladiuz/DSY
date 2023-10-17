@@ -11,16 +11,18 @@
     <title><?php echo $settings_r['site_title']?> - Home</title>
 
     <style>
-   /* @media screen and (max-width: 575px) { */
-    .availability-form {
-      margin-top: -50px;
-      /* Adjust this value as needed */
-      position: relative;
-      /* Add relative positioning to maintain the form's position */
-      z-index: 2;
-      /* padding: 0 35px; */
-    }
-   /* } */
+           .availability-form {
+            margin-top: -50px; /* Adjust this value as needed */
+            position: relative; /* Add relative positioning to maintain the form's position */
+            z-index: 2;
+        }
+
+        @media screen and (max-width: 575px) {
+          .availability-form {
+            margin-top: 0px; /* Adjust this value as needed */
+            padding: 0 35px;
+        }
+        }
    
     .custom-size {
       font-size: 80px;
