@@ -69,7 +69,7 @@ if (isset($_POST['get_all_rooms'])) {
             <tr class='align-middle'>
                 <td>$i</td>
                 <td>$row[name]</td>
-                <td>$row[area] sq. ft.</td>
+                <td>$row[area] m<sup>2</td>
                 <td>
                     <span class='badge rounded-pill bg-light text-dark'>
                         Adult: $row[adult]
