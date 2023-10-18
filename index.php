@@ -200,28 +200,29 @@
     </div>
   </div>
 
-  <!-- Facilities -->
-  <h2 class="mt 5 pt-4 mb-5 text-center fm-bold f-font">OUR FACILITIES</h2>
-    <div class="container">
-      <?php
-        $res = mysqli_query($con, "SELECT * FROM `facilities` ORDER BY `id` DESC LIMIT 5");
-        $path = FACILITIES_IMG_PATH;
+ <!-- Facilities -->
+<h2 class="mt-5 pt-4 mb-5 text-center fm-bold f-font">OUR FACILITIES</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <?php
+    $res = mysqli_query($con, "SELECT * FROM `facilities` ORDER BY `id` DESC LIMIT 5");
+    $path = FACILITIES_IMG_PATH;
 
-        while($row = mysqli_fetch_assoc($res)){
-          echo<<<data
-            <div class="col-lg-2 col-md-2 text-center bg-whiter rounded shadow py-4 my-3">
-              <img src="$path$row[icon]" width="60px">
-              <h5 class="mt3">$row[name]</h5>
-            </div>
-          data;
-        }
-      ?>
-
-      <div class="col-lg-12 text-center mt-5">
-        <a href="facilities.php" class="btn btn-sm btn-outline-dark rounded-0 fw-fold shadow-none">More Facilities >>></a>
-      </div>
-    </div>
+    while ($row = mysqli_fetch_assoc($res)) {
+      echo <<<data
+        <div class="col-lg-2 col-md-2 text-center bg-whiter rounded shadow py-4 my-3">
+          <img src="$path$row[icon]" width="60px">
+          <h5 class="mt-3">$row[name]</h5>
+        </div>
+      data;
+    }
+    ?>
   </div>
+  <div class="col-lg-12 text-center mt-5">
+    <a href="facilities.php" class="btn btn-sm btn-outline-dark rounded-0 fw-fold shadow-none">More Facilities >>></a>
+  </div>
+</div>
+
 
   <!-- Testimonials -->
 
