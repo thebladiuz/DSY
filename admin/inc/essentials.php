@@ -5,6 +5,7 @@ define('ABOUT_IMG_PATH', SITE_URL.'assets/images/about/');
 define('CAROUSEL_IMG_PATH', SITE_URL.'assets/images/carousel/');
 define('FACILITIES_IMG_PATH', SITE_URL.'assets/images/facilities/');
 define('ROOMS_IMG_PATH', SITE_URL.'assets/images/rooms/');
+define('USERS_IMG_PATH', SITE_URL.'assets/images/users/');
 
 //backend upload process needs this date_add
 define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT'].'/Hotel_Booking_Management/assets/images/');

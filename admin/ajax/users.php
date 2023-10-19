@@ -8,16 +8,16 @@ if (isset($_POST['get_users'])) {
     $res = selectAll('user_cred');
     $i = 1;
     $data = "";
-    // $path = USERS_IMG_PATH;
+    $path = USERS_IMG_PATH;
 
     while ($row = mysqli_fetch_assoc($res)) {
         $del_btn = "<button type='button' onclick='remove_user($row[id])' class='btn btn-danger shadow-none btn-sm'>
-        <i class='bi bi-trash'></i>
+        <i class='fa fa-trash'></i>
         </button>";
-        $verified = "<span class='badge bg-warning'><i class='bi bi-x-lg'></i></span>";
+        $verified = "<span class='badge bg-warning'><i class='fa fa-x'></i></span>";
 
         if($row['is_verified']){
-            $verified = "<span class='badge bg-success'><i class='bi bi-check-lg'></i></span>";  
+            $verified = "<span class='badge bg-success'><i class='fa fa-check'></i></span>";  
             $del_btn = "";
         }
 
@@ -53,21 +53,24 @@ if (isset($_POST['get_users'])) {
     echo $data;
 }
 
-
 if (isset($_POST['toggle_status'])) {
     $frm_data = filteration($_POST);
 
+    // Get the current status
+    $currentStatus = $frm_data['value'];
+
+    // Calculate the new status value (toggle it)
+    $newStatus = ($currentStatus == 0) ? 1 : 0;
+
     $q = "UPDATE `user_cred` SET `status`=? WHERE `id`=?";
-    $v = [$frm_data['value'], $frm_data['toggle_status']];
+    $v = [$newStatus, $frm_data['toggle_status']];
 
     if (update($q, $v, 'ii')) {
-        echo 1;
+        echo 1; // Success
     } else {
-        echo 0;
+        echo 0; // Error
     }
 }
-
-     
 
 if (isset($_POST['remove_user'])) {
         $frm_data = filteration($_POST);
@@ -81,24 +84,23 @@ if (isset($_POST['remove_user'])) {
         }  
 }
 
-
-if (isset($_POST['search_users'])) {
+if (isset($_POST['search_user'])) {
     $frm_data = filteration($_POST);
 
     $query = "SELECT * FROM `user_cred` WHERE `name` LIKE ?";
-    $res = select($query, ["%$frm_data[name]%"], 's');
+    $res = select($query, ["%$frm_data[name]"], 's');
     $i = 1;
     $data = "";
-    // $path = USERS_IMG_PATH;
+    $path = USERS_IMG_PATH;
 
     while ($row = mysqli_fetch_assoc($res)) {
         $del_btn = "<button type='button' onclick='remove_user($row[id])' class='btn btn-danger shadow-none btn-sm'>
-        <i class='bi bi-trash'></i>
+        <i class='fa fa-trash'></i>
         </button>";
-        $verified = "<span class='badge bg-warning'><i class='bi bi-x-lg'></i></span>";
+        $verified = "<span class='badge bg-warning'><i class='fa fa-x'></i></span>";
 
         if($row['is_verified']){
-            $verified = "<span class='badge bg-success'><i class='bi bi-check-lg'></i></span>";  
+            $verified = "<span class='badge bg-success'><i class='fa fa-check'></i></span>";  
             $del_btn = "";
         }
 

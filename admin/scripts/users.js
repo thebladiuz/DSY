@@ -11,7 +11,7 @@ function get_users() {
     xhr.send('get_users');
 }
 
-function toggle_status(id, val) {
+function toggle_status(id, currentStatus) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "../admin/ajax/users.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -25,10 +25,10 @@ function toggle_status(id, val) {
         }
     }
 
-    xhr.send('toggle_status=' + id + '&value=' + val);
+    xhr.send('toggle_status=' + id + '&value=' + currentStatus);
 }
 
-function remove_user(room_id){
+function remove_user(user_id){
     if(confirm("Are you sure, you want to delete this user")){
         let data = new FormData();
         data.append('user_id', user_id);

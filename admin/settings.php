@@ -31,7 +31,7 @@ adminLogin();
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <h5 class="card-title m-0">General Settings</h5>
                             <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#general-s">
-                                <i class="bi bi-pencil-square"></i> Edit
+                                <i class="fa fa-pencil-square"></i> Edit
                             </button>
                         </div>
                         <h6 class="card-subtitle mb-1 fw-bold">Site Title</h6>
@@ -91,7 +91,7 @@ adminLogin();
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <h5 class="card-title m-0">Contacts Settings</h5>
                             <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#contacts-s">
-                                <i class="bi bi-pencil-square"></i> Edit
+                                <i class="fa fa-pencil-square"></i> Edit
                             </button>
                         </div>
                         <div class="row">
