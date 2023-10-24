@@ -14,18 +14,8 @@ if (isset($_POST['get_users'])) {
         $del_btn = "<button type='button' onclick='remove_user($row[id])' class='btn btn-danger shadow-none btn-sm'>
         <i class='fa fa-trash'></i>
         </button>";
-        $verified = "<span class='badge bg-warning'><i class='fa fa-x'></i></span>";
 
-        if($row['is_verified']){
-            $verified = "<span class='badge bg-success'><i class='fa fa-check'></i></span>";  
-            $del_btn = "";
-        }
-
-        $status = "<button onclick='toggle_status($row[id],0)' class='btn btn-dark btn-sm shadow-none'>active</button>";
-
-        if(!$row['status']){
-            $status = "<button onclick='toggle_status($row[id],0)' class='btn btn-danger btn-sm shadow-none'>inactive</button>";
-        }
+        $status = "<button onclick='toggle_status(" . $row['id'] . ", " . $row['status'] . ")' class='btn btn-" . ($row['status'] ? "danger" : "dark") . " btn-sm shadow-none'>" . ($row['status'] ? "inactive" : "active") . "</button>";
 
         $date = date("d-m-Y", strtotime($row['datentime']));
 
@@ -40,8 +30,7 @@ if (isset($_POST['get_users'])) {
             <td>$row[email]</td>    
             <td>$row[phonenum]</td>    
             <td>$row[address] | $row[pincode]</td>    
-            <td>$row[dob]</td>    
-            <td>$verified</td>    
+            <td>$row[dob]</td>        
             <td>$status</td>    
             <td>$date</td>   
             <td>$del_btn</td> 
@@ -97,12 +86,6 @@ if (isset($_POST['search_user'])) {
         $del_btn = "<button type='button' onclick='remove_user($row[id])' class='btn btn-danger shadow-none btn-sm'>
         <i class='fa fa-trash'></i>
         </button>";
-        $verified = "<span class='badge bg-warning'><i class='fa fa-x'></i></span>";
-
-        if($row['is_verified']){
-            $verified = "<span class='badge bg-success'><i class='fa fa-check'></i></span>";  
-            $del_btn = "";
-        }
 
         $status = "<button onclick='toggle_status($row[id],0)' class='btn btn-dark btn-sm shadow-none'>active</button>";
 
@@ -124,7 +107,6 @@ if (isset($_POST['search_user'])) {
             <td>$row[phonenum]</td>    
             <td>$row[address] | $row[pincode]</td>    
             <td>$row[dob]</td>    
-            <td>$verified</td>    
             <td>$status</td>    
             <td>$date</td>   
             <td>$del_btn</td> 

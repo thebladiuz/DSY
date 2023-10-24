@@ -16,6 +16,9 @@ function toggle_status(id, currentStatus) {
     xhr.open("POST", "../admin/ajax/users.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
+    // Calculate the new status by toggling the current status
+    const newStatus = currentStatus === 1 ? 0 : 1;
+
     xhr.onload = function () {
         if (this.responseText == 1) {
             alert('success', 'Status toggled!');
@@ -25,7 +28,8 @@ function toggle_status(id, currentStatus) {
         }
     }
 
-    xhr.send('toggle_status=' + id + '&value=' + currentStatus);
+    // Send the data as a URL-encoded string
+    xhr.send('toggle_status=' + id + '&value=' + newStatus);
 }
 
 function remove_user(user_id){
