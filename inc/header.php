@@ -24,13 +24,37 @@
                     <a class="nav-link me-2" href="about-us.php">About Us</a>
                 </li>
             </ul>
-            <button type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#loginModal">
-                Login
-            </button>
-            <div style="margin: 10px;"></div>
-            <button type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#registerModal">
-                Register
-            </button>
+            <?php
+                if(isset($_SESSION['login']) && $_SESSION['login']==true)
+                {
+                    $path = USERS_IMG_PATH;
+                    echo<<<data
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-outline-dark shadow-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            <img src="$path$_SESSION[uPic]" style="width: 25px; height: 25px;" class="me-1">
+                            $_SESSION[uName]
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg-end">
+                            <a class="dropdown-item" href="profile.php">Profile</a></li>
+                            <a class="dropdown-item" href="bookings.php">Bookings</a></li>
+                            <a class="dropdown-item" href="logout.php">Logout</a></li>
+                        </div>
+                        </div>
+                    data;
+                }
+                else
+                {
+                    echo<<<data
+                        <button type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            Login
+                        </button>
+                        <div style="margin: 10px;"></div>
+                        <button type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            Register
+                        </button>
+                    data;
+                }
+            ?>
         </div>
     </div>
 </nav>
@@ -39,7 +63,7 @@
 <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form id="login-form">
                 <div class="modal-header">
                     <h5 class="modal-title d-flex align-items-center">
                         <i class="fa fa-user"></i>&nbsp User Login
@@ -48,18 +72,16 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="login-email">Email address</label>
-                        <input type="email" class="form-control shadow-none" id="login-email">
+                        <label for="login-email">Email / Mobile</label>
+                        <input type="text" name="email_mob" required class="form-control shadow-none" id="login-email">
                     </div>
                     <div class="mb-3">
                         <label for="login-password">Password</label>
                         <div class="input-group">
-                            <input type="password" class="form-control shadow-none" id="login-password">
+                            <input type="password" name="pass" required class="form-control shadow-none" id="login-password">
                             <button type="button" class="btn btn-outline-secondary" id="toggle-login-password">&#128065;</button>
                         </div>
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <a href="javascript: void(0)" class="text-secondary text-decoration-none">Forgot Password?</a>
-                        </div>
+                    </div>
                         <br>
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" style="flex: 1;">Create Account</a>
@@ -135,7 +157,7 @@
               </div>
                     <br>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" style="flex: 1;">Already have an account? Login</a>
+                      <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" style="flex: 1;">Already have an account?</a>
                       <button type="submit" class="btn btn-dark shadow-none">Register</button>
                     </div>
                 </div>
@@ -192,3 +214,5 @@
         }
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+

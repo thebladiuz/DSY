@@ -139,4 +139,36 @@ function alert(type, msg, position='body') {
 
       xhr.send(data);
     });
+
+    let login_form = document.getElementById('login-form');
+
+    login_form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log('Form submitted'); // Add this line
+
+      let data = new FormData();
+      data.append('email_mob', login_form.elements['email_mob'].value);
+      data.append('pass', login_form.elements['pass'].value);
+      data.append('login', '');
+      var myModal = document.getElementById('loginModal');
+      var modal = bootstrap.Modal.getInstance(myModal);
+      modal.hide();
+      
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "../Hotel_Booking_Management/ajax/login_register.php", true);
+
+        xhr.onload = function () {
+          if (this.responseText === 'inv_email_mob') {
+            alert('Invalid Email or Mobile Number!');
+          } else if (this.responseText === 'inactive') {
+            alert('Account Suspended! Please contact Admin.');
+          } else if (this.responseText === 'invalid_pass') {
+            alert('Incorrect Password!');
+          } else {
+            window.location = window.location.pathname;
+          }
+        };
+
+      xhr.send(data);
+    });
   </script>

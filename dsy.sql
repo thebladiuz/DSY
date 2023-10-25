@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2023 at 06:55 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Oct 25, 2023 at 10:07 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `admin_cred` (
   `sr_no` int(11) NOT NULL,
   `admin_name` varchar(150) NOT NULL,
   `admin_pass` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin_cred`
@@ -49,7 +49,7 @@ INSERT INTO `admin_cred` (`sr_no`, `admin_name`, `admin_pass`) VALUES
 CREATE TABLE `carousel` (
   `sr_no` int(11) NOT NULL,
   `image` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `carousel`
@@ -80,7 +80,7 @@ CREATE TABLE `contact_details` (
   `insta` varchar(100) NOT NULL,
   `tw` varchar(100) NOT NULL,
   `iframe` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `contact_details`
@@ -100,7 +100,7 @@ CREATE TABLE `facilities` (
   `icon` varchar(100) NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `facilities`
@@ -123,7 +123,7 @@ INSERT INTO `facilities` (`id`, `icon`, `name`, `description`) VALUES
 CREATE TABLE `features` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `features`
@@ -153,14 +153,15 @@ CREATE TABLE `rooms` (
   `description` varchar(350) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `removed` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `rooms`
 --
 
 INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`, `removed`) VALUES
-(20, 'Sample Room 1', 541, 1244, 2, 2, 2, 'Room #124 and Room #5412 available', 1, 0);
+(20, 'Sample Room 1', 541, 1244, 2, 2, 2, 'Room #124 and Room #5412 available', 1, 0),
+(21, 'Minh', 41415, 42411, 1241, 141, 1412, 'wrwkshfksf', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -172,7 +173,7 @@ CREATE TABLE `room_facilities` (
   `sr_no` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
   `facilities_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `room_facilities`
@@ -182,7 +183,10 @@ INSERT INTO `room_facilities` (`sr_no`, `room_id`, `facilities_id`) VALUES
 (93, 20, 1),
 (94, 20, 2),
 (95, 20, 3),
-(96, 20, 6);
+(96, 20, 6),
+(97, 21, 3),
+(98, 21, 5),
+(99, 21, 6);
 
 -- --------------------------------------------------------
 
@@ -194,7 +198,7 @@ CREATE TABLE `room_features` (
   `sr_no` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
   `features_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `room_features`
@@ -203,7 +207,10 @@ CREATE TABLE `room_features` (
 INSERT INTO `room_features` (`sr_no`, `room_id`, `features_id`) VALUES
 (58, 20, 1),
 (59, 20, 3),
-(60, 20, 4);
+(60, 20, 4),
+(61, 21, 1),
+(62, 21, 3),
+(63, 21, 9);
 
 -- --------------------------------------------------------
 
@@ -216,7 +223,15 @@ CREATE TABLE `room_images` (
   `room_id` int(11) NOT NULL,
   `image` varchar(150) NOT NULL,
   `thumb` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room_images`
+--
+
+INSERT INTO `room_images` (`sr_no`, `room_id`, `image`, `thumb`) VALUES
+(10, 21, 'IMG_79030.png', 1),
+(11, 21, 'IMG_77364.png', 0);
 
 -- --------------------------------------------------------
 
@@ -229,7 +244,7 @@ CREATE TABLE `settings` (
   `site_title` varchar(50) NOT NULL,
   `site_about` varchar(250) NOT NULL,
   `shutdown` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `settings`
@@ -248,7 +263,7 @@ CREATE TABLE `team_details` (
   `sr_no` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `picture` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `team_details`
@@ -266,18 +281,24 @@ INSERT INTO `team_details` (`sr_no`, `name`, `picture`) VALUES
 CREATE TABLE `user_cred` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
   `address` varchar(120) NOT NULL,
   `phonenum` varchar(100) NOT NULL,
   `pincode` int(11) NOT NULL,
   `dob` date NOT NULL,
   `profile` varchar(100) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `is_verified` int(11) NOT NULL DEFAULT 0,
-  `token` varchar(200) DEFAULT NULL,
-  `t_expire` date DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `datentime` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_cred`
+--
+
+INSERT INTO `user_cred` (`id`, `name`, `email`, `address`, `phonenum`, `pincode`, `dob`, `profile`, `password`, `status`, `datentime`) VALUES
+(2, 'Minh Le Vu', '2101040003@s.hanu.edu.vn', 'hanoi', '0904681103', 100000, '2003-11-22', 'IMG_18639.jpeg', '$2y$10$s0W6Z0O5I0hlCcsh5PoOPeiZ8.MEdM7RZNI1o7UNbHTBW/BAf8gnG', 1, '2023-10-24 10:24:40'),
+(3, 'abc', 'abc@gmail.com', 'stejkhhwfkawf', '123', 141414, '1141-12-04', 'IMG_27371.jpeg', '$2y$10$Hy60rvxZxAmqEdGlTBFw..7X5enk.j8upxuU9YThRiE98GwiRPwia', 1, '2023-10-24 10:27:01');
 
 -- --------------------------------------------------------
 
@@ -293,7 +314,7 @@ CREATE TABLE `user_queries` (
   `message` varchar(500) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   `seen` tinyint(4) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_queries`
@@ -422,31 +443,31 @@ ALTER TABLE `facilities`
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `room_facilities`
 --
 ALTER TABLE `room_facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `room_features`
 --
 ALTER TABLE `room_features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `room_images`
 --
 ALTER TABLE `room_images`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -464,7 +485,7 @@ ALTER TABLE `team_details`
 -- AUTO_INCREMENT for table `user_cred`
 --
 ALTER TABLE `user_cred`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_queries`

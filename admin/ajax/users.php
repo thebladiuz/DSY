@@ -15,7 +15,11 @@ if (isset($_POST['get_users'])) {
         <i class='fa fa-trash'></i>
         </button>";
 
-        $status = "<button onclick='toggle_status(" . $row['id'] . ", " . $row['status'] . ")' class='btn btn-" . ($row['status'] ? "danger" : "dark") . " btn-sm shadow-none'>" . ($row['status'] ? "inactive" : "active") . "</button>";
+        $status = "<button onclick='toggle_status($row[id],1)' class='btn btn-dark btn-sm shadow-none'>active</button>";
+
+        if(!$row['status']){
+            $status = "<button onclick='toggle_status($row[id],0)' class='btn btn-danger btn-sm shadow-none'>inactive</button>";
+        }
 
         $date = date("d-m-Y", strtotime($row['datentime']));
 
@@ -45,19 +49,13 @@ if (isset($_POST['get_users'])) {
 if (isset($_POST['toggle_status'])) {
     $frm_data = filteration($_POST);
 
-    // Get the current status
-    $currentStatus = $frm_data['value'];
-
-    // Calculate the new status value (toggle it)
-    $newStatus = ($currentStatus == 0) ? 1 : 0;
-
     $q = "UPDATE `user_cred` SET `status`=? WHERE `id`=?";
-    $v = [$newStatus, $frm_data['toggle_status']];
+    $v = [$frm_data['value'], $frm_data['toggle_status']];
 
     if (update($q, $v, 'ii')) {
-        echo 1; // Success
+        echo 1;
     } else {
-        echo 0; // Error
+        echo 0;
     }
 }
 
@@ -87,7 +85,7 @@ if (isset($_POST['search_user'])) {
         <i class='fa fa-trash'></i>
         </button>";
 
-        $status = "<button onclick='toggle_status($row[id],0)' class='btn btn-dark btn-sm shadow-none'>active</button>";
+        $status = "<button onclick='toggle_status($row[id],1)' class='btn btn-dark btn-sm shadow-none'>active</button>";
 
         if(!$row['status']){
             $status = "<button onclick='toggle_status($row[id],0)' class='btn btn-danger btn-sm shadow-none'>inactive</button>";

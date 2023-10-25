@@ -7,6 +7,9 @@
 <link rel="stylesheet" type="text/css" href="/Hotel_Booking_Management/assets/css/style.css">
 
 <?php
+
+    session_start();
+
 require('admin/inc/db_config.php');
 require('admin/inc/essentials.php');
 

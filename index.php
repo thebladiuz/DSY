@@ -24,10 +24,15 @@
         }
         }
    
-    .custom-size {
-      font-size: 80px;
-      /* Adjust the size as needed */
-    }
+          .custom-size {
+            font-size: 80px;
+            /* Adjust the size as needed */
+          }
+
+          .btn-submit {
+            margin-top: 33px;
+          }
+
   </style>
 </head>
 
@@ -59,9 +64,9 @@
   <!--  Availaility Form -->
   <div class="container availability-form">
     <div class="row">
-      <div class="bg-white shadow p-3 rounded">
+      <div class="col-lg-12 bg-white shadow p-4 rounded">
         <h5>Check Booking Availability</h5>
-        <form class="row g-2 align-items-center">
+        <form class="row g-2 d-flex align-items-center">
           <div class="col-lg-3">
             <label for="form-label" class="form-label" style="font-weight: 500;">Check-in</label>
             <input type="date" class="form-control shadow-none">
@@ -80,7 +85,7 @@
               <option value="4">Four</option>
             </select>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-2">
             <label for="form-label" class="form-label" style="font-weight: 500;">Children</label>
             <select class="form-select shadow-none">
               <option selected>None</option>
@@ -91,7 +96,7 @@
             </select>
           </div>
           <div class="col-lg-1">
-            <button type="submit" class="btn text-white shadow-none custom-bg">Submit</button>
+            <button type="submit" class="btn-submit btn text-white shadow-none custom-bg">Submit</button>
           </div>
         </form>
       </div>
@@ -105,7 +110,7 @@
     <div class="row">
 
     <?php
-        $room_res = select("SELECT * FROM `rooms` WHERE 'status' =? AND 'removed'=? ORDER BY `id` DESC LIMIT 3", [1, 0], 'ii');
+        $room_res = select("SELECT * FROM `rooms` WHERE `status` =? AND `removed`=? ORDER BY `id` DESC LIMIT 3", [1, 0], 'ii');
         while ($room_data = mysqli_fetch_assoc($room_res)) 
         {
           //get features of room
@@ -114,6 +119,7 @@
             INNER JOIN `room_features` rfea ON f.id = rfea.features_id 
             WHERE rfea.room_id = '$room_data[id]'");
 
+          $features_data = "";
           while ($fea_row = mysqli_fetch_assoc($fea_q)) {
             $features_data .= "<span class='badge rounded-pill text-bg-light text-dark text-wrap'>
               $fea_row[name]
@@ -137,7 +143,7 @@
 
           $room_thumb = ROOMS_IMG_PATH . "thumbnail.jpg";
           $thumb_q = mysqli_query($con, "SELECT * FROM `room_images` 
-              WHERE 'room_id'='$room_data[id]' 
+              WHERE `room_id`='$room_data[id]' 
               AND `thumb` = 1");
 
           if (mysqli_num_rows($thumb_q) > 0) {
@@ -147,7 +153,7 @@
 
           $book_btn = "";
           if(!$settings_r['shutdown']){
-            $book_btn = "<a href='#' class='btn btn-sm w-100 text-while custom-bg shadow-none mb-2'>Book Now</a>";
+            $book_btn = "<a href='#' class='btn btn-sm text-while custom-bg shadow-none'>Book Now</a>";
           }
 
           // print room card
@@ -188,14 +194,14 @@
                   </div>
                   <br>
                   <div class="d-flex justify-content-evenly mb-2">
-                    $book_btn
-                    <a href="room_details.php?id=$room_data[id]" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
-                  </div>
+                        $book_btn
+                    <a href="room_details.php?id=<?php echo $room_data[id]; ?>" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
                 </div>
               </div>
             </div>
-          data;
-        }
+          </div>
+        data;
+      }
         
         ?>
 
@@ -208,20 +214,21 @@
   <!-- Facilities -->
   <h2 class="mt 5 pt-4 mb-5 text-center fm-bold f-font">OUR FACILITIES</h2>
     <div class="container">
+      <div class="row justify-content-center">
       <?php
         $res = mysqli_query($con, "SELECT * FROM `facilities` ORDER BY `id` DESC LIMIT 5");
         $path = FACILITIES_IMG_PATH;
 
-        while($row = mysqli_fetch_assoc($res)){
-          echo<<<data
-            <div class="col-lg-2 col-md-2 text-center bg-whiter rounded shadow py-4 my-3">
-              <img src="$path$row[icon]" width="60px">
-              <h5 class="mt3">$row[name]</h5>
-            </div>
-          data;
+        while ($row = mysqli_fetch_assoc($res)) {
+            echo <<<data
+                <div class="col-lg-2 col-md-2 text-center bg-whiter rounded shadow py-4 my-3 mx-2">
+                    <img src="$path$row[icon]" width="60px">
+                    <h5 class="mt3">$row[name]</h5>
+                </div>
+            data;
         }
       ?>
-
+        </div>
       <div class="col-lg-12 text-center mt-5">
         <a href="facilities.php" class="btn btn-sm btn-outline-dark rounded-0 fw-fold shadow-none">More Facilities >>></a>
       </div>

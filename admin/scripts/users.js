@@ -14,17 +14,20 @@ function get_users() {
 function toggle_status(id, currentStatus) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "../admin/ajax/users.php", true);
+    
+    // Set the request header for form data
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
+    
     // Calculate the new status by toggling the current status
     const newStatus = currentStatus === 1 ? 0 : 1;
 
     xhr.onload = function () {
         if (this.responseText == 1) {
-            alert('success', 'Status toggled!');
+            console.log('Status toggled successfully!');
+            // Assuming get_users() updates the UI with the new status
             get_users();
         } else {
-            alert('error', 'Server down!');
+            console.log('Server error!');
         }
     }
 

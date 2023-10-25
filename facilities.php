@@ -30,7 +30,6 @@
 
   <div class="container">
     <div class="row">
-      <!-- WiFi Section (Repeating 6 Times) -->
       <?php
         $res = selectAll('facilities');
         $path = FACILITIES_IMG_PATH;
