@@ -111,48 +111,48 @@
               </span>
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label for="register-name">Name</label>
-                        <input name="name" type="text" class="form-control shadow-none" id="register-name" required>
-                  </div>
                     <div class="col-md-6 ps-0 mb-3">
-                      <label for="register-email">Email address</label>
+                        <label for="register-name">Name</label>
+                        <input name="name" type="text" class="form-control shadow-none" id="register-name" required>
+                    </div>
+                    <div class="col-md-6 ps-0 mb-3">
+                        <label for="register-email">Email address</label>
                         <input name="email" type="email" class="form-control shadow-none" id="register-email" required>
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label for="register-phone">Phone Number</label>
-                    <input name="phonenum" type="number" class="form-control shadow-none" id="register-phone" required>
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label for="register-picture">Picture</label>
-                    <input name="profile" type="file" accept=".jpg, .jpeg, png, webp" class="form-control shadow-none" id="register-picture" required>
-                  </div>
-                  <div class="col-md-12 ps-0 mb-3">
-                    <label for="register-address">Address</label>
-                    <textarea name="address" class="form-control shadow-none" rows="1" id="register-address" required></textarea>
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label for="register-postal-code">Postal Code</label>
-                    <input name="pincode" type="number" class="form-control shadow-none" id="register-postal-code" required>
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label for="register-date-of-birth">Date of Birth</label>
-                    <input name="dob" type="date" class="form-control shadow-none" id="register-date-of-birth"  required>
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                  <label for="register-password">Password</label>
+                    </div>
+                    <div class="col-md-6 ps-0 mb-3">
+                        <label for="register-phone">Phone Number</label>
+                        <input name="phonenum" type="number" class="form-control shadow-none" id="register-phone" required>
+                    </div>
+                    <div class="col-md-6 ps-0 mb-3">
+                        <label for="register-picture">Picture</label>
+                        <input name="profile" type="file" accept=".jpg, .jpeg, png, webp" class="form-control shadow-none" id="register-picture" required>
+                    </div>
+                    <div class="col-md-12 ps-0 mb-3">
+                        <label for="register-address">Address</label>
+                        <textarea name="address" class="form-control shadow-none" rows="1" id="register-address" required></textarea>
+                    </div>
+                    <div class="col-md-6 ps-0 mb-3">
+                        <label for="register-postal-code">Postal Code</label>
+                        <input name="pincode" type="number" class="form-control shadow-none" id="register-postal-code" required>
+                    </div>
+                    <div class="col-md-6 ps-0 mb-3">
+                        <label for="register-date-of-birth">Date of Birth</label>
+                        <input name="dob" type="date" class="form-control shadow-none" id="register-date-of-birth"  required>
+                    </div>
+                    <div class="col-md-6 ps-0 mb-3">
+                        <label for="register-password">Password</label>
                         <div class="input-group">
                             <input name="pass" type="password" class="form-control shadow-none" id="register-password" required>
                             <button type="button" class="btn btn-outline-secondary" id="toggle-register-password">&#128065;</button>
                         </div>
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                  <label for="register-confirm-password">Confirm Password</label>
+                    </div>
+                    <div class="col-md-6 ps-0 mb-3">
+                        <label for="register-confirm-password">Confirm Password</label>
                         <div class="input-group">
                             <input name="cpass" type="password" class="form-control shadow-none" id="register-confirm-password" required>
                             <button type="button" class="btn btn-outline-secondary" id="toggle-register-confirm-password">&#128065;</button>
                         </div>
-                  </div>
+                    </div>
                 </div>
               </div>
                     <br>

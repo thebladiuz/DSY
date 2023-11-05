@@ -34,7 +34,7 @@
     <div class="row">
 
     <div class="col-12 my-5 px-4">
-      <h2 class="fw-old h-font text-center"><?php echo $room_data['name'] ?></h2>
+      <h2 class="fw-bold h-font text-center"><?php echo $room_data['name'] ?></h2>
       <div style="font-size: 14px;">
         <a href="index.php" class="text-secondary text-decoration-none">HOME</a>
         <span class="text-secondary text-decoration-none"> > </span>
@@ -162,8 +162,12 @@
             area;
 
           if(!$settings_r['shutdown']){
+            $login=0;
+            if(isset($_SESSION['login']) && $_SESSION['login']==true) {
+              $login=1;
+            }
             echo<<<book
-              <a href="#" class="btn w-100 text-white custom-bg shadow-none mb-1">Book Now</a>
+            <button onclick='checkLoginToBook($login,$room_data[id])' class="btn w-100 text-white custom-bg shadow-none mb-1">Book Now</a>
             book;
           }
 
