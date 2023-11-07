@@ -3,6 +3,9 @@
     require('admin/inc/db_config.php');
     require('admin/inc/essentials.php');
 
+    require('inc/paytm/config_paytm.php');
+    require('inc/paytm/encdec_paytm.php');
+
     session_start();
 
     if(!(isset($_SESSION['login']) && $_SESSION['login']==true)) {
@@ -23,7 +26,7 @@
         $TXN_AMOUNT = $_SESSION['room']['payment'];
 
         $paramList = array();
-        $paramList["MID"] = PAYTM_MECHANT_MID;
+        $paramList["MID"] = PAYTM_MERCHANT_MID;
         $paramList["ORDER_ID"] = $ORDER_ID;
         $paramList["CUST_ID"] = $CUST_ID;
         $paramList["INDUSTRY_TYPE_ID"] = $INDUSTRY_TYPE_ID;

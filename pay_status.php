@@ -27,13 +27,13 @@
 
         $booking_q = "SELECT bo.*, bd.* FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id=bd.booking_id WHERE bo.order_id=? AND bo.user_id=? AND bo.booking_status!=? ";
 
-        $booking_res = select($booking_q,[frm_data['order'], $_SESSION['uId'], 'pending'], 'sis');
+        $booking_res = select($booking_q,[$frm_data['order'], $_SESSION['uId'], 'pending'], 'sis');
 
         if(mysqli_num_rows($booking_res)==0) {
           redirect('index.php');
         } 
 
-        $booking_fetch = mysqli_fetch_assoc($booking_res)
+        $booking_fetch = mysqli_fetch_assoc($booking_res);
 
         if($booking_fetch['trans_status']=="TXN_SUCCESS") {
           echo<<<data
