@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel - About Us</title>
+    <title>Starlight Hotel - About Us</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
     <?php require('inc/links.php'); ?>
     <title><?php echo $settings_r['site_title']?> - About us</title>

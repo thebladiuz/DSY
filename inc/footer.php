@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <h6 class="text-center bg-dark text-white p-3 mb-3">Designed and Developed by ©HOTEL</h6>
+  <h6 class="text-center bg-dark text-white p-3 mb-3">Designed and Developed by ©STARLIGHT</h6>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
