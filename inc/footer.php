@@ -113,7 +113,7 @@ function alert(type, msg, position='body') {
       modal.hide();
 
       let xhr = new XMLHttpRequest();
-      xhr.open("POST", "../Hotel_Booking_Management/ajax/login_register.php", true);
+      xhr.open("POST", "../Starlight-Hotel/ajax/login_register.php", true);
     
       xhr.onload = function () {
         if(this.responseText == 'pass_mismatch') {
@@ -154,7 +154,7 @@ function alert(type, msg, position='body') {
       modal.hide();
       
       let xhr = new XMLHttpRequest();
-      xhr.open("POST", "../Hotel_Booking_Management/ajax/login_register.php", true);
+      xhr.open("POST", "../Starlight-Hotel/ajax/login_register.php", true);
 
         xhr.onload = function () {
           if (this.responseText === 'inv_email_mob') {

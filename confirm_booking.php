@@ -158,7 +158,7 @@
           data.append('check_out',checkout_val);
 
           let xhr = new XMLHttpRequest();
-          xhr.open("POST", "../Hotel_Booking_Management/ajax/confirm_booking.php", true);
+          xhr.open("POST", "../Starlight-Hotel/ajax/confirm_booking.php", true);
 
           xhr.onload = function () {
             let data = JSON.parse(this.responseText);
