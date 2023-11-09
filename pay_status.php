@@ -25,7 +25,7 @@
           redirect('index.php');
         }
 
-        $booking_q = "SELECT bo.*, bd.* FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id=bd.booking_id WHERE bo.order_id=? AND bo.user_id=? AND bo.booking_status!=? ";
+        $booking_q = "SELECT bo.*, bd.* FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id WHERE bo.order_id=? AND bo.user_id=? AND bo.booking_status!=? ";
 
         $booking_res = select($booking_q,[$frm_data['order'], $_SESSION['uId'], 'pending'], 'sis');
 

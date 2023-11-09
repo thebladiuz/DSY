@@ -48,6 +48,7 @@
     
     $user_res = select("SELECT * FROM `user_cred` WHERE `id`=? LIMIT 1", [$_SESSION['uId']], "i");
     $user_data = mysqli_fetch_assoc($user_res);
+
   ?>
 
 
@@ -124,7 +125,7 @@
                 </div>
 
                   <h6 class="mb-3 text-danger" id="pay_info">Please provide check-in & check-out date!</h6>                             
-                  <button name="pay_now" class="btn w-100 text-white custom-bg shadow-none mb-1" onclick="window.location.href='payment.php?id={$room_data[id]}'" disabled>Pay Now</button>
+                  <button name="pay_now" class="btn w-100 text-white custom-bg shadow-none mb-1" onclick="window.location.href='pay_now.php?id={$room_data[id]}'" disabled>Pay Now</button>
                 </div>
               </div>
           </form>

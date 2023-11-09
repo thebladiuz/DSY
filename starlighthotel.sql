@@ -3,9 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2023 at 10:07 AM
+-- Generation Time: Nov 09, 2023 at 09:47 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
+USE starlighthotel;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dsy`
+-- Database: `starlighthotel`
 --
 
 -- --------------------------------------------------------
@@ -39,6 +40,65 @@ CREATE TABLE `admin_cred` (
 
 INSERT INTO `admin_cred` (`sr_no`, `admin_name`, `admin_pass`) VALUES
 (1, 'admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_details`
+--
+
+CREATE TABLE `booking_details` (
+  `sr_no` int(11) NOT NULL,
+  `booking_id` int(11) NOT NULL,
+  `room_name` varchar(100) NOT NULL,
+  `price` int(11) NOT NULL,
+  `total_pay` int(11) NOT NULL,
+  `room_no` int(11) DEFAULT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `phonenum` varchar(100) NOT NULL,
+  `address` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking_details`
+--
+
+INSERT INTO `booking_details` (`sr_no`, `booking_id`, `room_name`, `price`, `total_pay`, `room_no`, `user_name`, `phonenum`, `address`) VALUES
+(1, 1, 'Sample Room 1', 1244, 8708, NULL, 'Minh Le Vu', '0904681103', 'hanoi'),
+(2, 2, 'Minh', 42411, 212055, NULL, 'Minh Le Vu', '0904681103', 'hanoi'),
+(3, 3, 'Minh', 42411, 212055, NULL, 'Minh Le Vu', '0904681103', 'hanoi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_order`
+--
+
+CREATE TABLE `booking_order` (
+  `booking_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `check_in` date NOT NULL,
+  `check_out` date NOT NULL,
+  `arrival` int(11) NOT NULL DEFAULT 0,
+  `refund` int(11) DEFAULT NULL,
+  `booking_status` varchar(100) NOT NULL DEFAULT 'pending',
+  `order_id` varchar(150) NOT NULL,
+  `trans_id` int(200) DEFAULT NULL,
+  `trans_amt` int(11) NOT NULL,
+  `trans_status` varchar(100) NOT NULL DEFAULT 'pending',
+  `trans_resp_msg` varchar(200) DEFAULT NULL,
+  `datentime` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking_order`
+--
+
+INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `check_out`, `arrival`, `refund`, `booking_status`, `order_id`, `trans_id`, `trans_amt`, `trans_status`, `trans_resp_msg`, `datentime`) VALUES
+(1, 2, 20, '2023-11-09', '2023-11-16', 0, NULL, 'pending', 'ORD_29839099', NULL, 0, 'pending', NULL, '2023-11-07 10:16:02'),
+(2, 2, 21, '2023-12-01', '2023-12-06', 0, NULL, 'pending', 'ORD_23693071', NULL, 0, 'pending', NULL, '2023-11-09 10:31:07'),
+(3, 2, 21, '2023-12-01', '2023-12-06', 0, NULL, 'pending', 'ORD_27534948', NULL, 0, 'pending', NULL, '2023-11-09 10:38:57');
 
 -- --------------------------------------------------------
 
@@ -231,7 +291,8 @@ CREATE TABLE `room_images` (
 
 INSERT INTO `room_images` (`sr_no`, `room_id`, `image`, `thumb`) VALUES
 (10, 21, 'IMG_79030.png', 1),
-(11, 21, 'IMG_77364.png', 0);
+(11, 21, 'IMG_77364.png', 0),
+(12, 20, 'IMG_67485.png', 1);
 
 -- --------------------------------------------------------
 
@@ -297,7 +358,7 @@ CREATE TABLE `user_cred` (
 --
 
 INSERT INTO `user_cred` (`id`, `name`, `email`, `address`, `phonenum`, `pincode`, `dob`, `profile`, `password`, `status`, `datentime`) VALUES
-(2, 'Minh Le Vu', '2101040003@s.hanu.edu.vn', 'hanoi', '0904681103', 100000, '2003-11-22', 'IMG_18639.jpeg', '$2y$10$s0W6Z0O5I0hlCcsh5PoOPeiZ8.MEdM7RZNI1o7UNbHTBW/BAf8gnG', 1, '2023-10-24 10:24:40'),
+(2, 'Minh Le Vu', '2101040003@s.hanu.edu.vn', 'hanoi', '0904681103', 100000, '2003-11-22', 'IMG_18639.jpg', '$2y$10$s0W6Z0O5I0hlCcsh5PoOPeiZ8.MEdM7RZNI1o7UNbHTBW/BAf8gnG', 1, '2023-10-24 10:24:40'),
 (3, 'abc', 'abc@gmail.com', 'stejkhhwfkawf', '123', 141414, '1141-12-04', 'IMG_27371.jpeg', '$2y$10$Hy60rvxZxAmqEdGlTBFw..7X5enk.j8upxuU9YThRiE98GwiRPwia', 1, '2023-10-24 10:27:01');
 
 -- --------------------------------------------------------
@@ -333,6 +394,21 @@ INSERT INTO `user_queries` (`sr_no`, `name`, `email`, `subject`, `message`, `dat
 --
 ALTER TABLE `admin_cred`
   ADD PRIMARY KEY (`sr_no`);
+
+--
+-- Indexes for table `booking_details`
+--
+ALTER TABLE `booking_details`
+  ADD PRIMARY KEY (`sr_no`),
+  ADD KEY `booking_id` (`booking_id`);
+
+--
+-- Indexes for table `booking_order`
+--
+ALTER TABLE `booking_order`
+  ADD PRIMARY KEY (`booking_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `room_id` (`room_id`);
 
 --
 -- Indexes for table `carousel`
@@ -422,6 +498,18 @@ ALTER TABLE `admin_cred`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `booking_details`
+--
+ALTER TABLE `booking_details`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `booking_order`
+--
+ALTER TABLE `booking_order`
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `carousel`
 --
 ALTER TABLE `carousel`
@@ -467,7 +555,7 @@ ALTER TABLE `room_features`
 -- AUTO_INCREMENT for table `room_images`
 --
 ALTER TABLE `room_images`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -496,6 +584,19 @@ ALTER TABLE `user_queries`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `booking_details`
+--
+ALTER TABLE `booking_details`
+  ADD CONSTRAINT `booking_details_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `booking_order` (`booking_id`);
+
+--
+-- Constraints for table `booking_order`
+--
+ALTER TABLE `booking_order`
+  ADD CONSTRAINT `booking_order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_cred` (`id`),
+  ADD CONSTRAINT `booking_order_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
 
 --
 -- Constraints for table `room_facilities`

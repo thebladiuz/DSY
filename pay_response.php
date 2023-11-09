@@ -7,7 +7,7 @@
     unset($_SESSION['room']);
 
     function regenerate_session($uid) {
-        $user_q=select("SELECT * FROM `user_cred` WHERE `id`=? LIMIT 1", [$uid], 'i');
+        $user_q = select("SELECT * FROM `user_cred` WHERE `id`=? LIMIT 1", [$uid], 'i');
         $user_fetch = mysqli_fetch_assoc($user_q);
 
         $_SESSION['login'] = true;
@@ -31,7 +31,7 @@
     $isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecksum);
 
     if($isValidChecksum == "TRUE") {
-        $slct_query = "SELECT `booking_id`, `user_id` FROM `booking_order` WHERE `order_id`='$_POST[ORDERID]";
+        $slct_query = "SELECT `booking_id`, `user_id` FROM `booking_order` WHERE `order_id`='{$_POST['ORDERID']}'";
 
         $slct_res = mysqli_query($con,$slct_query);
 
