@@ -62,7 +62,7 @@ if (isset($_POST['toggle_status'])) {
 if (isset($_POST['remove_user'])) {
         $frm_data = filteration($_POST);
 
-        $res = delete("DELETE FROM `user_cred` WHERE `id`=? AND `is_verified`=?" ,[$frm_data['user_id'], 0], 'ii');
+        $res = delete("DELETE FROM `user_cred` WHERE `id`=?" ,[$frm_data['user_id'], 0], 'i');
 
         if($res){
             echo 1;
