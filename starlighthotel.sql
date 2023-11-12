@@ -3,10 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2023 at 09:47 AM
+-- Generation Time: Nov 12, 2023 at 12:17 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
-USE starlighthotel;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,7 +52,7 @@ CREATE TABLE `booking_details` (
   `room_name` varchar(100) NOT NULL,
   `price` int(11) NOT NULL,
   `total_pay` int(11) NOT NULL,
-  `room_no` int(11) DEFAULT NULL,
+  `room_no` varchar(100) DEFAULT NULL,
   `user_name` varchar(100) NOT NULL,
   `phonenum` varchar(100) NOT NULL,
   `address` varchar(150) NOT NULL
@@ -65,7 +64,7 @@ CREATE TABLE `booking_details` (
 
 INSERT INTO `booking_details` (`sr_no`, `booking_id`, `room_name`, `price`, `total_pay`, `room_no`, `user_name`, `phonenum`, `address`) VALUES
 (1, 1, 'Sample Room 1', 1244, 8708, NULL, 'Minh Le Vu', '0904681103', 'hanoi'),
-(2, 2, 'Minh', 42411, 212055, NULL, 'Minh Le Vu', '0904681103', 'hanoi'),
+(2, 2, 'Minh', 42411, 212055, '112313', 'Minh Le Vu', '0904681103', 'hanoi'),
 (3, 3, 'Minh', 42411, 212055, NULL, 'Minh Le Vu', '0904681103', 'hanoi');
 
 -- --------------------------------------------------------
@@ -96,9 +95,9 @@ CREATE TABLE `booking_order` (
 --
 
 INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `check_out`, `arrival`, `refund`, `booking_status`, `order_id`, `trans_id`, `trans_amt`, `trans_status`, `trans_resp_msg`, `datentime`) VALUES
-(1, 2, 20, '2023-11-09', '2023-11-16', 0, NULL, 'pending', 'ORD_29839099', NULL, 0, 'pending', NULL, '2023-11-07 10:16:02'),
-(2, 2, 21, '2023-12-01', '2023-12-06', 0, NULL, 'pending', 'ORD_23693071', NULL, 0, 'pending', NULL, '2023-11-09 10:31:07'),
-(3, 2, 21, '2023-12-01', '2023-12-06', 0, NULL, 'pending', 'ORD_27534948', NULL, 0, 'pending', NULL, '2023-11-09 10:38:57');
+(1, 2, 20, '2023-11-09', '2023-11-16', 0, 1, 'canceled', 'ORD_29839099', NULL, 0, 'pending', NULL, '2023-11-07 10:16:02'),
+(2, 2, 21, '2023-12-01', '2023-12-06', 1, NULL, 'booked', 'ORD_23693071', NULL, 0, 'pending', NULL, '2023-11-09 10:31:07'),
+(3, 2, 21, '2023-12-01', '2023-12-06', 0, NULL, 'payment failed', 'ORD_27534948', NULL, 0, 'pending', NULL, '2023-11-09 10:38:57');
 
 -- --------------------------------------------------------
 
@@ -312,7 +311,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`sr_no`, `site_title`, `site_about`, `shutdown`) VALUES
-(1, 'Hotel', 'This is the Hotel Booking System!!!!', 0);
+(1, 'Starlight Hotel', 'This is the Hotel Booking System!!!!', 0);
 
 -- --------------------------------------------------------
 

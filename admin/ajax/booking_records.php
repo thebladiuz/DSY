@@ -7,7 +7,7 @@ adminLogin();
 if (isset($_POST['get_bookings'])) {
     $frm_data = filteration($_POST);
 
-    $limit=1;
+    $limit=25;
     $page = $frm_data['page'];
     $start = ($page-1)*$limit;
 
