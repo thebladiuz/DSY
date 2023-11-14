@@ -66,35 +66,40 @@
     <div class="row">
       <div class="col-lg-12 bg-white shadow p-4 rounded">
         <h5>Check Booking Availability</h5>
-        <form class="row g-2 d-flex align-items-center">
+        <form class="row g-2 d-flex align-items-center" action="rooms.php">
           <div class="col-lg-3">
             <label for="form-label" class="form-label" style="font-weight: 500;">Check-in</label>
-            <input type="date" class="form-control shadow-none">
+            <input type="date" class="form-control shadow-none" name="checkin" required>
           </div>
           <div class="col-lg-3">
             <label for="form-label" class="form-label" style="font-weight: 500;">Check-out</label>
-            <input type="date" class="form-control shadow-none">
+            <input type="date" class="form-control shadow-none" name="checkout" required>
           </div>
           <div class="col-lg-3">
             <label for="form-label" class="form-label" style="font-weight: 500;">Adult</label>
-            <select class="form-select shadow-none">
-              <option selected>None</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-              <option value="4">Four</option>
+            <select class="form-select shadow-none" name="adult" >
+              <?php
+              $guests_q =mysqli_query($con,"SELECT MAX(adult) AS `max_adult`, MAX(children) AS `max_children` 
+              FROM `rooms` WHERE `status`='1' AND `remove`='0'");
+              $guests_res = mysqli_fetch_assoc($guests_q);
+              
+              for($i=1; $i<=$guests_res['max_adult']; $i++){
+                echo"<option value='$i'>$i</option>";
+              }
+              ?>
             </select>
           </div>
           <div class="col-lg-2">
             <label for="form-label" class="form-label" style="font-weight: 500;">Children</label>
-            <select class="form-select shadow-none">
-              <option selected>None</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-              <option value="4">Four</option>
+            <select class="form-select shadow-none" name="children">
+              <?php
+                for($i=1; $i<=$guests_res['max_children']; $i++){
+                  echo"<option value='$i'>$i</option>";
+                }
+              ?>
             </select>
           </div>
+          <input type="hidden" name ="check_availablity">
           <div class="col-lg-1">
             <button type="submit" class="btn-submit btn text-white shadow-none custom-bg">Submit</button>
           </div>
