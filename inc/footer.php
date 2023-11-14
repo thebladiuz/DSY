@@ -130,7 +130,8 @@ function alert(type, msg, position='body') {
         }
         else if(this.responseText == 'up_failed'){
           alert('error',"Cannot send confirmation email! Server down!");
-        } else {
+        } 
+        else {
           alert('success', "Registration successful. Confirmation link sent to email!");
           register_form.reset();
         }
