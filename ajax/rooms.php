@@ -4,11 +4,9 @@ require('../admin/inc/essentials.php');
 
 session_start();
 
-if(isset($GET['fetch_rooms']))
+if(isset($_GET['fetch_rooms']))
 {
-
   // check availability data decode
-
 
   $chk_avail = json_decode($_GET['chk_avail'],true);
 
@@ -37,9 +35,7 @@ if(isset($GET['fetch_rooms']))
   $adults = ($guests['adults']!='') ? $guests['adults'] : 0;
   $children = ($guests['children']!='') ? $guests['children'] : 0;
 
-  $facility_list = json_decode($_GET['$facility_list'], true);
-
-
+  $facility_list = json_decode($_GET['facility_list'], true);
 
     // count no. of rooms and output variable to store room cards
     $count_rooms = 0;
@@ -79,8 +75,8 @@ if(isset($GET['fetch_rooms']))
           $facilities_data = "";
           while ($fac_row = mysqli_fetch_assoc($fac_q)) 
           {
-            if(in_array($fac_row['id'],$facility_list['$facilities'])){
-              $fac_row++;
+            if(in_array($fac_row['id'],$facility_list['facilities'])){
+              $fac_count++;
             }
 
             $facilities_data .= "<span class='badge rounded-pill text-bg-light text-dark text-wrap me-1 mb-1'>
@@ -126,7 +122,7 @@ if(isset($GET['fetch_rooms']))
           $login=1;
         }
 
-        $book_btn = "<button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-sm w-100 text-while custom-bg shadow-none mb-2'>Book Now</a>";
+        $book_btn = "<button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-sm w-100 text-while custom-bg shadow-none mb-2'>Book Now</button>";
       }
 
       // print room card

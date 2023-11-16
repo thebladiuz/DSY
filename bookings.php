@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $settings_r['site_title'] ?> - BOOKINGS</title>
     <?php require('inc/links.php'); ?>
+    <title><?php echo $settings_r['site_title'] ?> - BOOKINGS</title>
 </head>
 <body class="bg-light">
 
@@ -43,48 +43,40 @@
 
       $result = select($query, [$_SESSION['uId']], 'i');
 
-      while($data =mysqli_fetch_assoc($result))
-      {
+      while ($data = mysqli_fetch_assoc($result)) {
         $date = date("d-m-Y", strtotime($data["datentime"]));
         $checkin = date("d-m-Y", strtotime($data["check_in"]));
         $checkout = date("d-m-Y", strtotime($data["check_out"]));
-
+    
         $status_bg = "";
         $btn = "";
-
-        if($data['booking_status']=='booked')
-        {
-          $status_bg = "bg-success";
-          if($data['arrival']==1)
-          {
-            $btn = "<a href= 'generate_pdf.php?gen_pdf&id=$data[booking_id]' class=btn btn-dark btn-sm shadow-none'>Download PDF</a>
-              <button type='button' class='btn btn-dark btn-sm shadow-none'> Rate & Review </button>
-            ";
-          }
-          else{
-            $btn = "<button onclick='cancel_booking($data[booking_id])' type='button' class='btn btn-danger btn-sm shadow-none'> Cancel </button>";
-          }
+    
+        if ($data['booking_status'] == 'booked') {
+            $status_bg = "bg-success";
+            if ($data['arrival'] == 1) {
+                $btn = "<a href='generate_pdf.php?gen_pdf&id=$data[booking_id]' class='btn btn-dark btn-sm shadow-none'>Download PDF</a>";
+                if($data['rate_review']==0){
+                  $btn.="<button type='button' onclick='review_room($data[booking_id],$data[room_id])' data-bs-toggle='modal' data-bs-target='#reviewModal' class='btn btn-dark btn-sm shadow-none ms-2'> Rate & Review </button>";
+                }
+            } else {
+                $btn = "<button onclick='cancel_booking($data[booking_id])' type='button' class='btn btn-danger btn-sm shadow-none'>Cancel</button>";
+            }
+        } elseif ($data['booking_status'] == 'cancelled') {
+            $status_bg = "bg-danger";
+    
+            if ($data['refund'] == 0) {
+                $btn = "<span class='badge bg-primary'>Refund in process!</span>";
+            } else {
+                $btn = "<a href='generate_pdf.php?gen_pdf&id=$data[booking_id]' class='btn btn-dark btn-sm shadow-none'>Download PDF</a>";
+            }
+        } else {
+            $status_bg = "bg-warning";
+            $btn = "<a href='generate_pdf.php?gen_pdf&id=$data[booking_id]' class='btn btn-dark btn-sm shadow-none'>Download PDF</a>";
         }
-        else if($data['booking_status']=='cancelled')
-        {
-          $status_bg = "bg-danger";
-
-          if($data['refund']==0){
-            $btn="<span class='badge bg-primary'>Refund in process!</span>";
-          }
-          else{
-            $btn = "<a href= 'generate_pdf.php?gen_pdf&id=$data[booking_id]' class=btn btn-dark btn-sm shadow-none'>Download PDF</a>";
-          }
-        }
-        else
-        {
-          $status_bg = "bg-warning";
-          $btn = "<a href= 'generate_pdf.php?gen_pdf&id=$data[booking_id]' class=btn btn-dark btn-sm shadow-none'>Rate & Review</a>";
-        }
-
-        echo<<<bookings
-          <div class = 'col-md-4 px-4 mb-4'>
-            <div class = 'bg-white p-3 rounded shadow-sm'>
+    
+        echo <<<bookings
+          <div class='col-md-4 px-4 mb-4'>
+            <div class='bg-white p-3 rounded shadow-sm'>
               <h5 class='fw-bold'>$data[room_name]</h5>
               <p>$data[price] per night</p>
               <p>
@@ -93,7 +85,7 @@
               </p>
               <p>
                 <b>Amount: </b> $data[price] <br>
-                <b>Order ID: </b> $data[order_id]
+                <b>Order ID: </b> $data[order_id] <br>
                 <b>Date: </b> $date
               </p>
               <p>
@@ -102,9 +94,8 @@
               $btn
             </div>
           </div>
-        bookings;
-
-      }
+    bookings;
+    }
 
     ?>
 
@@ -112,10 +103,51 @@
   </div>
 </div>
 
+<div class="modal fade" id="reviewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="review-form">
+                <div class="modal-header">
+                    <h5 class="modal-title d-flex align-items-center">
+                        <i class="fa-brands fa-gratipay" aria-hidden="true"></i>&nbsp Rate & Review
+                    </h5>
+                    <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="login-email">Rating</label>
+                        <select class="form-select shadow-none" name="rating">
+                          <option value="5">Excellent</option>
+                          <option value="4">Good</option>
+                          <option value="3">Ok</option>
+                          <option value="2">Poor</option>
+                          <option value="1">Bad</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="login-password">Review</label>
+                        <div class="input-group">
+                            <textarea type="text" name="review" rows="3" required class="form-control shadow-none"></textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" name="booking_id">
+                    <input type="hidden" name="room_id">
+                        <br>
+                        <div class="text-end">
+                            <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <?php
   if(isset($_GET['cancel_status'])){
     alert('success', 'Booking Cancelled!');
+  } else if(isset($_GET['review_status'])){
+    alert('success', 'Thank you for rating & review!');
   }
 ?>
 
@@ -142,8 +174,39 @@
         xhr.send('cancel_booking&id='+id);
       }
     }
-  </script>
 
+    let review_form = document.getElementById('review-form');
+
+    function review_room(bid,rid) {
+      review_form.elements['booking_id'].value = bid;
+      review_form.elements['room_id'].value = rid;
+    } 
+
+    review_form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      let data = new FormData();
+
+      data.append('review_form', '');
+      data.append('rating', review_form.elements['rating'].value);
+      data.append('review', review_form.elements['review'].value);
+      data.append('booking_id', review_form.elements['booking_id'].value);
+      data.append('room_id', review_form.elements['room_id'].value);
+
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "../Starlight-Hotel/ajax/review_room.php", true);
+
+      xhr.onload = function() {
+        if(this.responseText == 0) {
+          alert('error', "Rating & Review Failed");
+        } else {
+          window.location.href = 'bookings.php?review_status=true';
+        }
+      }
+
+    })
+
+  </script>
 
   <!-- JavaScript libraries for Bootstrap and Popper.js -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

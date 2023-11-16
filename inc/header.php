@@ -129,13 +129,8 @@
                         <label for="register-address">Address</label>
                         <textarea name="address" class="form-control shadow-none" rows="1" id="register-address" required></textarea>
                     </div>
-<<<<<<< Updated upstream
-                    <div class="col-md-6 ps-0 mb-3">
-                        <label for="register-postal-code">Pincode</label>
-=======
                     <div class="col-md-6 mb-3">
                         <label for="register-postal-code">Postal Code</label>
->>>>>>> Stashed changes
                         <input name="pincode" type="number" class="form-control shadow-none" id="register-postal-code" required>
                     </div>
                     <div class="col-md-6 mb-3">

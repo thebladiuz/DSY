@@ -99,6 +99,29 @@ INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `ch
 (2, 2, 21, '2023-12-01', '2023-12-06', 1, NULL, 'booked', 'ORD_23693071', NULL, 0, 'pending', NULL, '2023-11-09 10:31:07'),
 (3, 2, 21, '2023-12-01', '2023-12-06', 0, NULL, 'payment failed', 'ORD_27534948', NULL, 0, 'pending', NULL, '2023-11-09 10:38:57');
 
+--
+-- Add column "rate_review" to table "booking_order"
+--
+
+ALTER TABLE `booking_order` 
+ADD COLUMN `rate_review` INT NULL DEFAULT NULL AFTER `trans_resp_msg`;
+
+--
+-- Table structure for table `rating_review`
+--
+
+CREATE TABLE `rating_review` (
+  `sr_no` INT NOT NULL AUTO_INCREMENT,
+  `booking_id` INT NULL,
+  `room_id` INT NULL,
+  `user_id` INT NULL,
+  `rating` INT NULL,
+  `review` VARCHAR(200) NULL,
+  `seen` INT NULL DEFAULT 0,
+  `datentime` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`sr_no`));
+
+  INSERT INTO `rating_review`(`sr_no`, `booking_id`, `room_id`);
 -- --------------------------------------------------------
 
 --
@@ -170,7 +193,7 @@ INSERT INTO `facilities` (`id`, `icon`, `name`, `description`) VALUES
 (2, 'IMG_96423.svg', 'Room Heater', 'Room Heater allows guests to adjust the temperature in their rooms to their liking, ensuring a cozy and warm atmosphere.'),
 (3, 'IMG_41622.svg', 'Television', 'Televisions in hotel rooms provide entertainment and information to guests. They offer a diverse selection of channels, including news, sports, movies, and more. '),
 (4, 'IMG_47816.svg', 'Spa', 'A spa is a luxurious and rejuvenating oasis within a hotel where guests can indulge in a range of therapeutic treatments and relaxation experiences. '),
-(5, 'IMG_49949.svg', 'Air Conditioning', 'Air Conditioning allows guests to control the room\'s temperature, ensuring a cool and comfortable environment, even during the hottest months of the year.'),
+(5, 'IMG_49949.svg', 'Air Conditioning', 'Air Conditioning allows guests to control the rooms temperature, ensuring a cool and comfortable environment, even during the hottest months of the year.'),
 (6, 'IMG_27079.svg', 'Geyser', 'A geyser, or water heater, is an essential appliance in hotels, especially in regions with cold climates. It ensures that guests have access to hot water for bathing and other needs.');
 
 -- --------------------------------------------------------
@@ -616,6 +639,13 @@ ALTER TABLE `room_features`
 --
 ALTER TABLE `room_images`
   ADD CONSTRAINT `room_images_ibdk_1` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
+
+--
+-- Constraints for table `rating_review`
+--
+ALTER TABLE `rating_review` ADD FOREIGN KEY (`booking_id`) REFERENCES `booking_order`(`booking_id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
+ALTER TABLE `rating_review` ADD FOREIGN KEY (`room_id`) REFERENCES `rooms`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
+ALTER TABLE `rating_review` ADD FOREIGN KEY (`user_id`) REFERENCES `user_cred`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

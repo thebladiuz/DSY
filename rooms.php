@@ -18,18 +18,25 @@
   <?php 
   require('inc/header.php');
   
-  $checkin_default = $frm_data['checkin'];
-  $checkout_default= $frm_data['checkout'];
-  $adult_default = $frm_data['adult'];
-  $children_default = $frm_data['children'];
+  $checkin_default = "";
+  $checkout_default = "";
+  $adult_default = "";
+  $children_default = "";
 
-  if(isset($_GET['check_availablity']))
-  {
-    $frm_data = filteration($_GET);
-    $checkin_default="";
-    $checkout_default="";
-    $adult_default="";
-    $children_default="";
+  if (isset($_GET['check_availablity'])) {
+      $frm_data = $_GET;
+      $checkin_default = "";
+      $checkout_default = "";
+      $adult_default = "";
+      $children_default = "";
+  } else {
+      // Initialize $frm_data with default values or any necessary logic
+      $frm_data = array(
+          'checkin' => $checkin_default,
+          'checkout' => $checkout_default,
+          'adult' => $adult_default,
+          'children' => $children_default,
+      );
   }
   ?>
 
@@ -58,7 +65,7 @@
                 <label class="form-label">Check-in</label>
                 <input type="date" class="form-control shadow-none mb-3" value="<?php echo $checkin_default ?>" id="checkin" onchange="chk_avail_filter()">
                 <label class="form-label">Check-out</label>
-                <input type="date" class="form-control shadow-none" value="<?php echo $checkout_default ?> id="checkout" onchange="chk_avail_filter()">
+                <input type="date" class="form-control shadow-none" value="<?php echo $checkout_default ?>" id="checkout" onchange="chk_avail_filter()">
               </div>
               <!-- Facilities-->
               <div class="border bg-light p-3 rounded mb-3">
@@ -90,11 +97,11 @@
                 <div class="d-flex">
                   <div class="me-3">
                     <label class="form-label">Adults</label>
-                    <input type="number" min="1" id="adults" value="<?php echo $adults_default ?> oninput="guests_filter()" class="form-control shadow-none">
+                    <input type="number" min="1" id="adults" value="<?php echo $adult_default ?>" oninput="guests_filter()" class="form-control shadow-none">
                   </div>
                   <div>
                     <label class="form-label">Children</label>
-                    <input type="number" min="1" id="children" value="<?php echo $children_default ?> oninput="guests_filter()" class="form-control shadow-none">
+                    <input type="number" min="1" id="children" value="<?php echo $children_default ?>" oninput="guests_filter()" class="form-control shadow-none">
                   </div>
                 </div>
               </div>
@@ -154,7 +161,7 @@
       facility_list =JSON.stringify(facility_list);
 
       let xhr = new XMLHttpRequest();
-      xhr.open("GET", "ajax/rooms.php?fetch_rooms&chk_avail="+chk_avail+"&guest="+guests+"&facility_list="+facility_list, true);
+      xhr.open("GET", "ajax/rooms.php?fetch_rooms&chk_avail="+chk_avail+"&guests="+guests+"&facility_list="+facility_list, true);
 
       xhr.onprogress = function(){
         rooms_data.innerHTML = 
@@ -169,6 +176,8 @@
 
       xhr.send();
     }
+
+    fetch_rooms();
 
     function chk_avail_filter(){
       if(checkin.value!='' && checkout.value !=''){
@@ -209,6 +218,23 @@
         facilities_btn.classList.add('d-none');
         fetch_rooms();
       }
+
+      checkin.addEventListener('change', function () {
+          chk_avail_filter();
+      });
+
+      checkout.addEventListener('change', function () {
+          chk_avail_filter();
+      });
+
+      // Add event listeners for number inputs
+      adults.addEventListener('input', function () {
+          guests_filter();
+      });
+
+      children.addEventListener('input', function () {
+          guests_filter();
+      });
 
       window.onload =function(){
         fetch_rooms();
