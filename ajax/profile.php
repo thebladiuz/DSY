@@ -75,14 +75,13 @@ if(isset($_POST['pass_form']))
         exit;
     }
 
-    $enc_pass = password_hash($data['new_pass'], PASSWORD_BCRYPT);
+    $enc_pass = password_hash($frm_data['new_pass'], PASSWORD_BCRYPT);
 
     $query = "UPDATE `user_cred` SET `password`=? WHERE `id`=? LIMIT 1";
 
     $values = [$enc_pass, $_SESSION['uId']];
     
     if(update($query, $values, 'ss')){
-        $_SESSION['uPic'] = $img;
         echo 1;
     }
     else {
