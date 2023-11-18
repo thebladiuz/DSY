@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2023 at 12:17 PM
+-- Generation Time: Nov 18, 2023 at 11:57 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -63,9 +63,10 @@ CREATE TABLE `booking_details` (
 --
 
 INSERT INTO `booking_details` (`sr_no`, `booking_id`, `room_name`, `price`, `total_pay`, `room_no`, `user_name`, `phonenum`, `address`) VALUES
-(1, 1, 'Sample Room 1', 1244, 8708, NULL, 'Minh Le Vu', '0904681103', 'hanoi'),
-(2, 2, 'Minh', 42411, 212055, '112313', 'Minh Le Vu', '0904681103', 'hanoi'),
-(3, 3, 'Minh', 42411, 212055, NULL, 'Minh Le Vu', '0904681103', 'hanoi');
+(1, 1, 'Minh', 42411, 127233, NULL, 'abc', '123', 'stejkhhwfkawf'),
+(7, 2, 'Minh', 42411, 84822, NULL, 'abc', '123', 'stejkhhwfkawf'),
+(8, 3, 'Minh', 42411, 212055, 'B2001', 'Minh Le Vu', '0904681103', 'hanoi'),
+(9, 4, 'Sample Room 1', 1244, 7464, NULL, 'Minh Le Vu', '0904681103', 'hanoi');
 
 -- --------------------------------------------------------
 
@@ -87,6 +88,7 @@ CREATE TABLE `booking_order` (
   `trans_amt` int(11) NOT NULL,
   `trans_status` varchar(100) NOT NULL DEFAULT 'pending',
   `trans_resp_msg` varchar(200) DEFAULT NULL,
+  `rate_review` int(11) DEFAULT NULL,
   `datentime` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -94,34 +96,12 @@ CREATE TABLE `booking_order` (
 -- Dumping data for table `booking_order`
 --
 
-INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `check_out`, `arrival`, `refund`, `booking_status`, `order_id`, `trans_id`, `trans_amt`, `trans_status`, `trans_resp_msg`, `datentime`) VALUES
-(1, 2, 20, '2023-11-09', '2023-11-16', 0, 1, 'canceled', 'ORD_29839099', NULL, 0, 'pending', NULL, '2023-11-07 10:16:02'),
-(2, 2, 21, '2023-12-01', '2023-12-06', 1, NULL, 'booked', 'ORD_23693071', NULL, 0, 'pending', NULL, '2023-11-09 10:31:07'),
-(3, 2, 21, '2023-12-01', '2023-12-06', 0, NULL, 'payment failed', 'ORD_27534948', NULL, 0, 'pending', NULL, '2023-11-09 10:38:57');
+INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `check_out`, `arrival`, `refund`, `booking_status`, `order_id`, `trans_id`, `trans_amt`, `trans_status`, `trans_resp_msg`, `rate_review`, `datentime`) VALUES
+(1, 3, 21, '2023-12-08', '2023-12-11', 0, NULL, 'booked', 'ORD_38718981', 141414, 42411, 'TXN_SUCCESS', NULL, NULL, '2023-11-18 17:40:00'),
+(2, 3, 21, '2023-12-29', '2023-12-31', 0, 0, 'canceled', 'ORD_34450558', 251057, 42411, 'TXN_FAILED', NULL, NULL, '2023-11-18 17:41:00'),
+(3, 2, 21, '2023-12-01', '2023-12-06', 1, NULL, 'booked', 'ORD_28377504', 221412, 42411, 'TXN_SUCCESS', NULL, NULL, '2023-11-18 17:42:54'),
+(4, 2, 20, '2023-12-07', '2023-12-13', 0, 1, 'canceled', 'ORD_25981788', 256141, 1244, 'TXN_FAILED', NULL, NULL, '2023-11-18 17:45:10');
 
---
--- Add column "rate_review" to table "booking_order"
---
-
-ALTER TABLE `booking_order` 
-ADD COLUMN `rate_review` INT NULL DEFAULT NULL AFTER `trans_resp_msg`;
-
---
--- Table structure for table `rating_review`
---
-
-CREATE TABLE `rating_review` (
-  `sr_no` INT NOT NULL AUTO_INCREMENT,
-  `booking_id` INT NULL,
-  `room_id` INT NULL,
-  `user_id` INT NULL,
-  `rating` INT NULL,
-  `review` VARCHAR(200) NULL,
-  `seen` INT NULL DEFAULT 0,
-  `datentime` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`sr_no`));
-
-  INSERT INTO `rating_review`(`sr_no`, `booking_id`, `room_id`);
 -- --------------------------------------------------------
 
 --
@@ -217,6 +197,23 @@ INSERT INTO `features` (`id`, `name`) VALUES
 (3, 'Bathroom'),
 (4, 'Bedroom'),
 (9, 'Living Room');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rating_review`
+--
+
+CREATE TABLE `rating_review` (
+  `sr_no` int(11) NOT NULL,
+  `booking_id` int(11) DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `rating` int(11) DEFAULT NULL,
+  `review` varchar(200) DEFAULT NULL,
+  `seen` int(11) DEFAULT 0,
+  `datentime` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -381,7 +378,8 @@ CREATE TABLE `user_cred` (
 
 INSERT INTO `user_cred` (`id`, `name`, `email`, `address`, `phonenum`, `pincode`, `dob`, `profile`, `password`, `status`, `datentime`) VALUES
 (2, 'Minh Le Vu', '2101040003@s.hanu.edu.vn', 'hanoi', '0904681103', 100000, '2003-11-22', 'IMG_18639.jpg', '$2y$10$s0W6Z0O5I0hlCcsh5PoOPeiZ8.MEdM7RZNI1o7UNbHTBW/BAf8gnG', 1, '2023-10-24 10:24:40'),
-(3, 'abc', 'abc@gmail.com', 'stejkhhwfkawf', '123', 141414, '1141-12-04', 'IMG_27371.jpeg', '$2y$10$Hy60rvxZxAmqEdGlTBFw..7X5enk.j8upxuU9YThRiE98GwiRPwia', 1, '2023-10-24 10:27:01');
+(3, 'abc', 'abc@gmail.com', 'stejkhhwfkawf', '123', 141414, '1141-12-04', 'IMG_27371.jpeg', '$2y$10$Hy60rvxZxAmqEdGlTBFw..7X5enk.j8upxuU9YThRiE98GwiRPwia', 1, '2023-10-24 10:27:01'),
+(1, 'Pham Thi Thu Ha', 'phamha21@gmail.com', 'Hanoi University', '0141411511', 100000, '2003-10-03', 'IMG_2145.jpg', '123456789', 1, '2023-11-18 17:27:17');
 
 -- --------------------------------------------------------
 
@@ -457,6 +455,12 @@ ALTER TABLE `features`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `rating_review`
+--
+ALTER TABLE `rating_review`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
 -- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
@@ -486,166 +490,26 @@ ALTER TABLE `room_images`
   ADD KEY `room_images_ibdk_1` (`room_id`);
 
 --
--- Indexes for table `settings`
---
-ALTER TABLE `settings`
-  ADD PRIMARY KEY (`sr_no`);
-
---
--- Indexes for table `team_details`
---
-ALTER TABLE `team_details`
-  ADD PRIMARY KEY (`sr_no`);
-
---
--- Indexes for table `user_cred`
---
-ALTER TABLE `user_cred`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_queries`
---
-ALTER TABLE `user_queries`
-  ADD PRIMARY KEY (`sr_no`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `admin_cred`
---
-ALTER TABLE `admin_cred`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `booking_details`
 --
 ALTER TABLE `booking_details`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `booking_order`
 --
 ALTER TABLE `booking_order`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `carousel`
+-- AUTO_INCREMENT for table `rating_review`
 --
-ALTER TABLE `carousel`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `contact_details`
---
-ALTER TABLE `contact_details`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `facilities`
---
-ALTER TABLE `facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT for table `features`
---
-ALTER TABLE `features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `rooms`
---
-ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT for table `room_facilities`
---
-ALTER TABLE `room_facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
-
---
--- AUTO_INCREMENT for table `room_features`
---
-ALTER TABLE `room_features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
---
--- AUTO_INCREMENT for table `room_images`
---
-ALTER TABLE `room_images`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `settings`
---
-ALTER TABLE `settings`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `team_details`
---
-ALTER TABLE `team_details`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT for table `user_cred`
---
-ALTER TABLE `user_cred`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `user_queries`
---
-ALTER TABLE `user_queries`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `booking_details`
---
-ALTER TABLE `booking_details`
-  ADD CONSTRAINT `booking_details_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `booking_order` (`booking_id`);
-
---
--- Constraints for table `booking_order`
---
-ALTER TABLE `booking_order`
-  ADD CONSTRAINT `booking_order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_cred` (`id`),
-  ADD CONSTRAINT `booking_order_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
-
---
--- Constraints for table `room_facilities`
---
-ALTER TABLE `room_facilities`
-  ADD CONSTRAINT `facilities` FOREIGN KEY (`facilities_id`) REFERENCES `facilities` (`id`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `room id` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION;
-
---
--- Constraints for table `room_features`
---
-ALTER TABLE `room_features`
-  ADD CONSTRAINT `features` FOREIGN KEY (`features_id`) REFERENCES `features` (`id`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `rm id` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION;
-
---
--- Constraints for table `room_images`
---
-ALTER TABLE `room_images`
-  ADD CONSTRAINT `room_images_ibdk_1` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
-
---
--- Constraints for table `rating_review`
---
-ALTER TABLE `rating_review` ADD FOREIGN KEY (`booking_id`) REFERENCES `booking_order`(`booking_id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
-ALTER TABLE `rating_review` ADD FOREIGN KEY (`room_id`) REFERENCES `rooms`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
-ALTER TABLE `rating_review` ADD FOREIGN KEY (`user_id`) REFERENCES `user_cred`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `rating_review`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
