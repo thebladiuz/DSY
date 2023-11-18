@@ -177,34 +177,38 @@
 
     let review_form = document.getElementById('review-form');
 
-    function review_room(bid,rid) {
-      review_form.elements['booking_id'].value = bid;
-      review_form.elements['room_id'].value = rid;
-    } 
+function review_room(bid, rid) {
+    review_form.elements['booking_id'].value = bid;
+    review_form.elements['room_id'].value = rid;
+}
 
-    review_form.addEventListener('submit', function(e) {
-      e.preventDefault();
+review_form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      let data = new FormData();
+    let data = new FormData(review_form);  // Use the form directly here
 
-      data.append('review_form', '');
-      data.append('rating', review_form.elements['rating'].value);
-      data.append('review', review_form.elements['review'].value);
-      data.append('booking_id', review_form.elements['booking_id'].value);
-      data.append('room_id', review_form.elements['room_id'].value);
+    data.append('review_form', '');  // Make sure to append the necessary data
 
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST", "../Starlight-Hotel/ajax/review_room.php", true);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "../Starlight-Hotel/ajax/review_room.php", true);
 
-      xhr.onload = function() {
-        if(this.responseText == 0) {
-          alert('error', "Rating & Review Failed");
-        } else {
-          window.location.href = 'bookings.php?review_status=true';
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                if (xhr.responseText == 0) {
+                    alert('error', "Rating & Review Failed");
+                } else {
+                    window.location.href = 'bookings.php?review_status=true';
+                }
+            } else {
+                // Handle errors here
+                console.error('AJAX request failed with status:', xhr.status);
+            }
         }
-      }
+    };
 
-    })
+    xhr.send(data);  // Send the FormData object
+});
 
   </script>
 
