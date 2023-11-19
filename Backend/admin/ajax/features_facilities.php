@@ -1,11 +1,18 @@
 <?php 
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-header("Access-Control-Allow-Headers: *");
+header('Access-Control-Allow-Origin: http://34.143.182.143:8080');
 
-require('../inc/db_config.php');
-require('../inc/essentials.php');
+// Allow additional headers if needed
+header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+
+// Set allowed methods (GET, POST, etc.)
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+
+// Allow credentials if needed
+header('Access-Control-Allow-Credentials: true');
+
+require('../admin/inc/db_config.php');
+require('../admin/inc/essentials.php');
 adminLogin();
 
 if (isset($_POST['add_feature'])) {
