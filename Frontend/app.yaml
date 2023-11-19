@@ -1,0 +1,7 @@
+runtime: php
+env: flex
+
+service: frontend-service
+
+runtime_config:
+  document_root: public
