@@ -1,7 +1,7 @@
 <?php
 
-require('../admin/inc/db_config.php');
-require('../admin/inc/essentials.php');
+require('../Frontend/admin/inc/db_config.php');
+require('../Frontend/admin/inc/essentials.php');
 
     session_start();
     unset($_SESSION['room']);

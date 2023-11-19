@@ -1,5 +1,5 @@
 <?php
-require('../admin/inc/db_config.php');
+require('..');
 require('../admin/inc/essentials.php');
 adminLogin();
 ?>

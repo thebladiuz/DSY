@@ -1,8 +1,8 @@
 <?php
 
-require('../admin/inc/db_config.php');
-require('../admin/inc/essentials.php');
-require('../admin/inc/mpdf/vendor/autoload.php'); 
+require('../Frontend/admin/inc/db_config.php');
+require('../Frontend/admin/inc/essentials.php');
+require('../Frontend/admin/inc/mpdf/vendor/autoload.php'); 
 adminLogin();
 
 if (isset($_GET['gen_pdf']) && isset($_GET['id'])) {
