@@ -11,7 +11,7 @@
 
     session_start();
 
-    require('..Frontend/admin/inc/db_config.php');
+    require('../Frontend/admin/inc/db_config.php');
     require('../admin/inc/essentials.php');
 
 $contact_q ="SELECT * FROM contact_details WHERE sr_no=?";
