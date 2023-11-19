@@ -161,7 +161,7 @@
       facility_list =JSON.stringify(facility_list);
 
       let xhr = new XMLHttpRequest();
-      xhr.open("GET", "http://34.126.67.208:8080/admin/rooms.php?fetch_rooms&chk_avail="+chk_avail+"&guests="+guests+"&facility_list="+facility_list, true);
+      xhr.open("GET", "http://34.126.67.208:8080/ajax/rooms.php?fetch_rooms&chk_avail="+chk_avail+"&guests="+guests+"&facility_list="+facility_list, true);
 
       xhr.onprogress = function(){
         rooms_data.innerHTML = 
