@@ -1,15 +1,17 @@
 <?php
 
-    require('../admin/inc/db_config.php');
-    require('../admin/inc/essentials.php');
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
 
-    session_start();
+require('../admin/inc/db_config.php');
+require('../admin/inc/essentials.php');
 
-    if(!(isset($_SESSION['login']) && $_SESSION['login']==true)) {
+session_start();
+
+if(!(isset($_SESSION['login']) && $_SESSION['login']==true)) {
         redirect('index.php');
-    }
-
-    if (isset($_POST['review_form'])) 
+    } if (isset($_POST['review_form'])) 
     {
         $frm_data = filteration($_POST);    
 
@@ -27,5 +29,4 @@
 
         echo $ins_result;
     }
-
 ?>
