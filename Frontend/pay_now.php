@@ -1,7 +1,7 @@
 <?php
 
-    require('http://34.126.67.208/admin/inc/db_config.php');
-    require('http://34.126.67.208/admin/inc/essentials.php');
+    require('http://34.126.67.208:8080/admin/inc/db_config.php');
+    require('http://34.126.67.208:8080/admin/inc/essentials.php');
 
     require('inc/paytm/config_paytm.php');
     require('inc/paytm/encdec_paytm.php');

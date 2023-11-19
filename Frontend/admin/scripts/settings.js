@@ -17,7 +17,7 @@ function get_general() {
     let shutdownToggle = document.getElementById('shutdown-toggle');
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/settings_crud.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -54,7 +54,7 @@ general_s_form.addEventListener('submit', function (e) {
 
 function upd_general(site_title_val, site_about_val) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/settings_crud.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function upd_shutdown(val) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/settings_crud.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -132,7 +132,7 @@ function get_contacts() {
     let iframeInput = document.getElementById('iframe_inp');
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/settings_crud.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -201,7 +201,7 @@ function upd_contacts() {
     data_str += "upd_contacts";
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/settings_crud.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -231,7 +231,7 @@ function add_member() {
     data.append('add_member', '');
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/settings_crud.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/settings_crud.php", true);
 
     xhr.onload = function () {
         var myModal = document.getElementById('team-s');
@@ -260,7 +260,7 @@ function add_member() {
 
 function get_members() {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/settings_crud.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -272,7 +272,7 @@ function get_members() {
 
 function rem_member(val) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/settings_crud.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {

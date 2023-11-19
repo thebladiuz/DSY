@@ -34,7 +34,7 @@ function add_rooms() {
     data.append('facilities', JSON.stringify(facilities));
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/rooms.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/rooms.php", true);
 
     xhr.onload = function () {
         var myModal = document.getElementById('add-room');
@@ -56,7 +56,7 @@ function add_rooms() {
 
 function get_all_rooms() {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/rooms.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/rooms.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -70,7 +70,7 @@ let edit_room_form = document.getElementById('edit_room_form');
 
 function edit_details(id) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/rooms.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/rooms.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // Changed content type
 
     xhr.onload = function () {
@@ -151,7 +151,7 @@ function submit_edit_room() {
     data.append('facilities', JSON.stringify(facilities));
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/rooms.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/rooms.php", true);
 
     xhr.onload = function () {
         var myModal = document.getElementById('edit-room');
@@ -173,7 +173,7 @@ function submit_edit_room() {
 
 function toggle_status(id, val) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/rooms.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/rooms.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -202,7 +202,7 @@ function add_image(){
     data.append('add_image', '');
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/rooms.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/rooms.php", true);
 
     xhr.onload = function () {
         if(this.responseText == 'inv_img') {
@@ -230,7 +230,7 @@ function room_images(id,rname){
     add_image_form.elements['image'].value = '';
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/rooms.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/rooms.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -247,7 +247,7 @@ function rem_image(img_id, room_id){
     data.append('rem_image', '');
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/rooms.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/rooms.php", true);
 
     xhr.onload = function () {
         if(this.responseText == 1) {
@@ -270,7 +270,7 @@ function thumb_image(img_id, room_id){
     data.append('thumb_image', '');
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208/admin/ajax/rooms.php", true);
+    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/rooms.php", true);
 
     xhr.onload = function () {
         if(this.responseText == 1) {
@@ -292,7 +292,7 @@ function remove_room(room_id){
         data.append('remove_room', '');
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://34.126.67.208/admin/ajax/rooms.php", true);
+        xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/rooms.php", true);
 
         xhr.onload = function () {
             if(this.responseText == 1) {
