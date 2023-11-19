@@ -11,8 +11,8 @@
 
     session_start();
 
-require('admin/inc/db_config.php');
-require('admin/inc/essentials.php');
+require('http://34.126.67.208/admin/inc/db_config.php');
+require('http://34.126.67.208/admin/inc/essentials.php');
 
 $contact_q ="SELECT * FROM contact_details WHERE sr_no=?";
 $settings_q ="SELECT * FROM settings WHERE sr_no=?";

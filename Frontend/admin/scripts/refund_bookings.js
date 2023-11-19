@@ -1,6 +1,6 @@
 function get_bookings(search='') {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../admin/ajax/refund_bookings.php", true);
+    xhr.open("POST", "http://34.126.67.208/admin/ajax/refund_bookings.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -17,7 +17,7 @@ function refund_booking(id){
         data.append('refund_booking', '');
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "../admin/ajax/refund_bookings.php", true);
+        xhr.open("POST", "http://34.126.67.208/admin/ajax/refund_bookings.php", true);
 
         xhr.onload = function () {
             if(this.responseText == 1) {

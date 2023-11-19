@@ -14,7 +14,7 @@ function add_image()
     data.append('add_image', '');
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../admin/ajax/carousel_crud.php", true);
+    xhr.open("POST", "http://34.126.67.208/admin/ajax/carousel_crud.php", true);
 
     xhr.onload = function () {
         var myModal = document.getElementById('carousel-s');
@@ -42,7 +42,7 @@ function add_image()
 
 function get_carousel() {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../admin/ajax/carousel_crud.php", true);
+    xhr.open("POST", "http://34.126.67.208//admin/ajax/carousel_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function(){
@@ -54,7 +54,7 @@ function get_carousel() {
 
 function rem_image(val) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../admin/ajax/carousel_crud.php", true);
+    xhr.open("POST", "http://34.126.67.208/admin/ajax/carousel_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {

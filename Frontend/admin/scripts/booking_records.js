@@ -1,6 +1,6 @@
 function get_bookings(search='', page=1) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../admin/ajax/booking_records.php", true);
+    xhr.open("POST", "http://34.126.67.208/admin/ajax/booking_records.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {

@@ -159,7 +159,7 @@
       if(confirm('Are you sure to cancel booking?'))
       {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "../admin/ajax/cancel_booking.php", true);
+        xhr.open("POST", "http://34.126.67.208/admin/ajax/cancel_booking.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function () {
@@ -190,7 +190,7 @@ review_form.addEventListener('submit', function (e) {
     data.append('review_form', '');  // Make sure to append the necessary data
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../Starlight-Hotel/ajax/review_room.php", true);
+    xhr.open("POST", "http://34.126.67.208/ajax/review_room.php", true);
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {

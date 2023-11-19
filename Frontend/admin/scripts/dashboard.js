@@ -1,7 +1,7 @@
 function booking_analytics(period=1) 
 {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../admin/ajax/dashboard.php", true);
+    xhr.open("POST", "http://34.126.67.208/admin/ajax/dashboard.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -22,7 +22,7 @@ function booking_analytics(period=1)
 function user_analytics(period=1) 
 {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../admin/ajax/dashboard.php", true);
+    xhr.open("POST", "http://34.126.67.208/admin/ajax/dashboard.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {

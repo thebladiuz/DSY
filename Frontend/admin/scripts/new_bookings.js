@@ -1,6 +1,6 @@
 function get_bookings(search='') {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../admin/ajax/new_bookings.php", true);
+    xhr.open("POST", "http://34.126.67.208/admin/ajax/new_bookings.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -26,7 +26,7 @@ assign_room_form.addEventListener('submit', function(e) {
         data.append('assign_room', '');
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "../admin/ajax/new_bookings.php", true);
+        xhr.open("POST", "http://34.126.67.208/admin/ajax/new_bookings.php", true);
 
         xhr.onload = function () {
             console.log('Server Response:', this.responseText);
@@ -55,7 +55,7 @@ function cancel_booking(id){
         data.append('cancel_booking', '');
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "../admin/ajax/new_bookings.php", true);
+        xhr.open("POST", "http://34.126.67.208/admin/ajax/new_bookings.php", true);
 
         xhr.onload = function () {
             if(this.responseText == 1) {

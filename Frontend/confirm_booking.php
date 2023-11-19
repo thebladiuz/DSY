@@ -159,7 +159,7 @@
           data.append('check_out',checkout_val);
 
           let xhr = new XMLHttpRequest();
-          xhr.open("POST", "../Starlight-Hotel/ajax/confirm_booking.php", true);
+          xhr.open("POST", "http://34.126.67.208/ajax/confirm_booking.php", true);
 
           xhr.onload = function () {
             let data = JSON.parse(this.responseText);
