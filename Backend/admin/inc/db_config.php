@@ -1,8 +1,8 @@
 <?php
    
-   $hname = 'localhost';
+   $hname = '34.101.96.59';
    $uname = 'root';
-   $pass = '';
+   $pass = '12345678';
    $db = 'starlighthotel';
 
    $con = mysqli_connect($hname,$uname,$pass,$db);
