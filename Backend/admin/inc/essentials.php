@@ -8,6 +8,12 @@ define('FRONTEND_IMAGES_PATH', FRONTEND_ASSETS_PATH . 'images/');
 define('BACKEND_BASE_URL', 'http://34.126.67.208:8080/'); // Change this to your backend server URL
 define('BACKEND_UPLOAD_PATH', BACKEND_BASE_URL . 'admin/ajax/upload-handler.php');
 
+define('UPLOAD_IMAGE_PATH', FRONTEND_BASE_URL . 'upload-handler.php');
+define('ABOUT_FOLDER','about/');
+define('CAROUSEL_FOLDER','carousel/');
+define('FACILITIES_FOLDER','facilities/');
+define('ROOM_FOLDER','rooms/');
+define('USERS_FOLDER','users/');
 // Function to append frontend base URL to relative paths
 function frontendPath($path) {
     return FRONTEND_BASE_URL . $path;
