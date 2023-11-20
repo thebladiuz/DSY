@@ -27,7 +27,7 @@ require('../admin/inc/essentials.php');
         $unread_queries = mysqli_fetch_assoc(mysqli_query($con, "SELECT COUNT(sr_no) AS `count`
         FROM  `user_queries` WHERE `seen`=0"));
 
-        //$unread_reviews= mysqli_fetch_assoc(mysqli_query($con, "SELECT COUNT(sr_no) AS `count`
+        $unread_reviews= mysqli_fetch_assoc(mysqli_query($con, "SELECT COUNT(sr_no) AS `count`
         //FROM  `rating_review` WHERE `seen`=0"));
 
         $current_users = mysqli_fetch_assoc(mysqli_query($con, "SELECT
