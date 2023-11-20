@@ -43,11 +43,7 @@ if((isset($_SESSION['adminLogin']) && $_SESSION['adminLogin']==true)){
         </form>
     </div>
 
-
-
     <?php
-    
-
     if(isset($_POST['login']))
     {
         $frm_data = filteration($_POST);
@@ -63,14 +59,11 @@ if((isset($_SESSION['adminLogin']) && $_SESSION['adminLogin']==true)){
             redirect('dashboard.php');
         }
         else{
-            alert('error','Login failed - Inalid Credentials');
+            alert('error','Login failed - Invalid Credentials');
         }
  
     }
-    
-    
     ?>
-
     <?php require('inc/scripts.php');?>
 </body>
 </html>
