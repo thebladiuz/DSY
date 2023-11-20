@@ -1,12 +1,3 @@
-<?php
-session_start(); // Make sure to start the session
-if (isset($_SESSION['login'])) {
-    echo '$_SESSION[\'login\'] is set. Its value is: ' . $_SESSION['login'];
-} else {
-    echo '$_SESSION[\'login\'] is not set.';
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
