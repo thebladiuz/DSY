@@ -8,7 +8,7 @@ define('ROOMS_IMG_PATH', SITE_URL.'assets/images/rooms/');
 define('USERS_IMG_PATH', SITE_URL.'assets/images/users/');
 
 //backend upload process needs this date_add
-define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT'].'/assets/images/');
+define('UPLOAD_IMAGE_PATH','http://34.143.182.143:8080/assets/images/');
 define('ABOUT_FOLDER','about/');
 define('CAROUSEL_FOLDER','carousel/');
 define('FACILITIES_FOLDER','facilities/');
