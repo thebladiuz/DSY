@@ -49,11 +49,11 @@ if (isset($_POST['user_analytics'])) {
     $condition="";
 
     if($frm_data['period']==1){
-        $condition="WHERE date BETWEEN NOW() - INTERVAL 30 DAY AND NOW()";
+        $condition="WHERE datentime BETWEEN NOW() - INTERVAL 30 DAY AND NOW()";
     }else if($frm_data['period']==2){
-        $condition="WHERE date BETWEEN NOW() - INTERVAL 90 DAY AND NOW()";
+        $condition="WHERE datentime BETWEEN NOW() - INTERVAL 90 DAY AND NOW()";
     }else if($frm_data['period']==3){
-        $condition="WHERE date BETWEEN NOW() - INTERVAL 1 YEAR AND NOW()";
+        $condition="WHERE datentime BETWEEN NOW() - INTERVAL 1 YEAR AND NOW()";
     }
 
     $total_reviews_stmt = mysqli_prepare($con, "SELECT COUNT(sr_no) AS `count` FROM `rating_review` $condition");
