@@ -11,11 +11,8 @@ header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 // Allow credentials if needed
 header('Access-Control-Allow-Credentials: true');
 
-session_start();
-
 require('../inc/db_config.php');
 require('../inc/essentials.php');
-adminLogin();
 
 if (isset($_POST['add_image'])) {
     // Perform any necessary input validation and filtering here

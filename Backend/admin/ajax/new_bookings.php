@@ -13,7 +13,6 @@ header('Access-Control-Allow-Credentials: true');
 
 require('../inc/db_config.php');
 require('../inc/essentials.php');
-adminLogin();
 
 if (isset($_POST['get_bookings'])) {
     $frm_data = filteration($_POST);
