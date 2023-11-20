@@ -159,7 +159,7 @@ function alert(type, msg, position='body') {
 
         xhr.onload = function () {
           console.log(this.responseText);
-          
+
           if (this.responseText === 'inv_email_mob') {
             alert('Invalid Email or Mobile Number!');
           } else if (this.responseText === 'inactive') {
@@ -174,7 +174,7 @@ function alert(type, msg, position='body') {
               } else {
                 window.location = window.location.pathname;
               }
-            }, 2000);
+            }, 5000);
           }
         };
 
