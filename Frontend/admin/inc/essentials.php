@@ -1,6 +1,7 @@
 <?php
 //frontend purpose data
 define('SITE_URL', 'http://34.143.182.143:8080/');
+define('FRONTEND_BASE_URL', SITE_URL);
 define('ABOUT_IMG_PATH', SITE_URL.'assets/images/about/');
 define('CAROUSEL_IMG_PATH', SITE_URL.'assets/images/carousel/');
 define('FACILITIES_IMG_PATH', SITE_URL.'assets/images/facilities/');
