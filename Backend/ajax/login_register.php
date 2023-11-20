@@ -1,24 +1,19 @@
 <?php
 
 header('Access-Control-Allow-Origin: http://34.143.182.143:8080');
-
-// Allow additional headers if needed
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-
-// Set allowed methods (GET, POST, etc.)
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-
-// Allow credentials if needed
 header('Access-Control-Allow-Credentials: true');
 
 require('../admin/inc/db_config.php');
 require('../admin/inc/essentials.php');
 
-if(isset($_POST['register'])) {
+// Check for registration request
+if (isset($_POST['register'])) {
     $data = filteration($_POST);
 
     // Match password and confirm password field
-    if($data['pass'] != $data['cpass']) {
+    if ($data['pass'] != $data['cpass']) {
         echo 'pass_mismatch';
         exit;
     }
@@ -26,7 +21,7 @@ if(isset($_POST['register'])) {
     // Check if the user exists based on email or phone number
     $u_exist = select("SELECT * FROM `user_cred` WHERE `email` = ? OR `phonenum` = ? LIMIT 1", [$data['email'], $data['phonenum']], "ss");
 
-    if(mysqli_num_rows($u_exist) != 0) {
+    if (mysqli_num_rows($u_exist) != 0) {
         $u_exist_fetch = mysqli_fetch_assoc($u_exist);
         echo ($u_exist_fetch['email'] == $data['email']) ? 'email_already' : 'phone_already';
         exit;
@@ -35,10 +30,10 @@ if(isset($_POST['register'])) {
     // Upload user image to the server
     $img = uploadUserImage($_FILES['profile']);
 
-    if($img == 'inv_img') {
+    if ($img == 'inv_img') {
         echo 'inv_img';
         exit;
-    } else if($img == 'upd_failed') {
+    } else if ($img == 'upd_failed') {
         echo 'upd_failed';
         exit;
     }
@@ -49,27 +44,28 @@ if(isset($_POST['register'])) {
     $query = "INSERT INTO `user_cred`(`name`, `email`, `address`, `phonenum`, `pincode`, `dob`, `profile`, `password`) VALUES (?,?,?,?,?,?,?,?)";
     $values = [$data['name'], $data['email'], $data['address'], $data['phonenum'], $data['pincode'], $data['dob'], $img, $enc_pass];
 
-    if(insert($query, $values, 'ssssssss')) {
-        echo 1;
+    if (insert($query, $values, 'ssssssss')) {
+        echo json_encode(['status' => 'success']);
     } else {
-        echo 'ins_failed';
+        echo json_encode(['status' => 'ins_failed']);
     }
 }
 
-if(isset($_POST['login'])) {
+// Check for login request
+if (isset($_POST['login'])) {
     $data = filteration($_POST);
 
     $u_exist = select("SELECT * FROM `user_cred` WHERE `email`=? OR `phonenum`=? LIMIT 1", [$data['email_mob'], $data['email_mob']], "ss");
 
-    if(mysqli_num_rows($u_exist) == 0) {
-        echo 'inv_email_mob';
+    if (mysqli_num_rows($u_exist) == 0) {
+        echo json_encode(['status' => 'inv_email_mob']);
     } else {
         $u_fetch = mysqli_fetch_assoc($u_exist);
-        if($u_fetch['status'] == 0) {
-            echo 'inactive';
+        if ($u_fetch['status'] == 0) {
+            echo json_encode(['status' => 'inactive']);
         } else {
-            if(!password_verify($data['pass'], $u_fetch['password'])) {
-                echo 'invalid_pass';
+            if (!password_verify($data['pass'], $u_fetch['password'])) {
+                echo json_encode(['status' => 'invalid_pass']);
             } else {
                 session_start();
                 $_SESSION['login'] = true;
@@ -77,7 +73,7 @@ if(isset($_POST['login'])) {
                 $_SESSION['uName'] = $u_fetch['name'];
                 $_SESSION['uPic'] = $u_fetch['profile'];
                 $_SESSION['uPhone'] = $u_fetch['phonenum'];
-                echo 1;
+                echo json_encode(['status' => 'success']);
             }
         }
     }
