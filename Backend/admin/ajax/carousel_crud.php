@@ -13,7 +13,7 @@ header('Access-Control-Allow-Credentials: true');
 
 require('../inc/db_config.php');
 require('../inc/essentials.php');
-adminLogin();
+//adminLogin();
 
 if (isset($_POST['add_image'])) {
     // Perform any necessary input validation and filtering here
