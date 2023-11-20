@@ -85,7 +85,7 @@ require('../admin/inc/essentials.php');
                         <a href="rate_review.php" class="text-decoration-none">
                             <div class="card text-center text-info p-3">
                             <h6>Rating & Review</h6>
-                            <!-- <h1 class="mt-2 mb-0"><php echo $unread_reviews['count'] ?></h1> -->
+                            <h1 class="mt-2 mb-0"><?php echo $unread_reviews['count'] ?></h1>
                             </div>
                         </a>
                     </div>
