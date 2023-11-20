@@ -49,15 +49,18 @@ if (isset($_POST['user_analytics'])) {
     $condition="";
 
     if($frm_data['period']==1){
-        $condition="WHERE datentime BETWEEN NOW() - INTERVAL 30 DAY AND NOW()";
+        $condition="WHERE date BETWEEN NOW() - INTERVAL 30 DAY AND NOW()";
     }else if($frm_data['period']==2){
-        $condition="WHERE datentime BETWEEN NOW() - INTERVAL 90 DAY AND NOW()";
+        $condition="WHERE date BETWEEN NOW() - INTERVAL 90 DAY AND NOW()";
     }else if($frm_data['period']==3){
-        $condition="WHERE datentime BETWEEN NOW() - INTERVAL 1 YEAR AND NOW()";
+        $condition="WHERE date BETWEEN NOW() - INTERVAL 1 YEAR AND NOW()";
     }
 
-    //$total_reviews = mysqli_fetch_assoc(mysqli_query($con, "SELECT COUNT(sr_no) AS `count`
-         //FROM  `rating_review` $condition"));
+    $total_reviews_stmt = mysqli_prepare($con, "SELECT COUNT(sr_no) AS `count` FROM `rating_review` $condition");
+    mysqli_stmt_execute($total_reviews_stmt);
+    mysqli_stmt_bind_result($total_reviews_stmt, $total_reviews_count);
+    mysqli_stmt_fetch($total_reviews_stmt);
+    mysqli_stmt_close($total_reviews_stmt);
 
     $total_queries_stmt = mysqli_prepare($con, "SELECT COUNT(sr_no) AS `count` FROM `user_queries` $condition");
     mysqli_stmt_execute($total_queries_stmt);
@@ -72,7 +75,7 @@ if (isset($_POST['user_analytics'])) {
     mysqli_stmt_close($total_new_reg_stmt);
 
     $output = ['total_queries'=>$total_queries_count,
-    //'total_reviews'=>$total_reviews['count'],
+    'total_reviews'=> $total_reviews_count,
     'total_new_reg'=>$total_new_reg_count
 ];
     $output = json_encode($output);
