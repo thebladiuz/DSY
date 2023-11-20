@@ -158,6 +158,8 @@ function alert(type, msg, position='body') {
       xhr.open("POST", "http://34.126.67.208:8080/ajax/login_register.php", true);
 
         xhr.onload = function () {
+          console.log(this.responseText);
+          
           if (this.responseText === 'inv_email_mob') {
             alert('Invalid Email or Mobile Number!');
           } else if (this.responseText === 'inactive') {
@@ -165,12 +167,14 @@ function alert(type, msg, position='body') {
           } else if (this.responseText === 'invalid_pass') {
             alert('Incorrect Password!');
           } else {
-            let fileurl = window.location.href.split('/').pop().split('?').shift();
-            if(fileurl == 'room_details.php') {
-              window.location = widow.location.href;
-            } else {
-              window.location = window.location.pathname;
-            }
+            setTimeout(() => {
+              let fileurl = window.location.href.split('/').pop().split('?').shift();
+              if (fileurl == 'room_details.php') {
+                window.location = window.location.href;
+              } else {
+                window.location = window.location.pathname;
+              }
+            }, 2000);
           }
         };
 
