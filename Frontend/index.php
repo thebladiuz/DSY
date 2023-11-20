@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+echo $_SESSION['login'];
 if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
     echo 'User is logged in!';
 } else {
