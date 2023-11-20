@@ -13,7 +13,7 @@ header('Access-Control-Allow-Credentials: true');
 
 require('../inc/db_config.php');
 require('../inc/essentials.php');
-adminLogin();
+//adminLogin();
 
 if (isset($_POST['booking_analytics'])) {
     $frm_data  = filteration($_POST);
