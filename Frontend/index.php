@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
+    echo 'User is logged in!';
+} else {
+    echo 'User is not logged in.';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
