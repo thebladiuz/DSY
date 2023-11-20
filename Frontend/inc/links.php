@@ -9,10 +9,12 @@
 
 <?php
 
-    session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
 
-    require('../Frontend/admin/inc/db_config.php');
-    require('../Frontend/admin/inc/essentials.php');
+require('../Frontend/admin/inc/db_config.php');
+require('../Frontend/admin/inc/essentials.php');
 
 $contact_q ="SELECT * FROM contact_details WHERE sr_no=?";
 $settings_q ="SELECT * FROM settings WHERE sr_no=?";
