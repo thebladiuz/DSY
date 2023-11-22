@@ -157,7 +157,7 @@ function submit_edit_room() {
         var myModal = document.getElementById('edit-room');
         var modal = bootstrap.Modal.getInstance(myModal);
         modal.hide();
-        console.log('FormData:', formData);
+        console.log('FormData:', data);
 
         if (this.responseText == 1) {
             alert('success', 'Room data room edited!');
