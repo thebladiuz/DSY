@@ -134,14 +134,14 @@ function submit_edit_room() {
     data.append('desc', edit_room_form.elements['desc'].value);
 
     let features = [];
-    edit_room_form.querySelectorAll('[name="features[]"]').forEach(el => {
+    edit_room_form.querySelectorAll('[name="room_features[]"]').forEach(el => {
         if(el.checked) {
             features.push(el.value);
         }
     });
 
     let facilities = [];
-    edit_room_form.querySelectorAll('[name="facilities[]"]').forEach(el => {
+    edit_room_form.querySelectorAll('[name="room_facilities[]"]').forEach(el => {
         if(el.checked) {
             facilities.push(el.value);
         }
