@@ -196,15 +196,6 @@ if (isset($_POST['edit_room'])) {
         echo 0;
     }
 
-    echo '<pre>';
-    var_dump($features);
-    var_dump($facilities);
-    echo '</pre>';
-
-    // Alternatively, log values using error_log
-    error_log('Features: ' . print_r($features, true));
-    error_log('Facilities: ' . print_r($facilities, true));
-
 }
 
 if (isset($_POST['toggle_status'])) {
