@@ -3,11 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2023 at 11:47 AM
+-- Generation Time: Nov 22, 2023 at 02:41 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
-
-USE starlighthotel;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -557,6 +555,12 @@ ALTER TABLE `features`
 --
 ALTER TABLE `rating_review`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `room_facilities`
