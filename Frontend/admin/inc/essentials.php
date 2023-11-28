@@ -1,16 +1,4 @@
 <?php
-
-header('Access-Control-Allow-Origin: http://34.126.67.208:8080');
-
-// Allow additional headers if needed
-header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-
-// Set allowed methods (GET, POST, etc.)
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-
-// Allow credentials if needed
-header('Access-Control-Allow-Credentials: true');
-
 //frontend purpose data
 define('SITE_URL', 'http://34.143.182.143:8080/');
 define('ABOUT_IMG_PATH', SITE_URL.'assets/images/about/');
