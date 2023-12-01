@@ -1,5 +1,5 @@
 <div class="container-fluid bg-dark text-light p-3 d-flex align-items-center justify-content-between sticky-top">
-    <h3 class="mb-0"><?php echo $settings_r['site_title']?></h3>
+<h3 class="h-font fw-bold fs-3 mb-0"><?php echo $settings_r['site_title']?></h3>
     <a href="logout.php" class="btn btn-light btn-sm">LOG OUT</a>
 </div>
 
