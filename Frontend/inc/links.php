@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 
 <?php
-session_start();
+// session_start();
 
 require('../Frontend/admin/inc/db_config.php');
 require('../Frontend/admin/inc/essentials.php');
