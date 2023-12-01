@@ -127,7 +127,7 @@
       data.append('address', info_form.elements['address'].value);
 
       let xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://34.126.67.208:8080/ajax/profile.php", true);
+      xhr.open("POST", "http://34.128.146.216:8080/ajax/profile.php", true);
 
       xhr.onload = function () {
         if(this.responseText == 'phone_already'){
@@ -156,7 +156,7 @@
       data.append('profile', profile_form.elements['profile'].files[0]);
 
       let xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://34.126.67.208:8080/ajax/profile.php", true);
+      xhr.open("POST", "http://34.128.146.216:8080/ajax/profile.php", true);
 
       xhr.onload = function ()
       {
@@ -198,7 +198,7 @@
       data.append('confirm_pass', confirm_pass);
 
       let xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://34.126.67.208:8080/ajax/profile.php", true);
+      xhr.open("POST", "http://34.128.146.216:8080/ajax/profile.php", true);
 
       xhr.onload = function ()
       {

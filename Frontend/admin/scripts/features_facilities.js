@@ -12,7 +12,7 @@
         data.append('add_feature', '');
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/features_facilities.php", true);
+        xhr.open("POST", "http://34.128.146.216:8080/admin/ajax/features_facilities.php", true);
 
         xhr.onload = function () {
             var myModal = document.getElementById('feature-s');
@@ -34,7 +34,7 @@
 
     function get_features() {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/features_facilities.php", true);
+        xhr.open("POST", "http://34.128.146.216:8080/admin/ajax/features_facilities.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function () {
@@ -46,7 +46,7 @@
 
     function rem_feature(val) {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/features_facilities.php", true);
+        xhr.open("POST", "http://34.128.146.216:8080/admin/ajax/features_facilities.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function () {
@@ -76,7 +76,7 @@
         data.append('add_facility', '');
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/features_facilities.php", true);
+        xhr.open("POST", "http://34.128.146.216:8080/admin/ajax/features_facilities.php", true);
 
         xhr.onload = function () {
             var myModal = document.getElementById('facility-s');
@@ -104,7 +104,7 @@
 
     function get_facilities() {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/features_facilities.php", true);
+        xhr.open("POST", "http://34.128.146.216:8080/admin/ajax/features_facilities.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function () {
@@ -116,7 +116,7 @@
 
     function rem_facility(val) {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/features_facilities.php", true);
+        xhr.open("POST", "http://34.128.146.216:8080/admin/ajax/features_facilities.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     
         xhr.onload = function () {

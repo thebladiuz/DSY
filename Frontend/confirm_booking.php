@@ -159,7 +159,7 @@
           data.append('check_out',checkout_val);
 
           let xhr = new XMLHttpRequest();
-          xhr.open("POST", "http://34.126.67.208:8080/ajax/confirm_booking.php", true);
+          xhr.open("POST", "http://34.128.146.216:8080/ajax/confirm_booking.php", true);
 
           xhr.onload = function () {
             let data = JSON.parse(this.responseText);

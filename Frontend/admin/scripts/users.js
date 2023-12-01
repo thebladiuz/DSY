@@ -1,7 +1,7 @@
 
 function get_users() {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/users.php", true);
+    xhr.open("POST", "http://34.128.146.216:8080/admin/ajax/users.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -13,7 +13,7 @@ function get_users() {
 
 function toggle_status(id, currentStatus) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/users.php", true);
+    xhr.open("POST", "http://34.128.146.216:8080/admin/ajax/users.php", true);
     
     // Set the request header for form data
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -42,7 +42,7 @@ function remove_user(user_id){
         data.append('remove_user', '');
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/users.php", true);
+        xhr.open("POST", "http://34.128.146.216:8080/admin/ajax/users.php", true);
 
         xhr.onload = function () {
             if(this.responseText == 1) {
@@ -59,7 +59,7 @@ function remove_user(user_id){
 
 function search_user(username){
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://34.126.67.208:8080/admin/ajax/users.php", true);
+    xhr.open("POST", "http://34.128.146.216:8080/admin/ajax/users.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
