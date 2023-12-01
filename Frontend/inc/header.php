@@ -23,7 +23,7 @@
                 </li>
             </ul>
             <?php
-                if(isset($_SESSION['login']) && $_SESSION['login']==true)
+                if(isset($_SESSION['login']) || $_SESSION['login']==true)
                 {
                     $path = USERS_IMG_PATH;
                     echo<<<data
