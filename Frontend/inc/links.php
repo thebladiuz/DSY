@@ -13,6 +13,8 @@ var_dump($_SESSION);
 
 $sessionStatus = isset($_SESSION['login']) ? $_SESSION['login'] : false;
 
+echo json_encode(['sessionStatus' => $sessionStatus]);
+
 require('../Frontend/admin/inc/db_config.php');
 require('../Frontend/admin/inc/essentials.php');
 
