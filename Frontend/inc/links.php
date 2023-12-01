@@ -12,6 +12,8 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+$sessionStatus = isset($_SESSION['login']) ? $_SESSION['login'] : false;
+
 echo "Session started successfully!"; // Debug statement
 
 require('../Frontend/admin/inc/db_config.php');
