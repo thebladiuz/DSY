@@ -143,46 +143,51 @@ function alert(type, msg, position='body') {
 
     let login_form = document.getElementById('login-form');
 
-    login_form.addEventListener('submit', (e) => {
-      e.preventDefault();
+  login_form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-      let data = new FormData();
-      data.append('email_mob', login_form.elements['email_mob'].value);
-      data.append('pass', login_form.elements['pass'].value);
-      data.append('login', '');
-      var myModal = document.getElementById('loginModal');
-      var modal = bootstrap.Modal.getInstance(myModal);
-      modal.hide();
-      
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://34.128.146.216:8080/ajax/login_register.php", true);
+    let data = new FormData();
+    data.append('email_mob', login_form.elements['email_mob'].value);
+    data.append('pass', login_form.elements['pass'].value);
+    data.append('login', '');
 
-        xhr.onload = function () {
-          console.log(this.responseText);
+    var myModal = document.getElementById('loginModal');
+    var modal = bootstrap.Modal.getInstance(myModal);
+    modal.hide();
 
-          console.log("Session status in JavaScript:", <?php echo json_encode($sessionStatus); ?>);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://34.128.146.216:8080/ajax/login_register.php", true);
 
-          if (this.responseText === 'inv_email_mob') {
-            alert('error', 'Invalid Email or Mobile Number!');
-          } else if (this.responseText === 'inactive') {
-            alert('error', 'Account Suspended! Please contact Admin.');
-          } else if (this.responseText === 'invalid_pass') {
-            alert('error', 'Incorrect Password!');
-          } else {
-            alert('success', "Registration successful!");
-            setTimeout(() => {
-              let fileurl = window.location.href.split('/').pop().split('?').shift();
-              if (fileurl == 'room_details.php') {
-                window.location = window.location.href;
-              } else {
-                window.location = window.location.pathname;
-              }
-            }, 5000);
-          }
-        };
+    xhr.onload = function () {
+      console.log(this.responseText);
 
-      xhr.send(data);
-    });
+      if (this.responseText.trim() === 'inv_email_mob') {
+        alert('error', 'Invalid Email or Mobile Number!');
+      } else if (this.responseText.trim() === 'inactive') {
+        alert('error', 'Account Suspended! Please contact Admin.');
+      } else if (this.responseText.trim() === 'invalid_pass') {
+        alert('error', 'Incorrect Password!');
+      } else {
+        // Check if the response contains "success"
+        if (this.responseText.includes("success")) {
+          alert('success', "Login successful!");
+          setTimeout(() => {
+            let fileurl = window.location.href.split('/').pop().split('?').shift();
+            if (fileurl == 'room_details.php') {
+              window.location = window.location.href;
+            } else {
+              window.location = window.location.pathname;
+            }
+          }, 5000);
+        } else {
+          // Display an error if login was not successful
+          alert('error', 'Login failed. Please check your credentials.');
+        }
+      }
+    };
+
+    xhr.send(data);
+  });
 
     function checkLoginToBook(status,room_id){
       if(status) {
