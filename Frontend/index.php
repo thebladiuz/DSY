@@ -1,8 +1,3 @@
-<?php 
-session_start();
-$sessionStatus = isset($_SESSION['login']) ? $_SESSION['login'] : false;
-echo json_encode(['sessionStatus' => $sessionStatus]);
-?>
 <!DOCTYPE html>
 <html lang="en">
 

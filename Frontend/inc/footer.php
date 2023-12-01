@@ -161,6 +161,8 @@ function alert(type, msg, position='body') {
       let sessionStatus = <?php echo json_encode($sessionStatus); ?>;
       console.log("Session status in JavaScript:", sessionStatus);
 
+      error_log(print_r($_SESSION, true));
+
       if (this.responseText.trim() === 'inv_email_mob') {
         alert('error', 'Invalid Email or Mobile Number!');
       } else if (this.responseText.trim() === 'inactive') {

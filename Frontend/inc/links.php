@@ -8,9 +8,9 @@
 <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 
 <?php
-// session_start();
-// $sessionStatus = isset($_SESSION['login']) ? $_SESSION['login'] : false;
-// echo json_encode(['sessionStatus' => $sessionStatus]);
+session_start();
+$sessionStatus = isset($_SESSION['login']) ? $_SESSION['login'] : false;
+echo json_encode(['sessionStatus' => $sessionStatus]);
 
 require('../Frontend/admin/inc/db_config.php');
 require('../Frontend/admin/inc/essentials.php');
