@@ -132,7 +132,7 @@ function alert(type, msg, position='body') {
           alert('error',"Cannot send confirmation email! Server down!");
         } 
         else {
-          alert('success', "Registration successful. Confirmation link sent to email!");
+          alert('success', "Registration successful!");
           register_form.reset();
         }
    
@@ -163,12 +163,13 @@ function alert(type, msg, position='body') {
           console.log("Session status in JavaScript:", <?php echo json_encode($sessionStatus); ?>);
 
           if (this.responseText === 'inv_email_mob') {
-            alert('Invalid Email or Mobile Number!');
+            alert('error', 'Invalid Email or Mobile Number!');
           } else if (this.responseText === 'inactive') {
-            alert('Account Suspended! Please contact Admin.');
+            alert('error', 'Account Suspended! Please contact Admin.');
           } else if (this.responseText === 'invalid_pass') {
-            alert('Incorrect Password!');
+            alert('error', 'Incorrect Password!');
           } else {
+            alert('success', "Registration successful!");
             setTimeout(() => {
               let fileurl = window.location.href.split('/').pop().split('?').shift();
               if (fileurl == 'room_details.php') {
