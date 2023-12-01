@@ -161,7 +161,10 @@ function alert(type, msg, position='body') {
     xhr.onload = function () {
       console.log(this.responseText);
 
-      console.log("Session status in JavaScript:", <?php echo json_encode($sessionStatus); ?>);
+      console.log("Full response in JavaScript:", JSON.parse(this.responseText));
+
+      let sessionStatus = <?php echo json_encode($sessionStatus); ?>;
+      console.log("Session status in JavaScript:", sessionStatus);
       
       if (this.responseText.trim() === 'inv_email_mob') {
         alert('error', 'Invalid Email or Mobile Number!');
