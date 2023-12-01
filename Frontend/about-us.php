@@ -86,31 +86,6 @@
 
         }
         ?>
-      <!--
-        <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-          <img src="assets/images/about/IMG_17352.jpg" class="w-100">
-          <h5 class="mt-2">Random Name</h5>
-        </div>
-        <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-          <img src="assets/images/about/IMG_17352.jpg" class="w-100">
-          <h5 class="mt-2">Random Name</h5>
-        </div>
-        <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-          <img src="assets/images/about/IMG_17352.jpg" class="w-100">
-          <h5 class="mt-2">Random Name</h5>
-        </div>
-        <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-          <img src="assets/images/about/IMG_17352.jpg" class="w-100">
-          <h5 class="mt-2">Random Name</h5>
-        </div>
-        <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-          <img src="assets/images/about/IMG_17352.jpg" class="w-100">
-          <h5 class="mt-2">Random Name</h5>
-        </div>
-        <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-          <img src="assets/images/about/IMG_17352.jpg" class="w-100">
-          <h5 class="mt-2">Random Name</h5>
-        </div> -->
       </div>
       <br>
     <div class="swiper-pagination"></div>
