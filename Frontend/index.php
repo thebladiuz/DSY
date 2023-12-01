@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
     <?php require('inc/links.php') ?>
     <title><?php echo $settings_r['site_title']?> - Home</title>
-
     <style>
            .availability-form {
             margin-top: -50px; /* Adjust this value as needed */
@@ -35,14 +32,13 @@
 
   </style>
 </head>
-
 <body class="bg-light">
   <?php require('inc/header.php'); ?>
 
   <!-- Carousel -->
   <div class="swiper swiper-container full-screen">
     <div class="swiper-wrapper">
-      <?php
+    <?php
       $res = selectAll('carousel');
       while ($row = mysqli_fetch_assoc($res)) {
         $path = CAROUSEL_IMG_PATH;
@@ -52,7 +48,7 @@
                 </div>
                 data;
       }
-      ?>
+    ?>
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
