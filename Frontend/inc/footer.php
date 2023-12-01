@@ -141,7 +141,7 @@ function alert(type, msg, position='body') {
       xhr.send(data);
     });
 
-    let login_form = document.getElementById('login-form');
+  let login_form = document.getElementById('login-form');
 
   login_form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -161,6 +161,8 @@ function alert(type, msg, position='body') {
     xhr.onload = function () {
       console.log(this.responseText);
 
+      console.log("Session status in JavaScript:", <?php echo json_encode($sessionStatus); ?>);
+      
       if (this.responseText.trim() === 'inv_email_mob') {
         alert('error', 'Invalid Email or Mobile Number!');
       } else if (this.responseText.trim() === 'inactive') {
