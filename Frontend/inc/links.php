@@ -8,10 +8,11 @@
 <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 
 <?php
-
+session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-session_start();
+
+echo "Session started successfully!"; // Debug statement
 
 require('../Frontend/admin/inc/db_config.php');
 require('../Frontend/admin/inc/essentials.php');
