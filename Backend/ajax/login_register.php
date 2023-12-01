@@ -77,7 +77,7 @@ if (isset($_POST['login'])) {
                 error_log("Session ID: " . session_id());
                 error_log(print_r($_SESSION, true));
                 
-                echo json_encode(['status' => 'success', 'session_status' => $_SESSION['login']]);
+                echo json_encode(['status' => 'success', 'session_status' => true]);
             }
         }
     }

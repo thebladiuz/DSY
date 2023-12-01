@@ -167,16 +167,21 @@ function alert(type, msg, position='body') {
         alert('error', 'Incorrect Password!');
       } else {
         // Check if the response contains "success"
-        if (this.responseText.trim() === 'success' && this.responseText.trim().session_status) {
-          alert('success', "Login successful!");
-          setTimeout(() => {
-            let fileurl = window.location.href.split('/').pop().split('?').shift();
-            if (fileurl == 'room_details.php') {
-              window.location = window.location.href;
+        if (this.responseText.trim() === 'success') {
+          let response = JSON.parse(this.responseText);
+          if (response.session_status) {
+              alert('success', "Login successful!");
+              setTimeout(() => {
+                let fileurl = window.location.href.split('/').pop().split('?').shift();
+                if (fileurl == 'room_details.php') {
+                  window.location = window.location.href;
+                } else {
+                  window.location = window.location.pathname;
+                }
+              }, 5000);
             } else {
-              window.location = window.location.pathname;
+        alert('error', 'Login failed. Please check your credentials.');
             }
-          }, 5000);
         } else {
           // Display an error if login was not successful
           alert('error', 'Login failed. Please check your credentials.');
