@@ -13,8 +13,6 @@ var_dump($_SESSION);
 
 $sessionStatus = isset($_SESSION['login']) ? $_SESSION['login'] : false;
 
-echo "Session started successfully!"; // Debug statement
-
 require('../Frontend/admin/inc/db_config.php');
 require('../Frontend/admin/inc/essentials.php');
 
