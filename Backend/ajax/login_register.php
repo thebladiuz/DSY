@@ -73,7 +73,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['uName'] = $u_fetch['name'];
                 $_SESSION['uPic'] = $u_fetch['profile'];
                 $_SESSION['uPhone'] = $u_fetch['phonenum'];
-                echo json_encode(['status' => 'success']);
+                echo json_encode(['status' => 'success', 'session_status' => $_SESSION['login']]);
             }
         }
     }
