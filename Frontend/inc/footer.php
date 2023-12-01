@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+echo "Session ID: " . session_id() . "<br>";
+echo "Session Data: " . print_r($_SESSION, true);
+?>
 <div class="container-fluid bg-white mt-5">
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-12 p-4">

@@ -9,6 +9,8 @@
 
 <?php
 session_start();
+echo "Session ID: " . session_id() . "<br>";
+echo "Session Data: " . print_r($_SESSION, true);
 
 require('../Frontend/admin/inc/db_config.php');
 require('../Frontend/admin/inc/essentials.php');
