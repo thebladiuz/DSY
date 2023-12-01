@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 header('Access-Control-Allow-Origin: http://34.143.182.143:8080');
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
