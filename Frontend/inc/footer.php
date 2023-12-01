@@ -1,8 +1,3 @@
-<?php 
-session_start(); 
-echo "Session ID: " . session_id() . "<br>";
-echo "Session Data: " . print_r($_SESSION, true);
-?>
 <div class="container-fluid bg-white mt-5">
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-12 p-4">
@@ -162,6 +157,8 @@ function alert(type, msg, position='body') {
 
     xhr.onload = function () {
       console.log(this.responseText);
+
+      var responseData = JSON.parse(this.responseText);
 
       if (this.responseText.trim() === 'inv_email_mob') {
         alert('error', 'Invalid Email or Mobile Number!');
