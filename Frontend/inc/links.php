@@ -9,10 +9,6 @@
 
 <?php
 session_start();
-error_log("Session ID: " . session_id());
-error_log(print_r($_SESSION, true));
-$sessionStatus = isset($_SESSION['login']) ? $_SESSION['login'] : false;
-error_log("Session Status in PHP: " . json_encode($sessionStatus));
 
 require('../Frontend/admin/inc/db_config.php');
 require('../Frontend/admin/inc/essentials.php');
