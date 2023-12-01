@@ -167,7 +167,7 @@ function alert(type, msg, position='body') {
         alert('error', 'Incorrect Password!');
       } else {
         // Check if the response contains "success"
-        if (this.responseText === 'success') {
+        if (this.responseText.includes("success")) {
           let response = JSON.parse(this.responseText);
           if (response.session_status) {
               alert('success', "Login successful!");
