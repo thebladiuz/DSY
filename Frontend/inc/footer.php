@@ -71,9 +71,6 @@ function alert(type, msg, position='body') {
       document.getElementsByClassName('alert')[0].remove();
     }
 
-
-
-
     function setActive()
     {
       let navbar =document.getElementById('nav-bar');
