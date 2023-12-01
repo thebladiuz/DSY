@@ -168,20 +168,15 @@ function alert(type, msg, position='body') {
       } else {
         // Check if the response contains "success"
         if (this.responseText.includes("success")) {
-          let response = JSON.parse(this.responseText);
-          if (response.session_status) {
-              alert('success', "Login successful!");
-              setTimeout(() => {
-                let fileurl = window.location.href.split('/').pop().split('?').shift();
-                if (fileurl == 'room_details.php') {
-                  window.location = window.location.href;
-                } else {
-                  window.location = window.location.pathname;
-                }
-              }, 5000);
+          alert('success', "Login successful!");
+          setTimeout(() => {
+            let fileurl = window.location.href.split('/').pop().split('?').shift();
+            if (fileurl == 'room_details.php') {
+              window.location = window.location.href;
             } else {
-        alert('error', 'Login failed. Please check your credentials.');
+              window.location = window.location.pathname;
             }
+          }, 5000);
         } else {
           // Display an error if login was not successful
           alert('error', 'Login failed. Please check your credentials.');
