@@ -158,10 +158,6 @@ function alert(type, msg, position='body') {
     xhr.onload = function () {
       console.log(this.responseText);
 
-      var responseData = JSON.parse(this.responseText);
-
-      console.log(responseData);
-
       if (this.responseText.trim() === 'inv_email_mob') {
         alert('error', 'Invalid Email or Mobile Number!');
       } else if (this.responseText.trim() === 'inactive') {
