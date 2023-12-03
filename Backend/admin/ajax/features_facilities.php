@@ -1,6 +1,6 @@
 <?php 
 
-header('Access-Control-Allow-Origin: http://34.143.182.143:8080');
+header('Access-Control-Allow-Origin: http://35.240.203.231:8080');
 
 // Allow additional headers if needed
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
@@ -17,9 +17,9 @@ require('../inc/essentials.php');
 if (isset($_POST['add_feature'])) {
 
     $frm_data = filteration($_POST);
+    $values = [$frm_data['name']];
 
     $q = "INSERT INTO `features` (`name`) VALUES (?)";
-    $values = [$frm_data['name']];
     $res = insert($q, $values, 's');
     echo $res;
 }
@@ -36,7 +36,7 @@ if (isset($_POST['get_features'])) {
             <td>
                 <button type="button" onclick="rem_feature($row[id])" class="btn btn-danger btn-sm shadow-none">
                 <i class="fa fa-trash"></i> Delete
-        </button>
+                </button>
             </td>
         </tr>
     data;
