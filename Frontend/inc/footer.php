@@ -156,10 +156,9 @@ function alert(type, msg, position='body') {
     xhr.open("POST", "http://34.128.146.216:8080/ajax/login_register.php", true);
 
     xhr.onload = function () {
-      
-      var responseData = JSON.parse(this.responseText);
+      console.log(this.responseText);
 
-      console.log(responseData);
+      var responseData = JSON.parse(this.responseText);
 
       if (this.responseText.trim() === 'inv_email_mob') {
         alert('error', 'Invalid Email or Mobile Number!');
