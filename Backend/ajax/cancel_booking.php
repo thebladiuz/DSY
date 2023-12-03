@@ -16,7 +16,7 @@ require('../admin/inc/essentials.php');
 
 session_start();
 
-if(!(isset($_SESSION['login']) && $_SESSION['login']==true)) {
+if(!(isset($_SESSION['userLogin']) && $_SESSION['userLogin']==true)) {
         redirect('index.php');
     } if (isset($_POST['cancel_booking'])) {
         $frm_data = filteration($_POST);    

@@ -22,7 +22,7 @@
   
     if(!isset($_GET['id']) || $settings_r['shutdown']==true){
       redirect('rooms.php');
-    } else if(!(isset($_SESSION['login']) && $_SESSION['login']==true)) {
+    } else if(!(isset($_SESSION['userLogin']) && $_SESSION['userLogin']==true)) {
       redirect('rooms.php');
     }
 

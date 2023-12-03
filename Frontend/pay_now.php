@@ -8,7 +8,7 @@ require('../Frontend/admin/inc/essentials.php');
 
     session_start();
 
-    if(!(isset($_SESSION['login']) && $_SESSION['login']==true)) {
+    if(!(isset($_SESSION['userLogin']) && $_SESSION['userLogin']==true)) {
         redirect('index.php');
       }
 

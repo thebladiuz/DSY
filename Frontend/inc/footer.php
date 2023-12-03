@@ -156,8 +156,7 @@ function alert(type, msg, position='body') {
     xhr.open("POST", "http://34.128.146.216:8080/ajax/login_register.php", true);
 
     xhr.onload = function () {
-      console.log(this.responseText);
-
+      
       var responseData = JSON.parse(this.responseText);
 
       console.log(responseData);

@@ -1,24 +1,20 @@
 <?php
 require('../admin/inc/db_config.php');
 require('../admin/inc/essentials.php');
-    adminLogin();
+adminLogin();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Rooms</title>
-    <?php require('../admin/inc/links.php'); ?>
-    <link rel="stylesheet" type="text/css" href="../admin/css/style.css">
-    <link rel="stylesheet" href="../admin/inc/scripts.php">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - Rooms</title>
+<?php require('../admin/inc/links.php'); ?>
+<link rel="stylesheet" type="text/css" href="../admin/css/style.css">
+<link rel="stylesheet" href="../admin/inc/scripts.php">
 </head>
-
 <body class="bg-light">
-
-    <?php require('../admin/inc/header.php') ?>
-
+<?php require('../admin/inc/header.php') ?>
     <div class="container-fluid" id="main-content">
         <div class="row">
             <div class="col-lg-10 ms-auto p-4 overflow-hidden">

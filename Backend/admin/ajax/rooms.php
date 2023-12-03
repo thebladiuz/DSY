@@ -279,7 +279,6 @@ if (isset($_POST['add_image'])) {
         }
     }
 
-
     if (isset($_POST['thumb_image'])) {
         $frm_data = filteration($_POST);
         $values = [$frm_data['image_id'], $frm_data['room_id']];

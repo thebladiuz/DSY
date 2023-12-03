@@ -10,7 +10,7 @@ require('../Frontend/admin/inc/essentials.php');
         $user_q = select("SELECT * FROM `user_cred` WHERE `id`=? LIMIT 1", [$uid], 'i');
         $user_fetch = mysqli_fetch_assoc($user_q);
 
-        $_SESSION['login'] = true;
+        $_SESSION['userLogin'] = true;
         $_SESSION['uId'] = $user_fetch['id'];
         $_SESSION['uName'] = $user_fetch['name'];
         $_SESSION['uPic'] = $user_fetch['profile'];
@@ -41,7 +41,7 @@ require('../Frontend/admin/inc/essentials.php');
 
         $slct_fetch = mysqli_fetch_assoc($slct_res);
 
-        if(!(isset($_SESSION['login']) && $_SESSION['login']==true)) {
+        if(!(isset($_SESSION['userLogin']) && $_SESSION['userLogin']==true)) {
             //regenerate session
         }
 

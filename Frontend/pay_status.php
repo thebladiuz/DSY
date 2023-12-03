@@ -21,7 +21,7 @@
 
         $frm_data = filteration($_GET);
 
-        if(!(isset($_SESSION['login']) && $_SESSION['login']==true)) {
+        if(!(isset($_SESSION['userLogin']) && $_SESSION['userLogin']==true)) {
           redirect('index.php');
         }
 
