@@ -8,6 +8,8 @@
 <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
 echo "Session ID: " . session_id() . "<br>";
 echo "Session Data: " . print_r($_SESSION, true);
