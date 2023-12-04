@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <nav id="nav-bar"class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 py-lg-2 shadow-sm stick-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php"><h3 class="h-font fw-bold fs-3 mb-2"><?php echo $settings_r['site_title']?></h3></a>
@@ -24,7 +23,7 @@
                 </li>
             </ul>
             <?php
-                if(isset($_SESSION['login']) || $_SESSION['login']==true)
+                if(isset($_SESSION['login']) && $_SESSION['login']==true)
                 {
                     $path = USERS_IMG_PATH;
                     echo<<<data
