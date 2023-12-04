@@ -129,7 +129,7 @@ if(isset($_GET['fetch_rooms'])) {
 
       if(!$settings_r['shutdown']){
         $login=0;
-        if(isset($_SESSION['userLogin']) && $_SESSION['userLogin']==true) {
+        if(isset($_SESSION['login']) && $_SESSION['login']==true) {
           $login=1;
         }
 

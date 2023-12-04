@@ -69,7 +69,14 @@ INSERT INTO `booking_details` (`sr_no`, `booking_id`, `room_name`, `price`, `tot
 (7, 2, 'Minh', 42411, 84822, NULL, 'abc', '123', 'stejkhhwfkawf'),
 (8, 3, 'Minh', 42411, 212055, 'B2001', 'Minh Le Vu', '0904681103', 'hanoi'),
 (9, 4, 'Sample Room 1', 1244, 7464, NULL, 'Minh Le Vu', '0904681103', 'hanoi'),
-(10, 5, 'Sample Room 1', 1244, 6220, NULL, 'abc', '123', 'stejkhhwfkawf');
+(10, 5, 'Sample Room 1', 1244, 6220, NULL, 'abc', '123', 'stejkhhwfkawf'),
+(11, 5, 'Minh', 42411, 466521, '34A', 'ngoclh567', '0345643674', 'hanoi'),
+(12, 6, 'Minh', 42411, 466521, NULL, 'ngoclh567', '0345643674', 'hanoi'),
+(13, 7, 'Sample Room 1', 1244, 12440, '12A', 'ngoclh567', '0345643674', 'hanoi'),
+(14, 8, 'Sample Room 1', 1244, 16172, NULL, 'ngoclh567', '0345643674', 'hanoi'),
+(15, 9, 'Sample Room 1', 1244, 2488, NULL, 'ngoclh567', '0345643674', 'hanoi'),
+(16, 10, 'Sample Room 1', 1244, 2488, NULL, 'ngoclh567', '0345643674', 'hanoi'),
+(17, 11, 'Minh', 42411, 84822, NULL, 'ngoclh567', '0345643674', 'hanoi');
 
 -- --------------------------------------------------------
 
@@ -104,7 +111,14 @@ INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `ch
 (2, 3, 21, '2023-12-29', '2023-12-31', 0, 0, 'canceled', 'ORD_34450558', 251057, 42411, 'TXN_FAILED', NULL, NULL, '2023-11-18 17:41:00'),
 (3, 2, 21, '2023-12-01', '2023-12-06', 1, NULL, 'booked', 'ORD_28377504', 221412, 42411, 'TXN_SUCCESS', NULL, 1, '2023-11-18 17:42:54'),
 (4, 2, 20, '2023-12-07', '2023-12-13', 0, 1, 'canceled', 'ORD_25981788', 256141, 1244, 'TXN_FAILED', NULL, NULL, '2023-11-18 17:45:10'),
-(5, 3, 20, '2023-12-01', '2023-12-06', 1, NULL, 'booked', 'ORD_3434920', NULL, 0, 'pending', NULL, NULL, '2023-11-18 18:26:36');
+(5, 3, 20, '2023-12-01', '2023-12-06', 1, NULL, 'booked', 'ORD_3434920', NULL, 0, 'pending', NULL, NULL, '2023-11-18 18:26:36'),
+(6, 0, 21, '2023-11-20', '2023-12-01', 0, NULL, 'booked', 'ORD_05814520', 4567, 6535, 'TXN_SUCCESS', NULL, 0, '2023-11-19 09:53:13'),
+(7, 0, 21, '2023-11-20', '2023-12-01', 0, 1, 'canceled', 'ORD_01224183', NULL, 0, 'TXN_SUCCESS', NULL, NULL, '2023-11-19 11:49:02'),
+(8, 0, 20, '2023-12-04', '2023-12-14', 1, NULL, 'booked', 'ORD_05934946', NULL, 0, 'TXN_SUCCESS', NULL, 1, '2023-12-02 23:26:46'),
+(9, 0, 20, '2023-12-14', '2023-12-27', 0, NULL, 'booked', 'ORD_04742783', NULL, 0, 'TXN_SUCCESS', NULL, NULL, '2023-12-02 23:34:20'),
+(10, 0, 20, '2023-12-06', '2023-12-08', 0, 1, 'canceled', 'ORD_09766895', NULL, 123, 'TXN_FAILED', NULL, NULL, '2023-12-02 23:34:41'),
+(11, 0, 20, '2023-12-03', '2023-12-05', 0, NULL, 'payment failed', 'ORD_02840571', NULL, 4500, 'TXN_FAILED', NULL, NULL, '2023-12-02 23:42:43'),
+(12, 0, 21, '2023-12-04', '2023-12-06', 0, NULL, 'booked', 'ORD_06372065', NULL, 0, 'TXN_SUCCESS', NULL, NULL, '2023-12-03 11:07:08');
 
 -- --------------------------------------------------------
 

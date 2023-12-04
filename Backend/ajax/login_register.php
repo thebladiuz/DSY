@@ -53,7 +53,7 @@ if (isset($_POST['register'])) {
 }
 
 // Check for login request
-if (isset($_POST['userLogin'])) {
+if (isset($_POST['login'])) {
     $data = filteration($_POST);
 
     $u_exist = select("SELECT * FROM `user_cred` WHERE `email`=? OR `phonenum`=? LIMIT 1", [$data['email_mob'], $data['email_mob']], "ss");
@@ -68,7 +68,7 @@ if (isset($_POST['userLogin'])) {
             if (!password_verify($data['pass'], $u_fetch['password'])) {
                 echo json_encode(['status' => 'invalid_pass']);
             } else {
-                $_SESSION['userLogin'] = true;
+                $_SESSION['login'] = true;
                 $_SESSION['uId'] = $u_fetch['id'];
                 $_SESSION['uName'] = $u_fetch['name'];
                 $_SESSION['uPic'] = $u_fetch['profile'];
@@ -79,7 +79,7 @@ if (isset($_POST['userLogin'])) {
                 
                 echo json_encode([
                     'status' => 'success',
-                    'session_status' => $_SESSION['userLogin'],
+                    'session_status' => $_SESSION['login'],
                     'uId' => $_SESSION['uId'],
                     'uName' => $_SESSION['uName'],
                     'uPic' => $_SESSION['uPic'],
